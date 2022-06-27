@@ -103,7 +103,31 @@
                 </table>
             </section>
         </section>
-        <button class="add-button">Add</button>
+        <button class="add-patient">Add</button>
+        <section class="form-popup" id="patient-form">
+            <form action="post" class="form-container">
+                <h2>Add study</h2>
+
+                <label for="patient-name">Patient name:</label>
+                <input type="text" name="patient-name">
+
+                <label for="study-date">Date of study:</label>
+                <input type="text" name="study-date">
+
+                <label for="study-amount">No. of studies:</label>
+                <input type="text" name="study-amount">
+
+                <label for="lab">Sleep lab:</label>
+                <input type="text" name="lab">
+
+                <label for="technician">Assign to:</label>
+                <input type="text" name="technician">
+
+                <button type="submit" class="btn">Add</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+            </form>
+        </section>
+
     </section>
 
     <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
