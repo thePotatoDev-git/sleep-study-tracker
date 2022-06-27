@@ -13,3 +13,11 @@ function openLab (event, labName) {
     document.getElementById(labName).style.display = 'block';
     event.currentTarget.className += ' active';
 }
+
+function openForm() {
+    document.getElementById('patient-form').style.display = 'block';
+}
+
+function closeForm() {
+    document.getElementById('patient-form').style.display = 'none';
+}
