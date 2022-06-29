@@ -24,9 +24,11 @@
 
     <section class="main-body">
         <!-- Search form -->
-        <label for="patient-search">Patient search:</label>
-        <input type="search" id="patient-search">
-        <button>Search</button>
+        <section class="search-bar">
+            <label for="patient-search">Patient search:</label>
+            <input type="search" id="patient-search">
+            <button>Search</button>
+        </section>
 
         <!-- Wayne/Hackensack Tabs -->
         <div class="tab">
@@ -103,28 +105,39 @@
                 </table>
             </section>
         </section>
-        <button class="add-patient">Add</button>
+        <!-- Add study form -->
+        <button class="add-patient" onclick="openForm()">Add</button>
         <section class="form-popup" id="patient-form">
             <form action="post" class="form-container">
-                <h2>Add study</h2>
+                <h2 class="form-header">Add study</h2>
 
-                <label for="patient-name">Patient name:</label>
-                <input type="text" name="patient-name">
+                <div class="form-fields">
+                    <div class="field">
+                        <label for="patient-name">Patient name:</label>
+                        <input type="text" name="patient-name">
+                    </div>
+                    <div class="field">
+                        <label for="study-date">Date of study:</label>
+                        <input type="text" name="study-date">
+                    </div>
+                    <div class="field">
+                        <label for="study-amount">No. of studies:</label>
+                        <input type="text" name="study-amount">
+                    </div>
+                    <div class="field">
+                        <label for="lab">Sleep lab:</label>
+                        <input type="text" name="lab">
+                    </div>
+                    <div class="field">
+                        <label for="technician">Assign to:</label>
+                        <input type="text" name="technician">
+                    </div>
+                </div>
 
-                <label for="study-date">Date of study:</label>
-                <input type="text" name="study-date">
-
-                <label for="study-amount">No. of studies:</label>
-                <input type="text" name="study-amount">
-
-                <label for="lab">Sleep lab:</label>
-                <input type="text" name="lab">
-
-                <label for="technician">Assign to:</label>
-                <input type="text" name="technician">
-
-                <button type="submit" class="btn">Add</button>
-                <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                <div class="form-buttons">
+                    <button type="submit" class="btn">Add</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                </div>
             </form>
         </section>
 
