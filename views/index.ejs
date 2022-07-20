@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <title>HST Tracker</title>
+</head>
+<body>
+    <!-- Username -->
+    <header>
+        <div>
+            <span><i class="fa-solid fa-bell"></i></span>
+            <span>User</span>
+        </div>
+    </header>
+    <!-- Title -->
+    <section class="title">
+        <h1>Home Sleep Study Tracker</h1>
+        <h3>For the office of Samuel H.S. The</h3>
+    </section>
+
+    <section class="main-body">
+        <!-- Search form -->
+        <section class="search-bar">
+            <label for="patient-search">Patient search:</label>
+            <input type="search" id="patient-search">
+            <button>Search</button>
+        </section>
+
+        <!-- Wayne/Hackensack Tabs -->
+        <div class="tab">
+            <button class="tablinks" onclick="openLab(event, 'hackensack')">Hackensack</button>
+            <button class="tablinks" onclick="openLab(event, 'wayne')">Wayne</button>
+        </div>
+        <!-- Patient list -->
+        <section class="table-container">
+            <section id="hackensack" class="tabcontent">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="9"><h3>Hackensack</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-row">
+                            <td></td>
+                            <td>Patient Last Name</td>
+                            <td>Patient First Name</td>
+                            <td>Date of Study</td>
+                            <td class="study-amount">Num. of Studies</td>
+                            <td>Assigned to:</td>
+                            <td class="study-comment">Comments</td>
+                            <td>Completed by Tech</td>
+                            <td>Completed by M.D.</td>
+                        </tr>
+                        <tr>
+                            <td>1.</td>
+                            <td>Doe</td>
+                            <td>John</td>
+                            <td>5/12/22</td>
+                            <td>2</td>
+                            <td>Albert</td>
+                            <td>AHI: 24.5 & 22.1. blah blah blah blah blah blah blah.</td>
+                            <td>5/14/22</td>
+                            <td>5/16/22</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="wayne" class="tabcontent">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="9"><h3>Wayne</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-row">
+                            <td></td>
+                            <td>Patient Last Name</td>
+                            <td>Patient First Name</td>
+                            <td>Date of Study</td>
+                            <td class="study-amount">Num. of Studies</td>
+                            <td>Assigned to:</td>
+                            <td class="study-comment">Comments</td>
+                            <td>Completed by Tech</td>
+                            <td>Completed by M.D.</td>
+                        </tr>
+                        <tr>
+                            <td>1.</td>
+                            <td>Doe</td>
+                            <td>Jane</td>
+                            <td>5/12/22</td>
+                            <td>2</td>
+                            <td>Albert</td>
+                            <td>AHI: 12.5 & 11.1. blah blah blah blah blah blah blah.</td>
+                            <td>5/14/22</td>
+                            <td>5/16/22</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        <!-- Add study form -->
+        <button class="add-patient" onclick="openForm()">Add</button>
+        <section class="form-popup" id="patient-form">
+            <form action="/addStudy" method="POST" class="form-container">
+                <h2 class="form-header">Add study</h2>
+
+                <div class="form-fields">
+                    <div class="field">
+                        <label for="patient-name">Patient name:</label>
+                        <input type="text" name="patient-name">
+                    </div>
+                    <div class="field">
+                        <label for="study-date">Date of study:</label>
+                        <input type="text" name="study-date">
+                    </div>
+                    <div class="field">
+                        <label for="study-amount">No. of studies:</label>
+                        <input type="text" name="study-amount">
+                    </div>
+                    <div class="field">
+                        <label for="lab">Sleep lab:</label>
+                        <input type="text" name="lab">
+                    </div>
+                    <div class="field">
+                        <label for="technician">Assign to:</label>
+                        <input type="text" name="technician">
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn">Add</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+    </section>
+
+    <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
