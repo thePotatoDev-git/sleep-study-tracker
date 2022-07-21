@@ -56,17 +56,19 @@
                             <td>Completed by Tech</td>
                             <td>Completed by M.D.</td>
                         </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>Doe</td>
-                            <td>John</td>
-                            <td>5/12/22</td>
-                            <td>2</td>
-                            <td>Albert</td>
-                            <td>AHI: 24.5 & 22.1. blah blah blah blah blah blah blah.</td>
-                            <td>5/14/22</td>
-                            <td>5/16/22</td>
-                        </tr>
+                        <% for (let i = 0; i < study.length; i++) {%>
+                            <tr>
+                                <td><%= i %></td>
+                                <td><%= study[i].lastName %></td>
+                                <td><%= study[i].firstName %></td>
+                                <td><%= study[i].studyDate %></td>
+                                <td><%= study[i].studyAmount %></td>
+                                <td><%= study[i].techName %></td>
+                                <td><%= study[i].comment %></td>
+                                <td><%= study[i].techCompleted %></td>
+                                <td><%= study[i].doctorCompleted %></td>
+                            </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </section>
@@ -112,25 +114,33 @@
                 <h2 class="form-header">Add study</h2>
 
                 <div class="form-fields">
-                    <div class="field">
-                        <label for="patient-name">Patient name:</label>
-                        <input type="text" name="patient-name">
-                    </div>
-                    <div class="field">
-                        <label for="study-date">Date of study:</label>
-                        <input type="text" name="study-date">
-                    </div>
-                    <div class="field">
-                        <label for="study-amount">No. of studies:</label>
-                        <input type="text" name="study-amount">
-                    </div>
-                    <div class="field">
+                    <div class="lab-select">
                         <label for="lab">Sleep lab:</label>
-                        <input type="text" name="lab">
+                        <select name="lab" id="lab">
+                            <option value="select">Select lab</option>
+                            <option value="hackensack">Hackensack</option>
+                            <option value="wayne">Wayne</option>
+                        </select>
                     </div>
                     <div class="field">
-                        <label for="technician">Assign to:</label>
-                        <input type="text" name="technician">
+                        <label for="lastName">Last name:</label>
+                        <input type="text" name="lastName">
+                    </div>
+                    <div class="field">
+                        <label for="firstName">First name:</label>
+                        <input type="text" name="firstName">
+                    </div>
+                    <div class="field">
+                        <label for="studyDate">Date of study:</label>
+                        <input type="text" name="studyDate">
+                    </div>
+                    <div class="field">
+                        <label for="studyAmount">No. of studies:</label>
+                        <input type="text" name="studyAmount">
+                    </div>
+                    <div class="field">
+                        <label for="techName">Assign to:</label>
+                        <input type="text" name="techName">
                     </div>
                 </div>
 
