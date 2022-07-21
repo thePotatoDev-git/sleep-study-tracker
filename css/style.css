@@ -60,7 +60,6 @@ h1, h3 {
 }
 label {
      display: block;
-     margin-top: 80px;
 }
 
 footer {
@@ -171,6 +170,10 @@ ADD STUDY FORM STYLES
      display: flex;
      flex-direction: row;
      flex-wrap: wrap;
+}
+.lab-select {
+     width: 100%;
+     margin: 20px;
 }
 .field {
      margin: 20px;

@@ -112,6 +112,15 @@
                 <h2 class="form-header">Add study</h2>
 
                 <div class="form-fields">
+                    <div class="lab-select">
+                        <label for="lab">Sleep lab:</label>
+                        <select name="lab" id="lab">
+                            <option value="select">Select lab</option>
+                            <option value="hackensack">Hackensack</option>
+                            <option value="wayne">Wayne</option>
+                        </select>
+                        <!-- <input type="text" name="lab"> -->
+                    </div>
                     <div class="field">
                         <label for="patient-name">Patient name:</label>
                         <input type="text" name="patient-name">
@@ -123,10 +132,6 @@
                     <div class="field">
                         <label for="study-amount">No. of studies:</label>
                         <input type="text" name="study-amount">
-                    </div>
-                    <div class="field">
-                        <label for="lab">Sleep lab:</label>
-                        <input type="text" name="lab">
                     </div>
                     <div class="field">
                         <label for="technician">Assign to:</label>
