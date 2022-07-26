@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    db.collection('studies').find().toArray()
+    db.collection('studies').find().sort({studyDate: -1}).toArray()
     .then(data => {
         res.render('index.ejs', { study: data })
     })
@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 app.post('/addStudy', (req, res) => {
     db.collection('studies').insertOne({lastName: req.body.lastName, firstName: req.body.firstName, studyDate: req.body.studyDate, studyAmount: req.body.studyAmount, techName: req.body.techName})
     .then(result => {
-        console.log('Study added')
+        console.log('Study Added')
         res.redirect('/')
     })
 });
