@@ -1,6 +1,6 @@
 function openLab (event, labName) {
-    let tabContent = document.getElementsByClassName('tabContent');
-    let tabLinks = document.getElementsByClassName('tabLinks');
+    let tabContent = document.getElementsByClassName('tab-content');
+    let tabLinks = document.getElementsByClassName('tab-links');
 
     for (let i = 0; i < tabContent.length; i++) {
         tabContent[i].style.display = 'none';

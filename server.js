@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/addStudy', (req, res) => {
-    db.collection('studies').insertOne({lastName: req.body.lastName, firstName: req.body.firstName, studyDate: req.body.studyDate, studyAmount: req.body.studyAmount, techName: req.body.techName})
+    db.collection('studies').insertOne({lab: req.body.lab, lastName: req.body.lastName, firstName: req.body.firstName, studyDate: req.body.studyDate, studyAmount: req.body.studyAmount, techName: req.body.techName})
     .then(result => {
         console.log('Study Added')
         res.redirect('/')

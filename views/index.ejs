@@ -32,12 +32,12 @@
 
         <!-- Wayne/Hackensack Tabs -->
         <div class="tab">
-            <button class="tabLinks" onclick="openLab(event, 'hackensack')">Hackensack</button>
-            <button class="tabLinks" onclick="openLab(event, 'wayne')">Wayne</button>
+            <button class="tab-links" onclick="openLab(event, 'hackensack')">Hackensack</button>
+            <button class="tab-links" onclick="openLab(event, 'wayne')">Wayne</button>
         </div>
         <!-- Patient list -->
         <section class="table-container">
-            <section id="hackensack" class="tabContent">
+            <section id="hackensack" class="tab-content">
                 <table>
                     <thead>
                         <tr>
@@ -73,7 +73,7 @@
                 </table>
             </section>
 
-            <section id="wayne" class="tabContent">
+            <section id="wayne" class="tab-content">
                 <table>
                     <thead>
                         <tr>
@@ -92,17 +92,19 @@
                             <td>Completed by Tech</td>
                             <td>Completed by M.D.</td>
                         </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>Doe</td>
-                            <td>Jane</td>
-                            <td>5/12/22</td>
-                            <td>2</td>
-                            <td>Albert</td>
-                            <td>AHI: 12.5 & 11.1. blah blah blah blah blah blah blah.</td>
-                            <td>5/14/22</td>
-                            <td>5/16/22</td>
-                        </tr>
+                        <% for (let i = 0; i < study.length; i++) {%>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= study[i].lastName %></td>
+                                <td><%= study[i].firstName %></td>
+                                <td><%= study[i].studyDate %></td>
+                                <td><%= study[i].studyAmount %></td>
+                                <td><%= study[i].techName %></td>
+                                <td><%= study[i].comment %></td>
+                                <td><%= study[i].techCompleted %></td>
+                                <td><%= study[i].doctorCompleted %></td>
+                            </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </section>
