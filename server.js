@@ -52,6 +52,16 @@ app.post('/addStudy', (req, res) => {
     })
 });
 
+app.delete('/deleteStudy', (req, res) => {
+    console.log(data);
+    db.collection('studies').deleteOne({lastName: req.body.lastNameS})
+    .then(result => {
+        console.log('Study deleted')
+        res.json('Study deleted')
+    })
+    .catch(error => console.error(error))
+});
+
 // app.get('/', (req, res) => {
 //     res.sendFile(__dirname + '/index.html')
 // });
