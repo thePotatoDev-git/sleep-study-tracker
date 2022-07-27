@@ -41,7 +41,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="9"><h3>Hackensack</h3></th>
+                            <th colspan="10"><h3>Hackensack</h3></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +55,7 @@
                             <td class="study-comment">Comments</td>
                             <td>Completed by Tech</td>
                             <td>Completed by M.D.</td>
+                            <td></td>
                         </tr>
                         <% for (let i = 0; i < study.length; i++) {%>
                             <tr>
@@ -67,6 +68,7 @@
                                 <td><%= study[i].comment %></td>
                                 <td><%= study[i].techCompleted %></td>
                                 <td><%= study[i].doctorCompleted %></td>
+                                <td class="edit-icons"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                             </tr>
                         <% } %>
                     </tbody>
