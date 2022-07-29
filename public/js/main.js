@@ -30,9 +30,12 @@ Array.from(deleteRow).forEach(element => {
 });
 
 async function deleteStudy() {
-    const lName = this.parentNode.childNodes[3].innerText;
-    const fName = this.parentNode.childNodes[5].innerText;
-    const sDate = this.parentNode.childNodes[7].innerText;
+    console.log(document.querySelectorAll('.first-name')[0].innerText);
+    console.log(document.querySelector('.last-name'));
+    console.log(document.querySelector('.study-date'));
+    // const lName = document.querySelectorAll('.last-name')[0].innerText;
+    // const fName = document.querySelectorAll('.first-name')[0].innerText;
+    // const sDate = document.querySelectorAll('.study-date')[0].innerText;
     try {
         const response = await fetch('deleteStudy', {
             method: 'delete',
