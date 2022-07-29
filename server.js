@@ -53,7 +53,6 @@ app.post('/addStudy', (req, res) => {
 });
 
 app.delete('/deleteStudy', (req, res) => {
-    console.log(data);
     db.collection('studies').deleteOne({lastName: req.body.lastNameS})
     .then(result => {
         console.log('Study deleted')
