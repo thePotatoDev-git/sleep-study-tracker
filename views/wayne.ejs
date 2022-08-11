@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <title>HST Tracker</title>
+</head>
+<body>
+    <!-- Username -->
+    <header>
+        <div>
+            <span><i class="fa-solid fa-bell"></i></span>
+            <span>User</span>
+        </div>
+    </header>
+    <!-- Title -->
+    <section class="title">
+        <h1>Home Sleep Study Tracker</h1>
+        <h3>For the office of Samuel H.S. The</h3>
+        <div>
+            <a href="/hackensack">Hackensack</a>
+            <span>|</span>
+            <span class="active-lab">Wayne</span>
+        </div>
+    </section>
+
+    <section class="main-body">
+        <!-- Search form -->
+        <section class="search-bar">
+            <label for="patient-search">Patient search:</label>
+            <input type="search" id="patient-search">
+            <button>Search</button>
+        </section>
+
+        <!-- Patient list -->
+        <section class="table-container">
+            <section id="wayne" class="tab-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="10"><h3>Wayne</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-row">
+                            <td></td>
+                            <td>Patient Last Name</td>
+                            <td>Patient First Name</td>
+                            <td>Date of Study</td>
+                            <td class="study-amount">Num. of Studies</td>
+                            <td>Assigned to:</td>
+                            <td class="study-comment">Comments</td>
+                            <td>Completed by Tech</td>
+                            <td>Completed by M.D.</td>
+                            <td></td>
+                        </tr>
+                        <% for (let i = 0; i < study.length; i++) {%>
+                            <tr> <% if (study[i].lab === 'wayne') {%>
+                                <td><%= i + 1 %></td>
+                                <td><%= study[i].lastName %></td>
+                                <td><%= study[i].firstName %></td>
+                                <td><%= study[i].studyDate %></td>
+                                <td><%= study[i].studyAmount %></td>
+                                <td><%= study[i].techName %></td>
+                                <td><%= study[i].comment %></td>
+                                <td><%= study[i].techCompleted %></td>
+                                <td><%= study[i].doctorCompleted %></td>
+                                <td class="edit-icons"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+                            </tr> <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        <!-- Add study form -->
+        <button class="add-patient" onclick="openForm()">Add</button>
+        <section class="form-popup" id="patient-form">
+            <form action="/addStudy" method="POST" class="form-container">
+                <h2 class="form-header">Add study</h2>
+
+                <div class="form-fields">
+                    <div class="lab-select">
+                        <label for="lab">Sleep lab:</label>
+                        <select name="lab" id="lab">
+                            <option value="select">Select lab</option>
+                            <option value="hackensack">Hackensack</option>
+                            <option value="wayne">Wayne</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="lastName">Last name:</label>
+                        <input type="text" name="lastName">
+                    </div>
+                    <div class="field">
+                        <label for="firstName">First name:</label>
+                        <input type="text" name="firstName">
+                    </div>
+                    <div class="field">
+                        <label for="studyDate">Date of study:</label>
+                        <input type="date" name="studyDate">
+                    </div>
+                    <div class="field">
+                        <label for="studyAmount">No. of studies:</label>
+                        <input type="text" name="studyAmount">
+                    </div>
+                    <div class="field">
+                        <label for="techName">Assign to:</label>
+                        <input type="text" name="techName">
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn">Add</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+    </section>
+
+    <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
