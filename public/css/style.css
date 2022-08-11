@@ -32,7 +32,15 @@ body {
      margin: 0 auto;
      margin-top: 50px;
 }
-
+/*******************************************
+     WELCOME PAGE
+*******************************************/
+.welcome {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 100px;
+}
 /******************************************
 /* LAYOUT
 /*******************************************/
@@ -71,11 +79,11 @@ span,
      color: rgb(13, 211, 194);
 }
 .title a {
-     text-decoration: none;
+     text-decoration: underline;
      color: white;
 }
 .title a:hover {
-     color: gray;
+     color: rgb(13, 211, 194);
 }
 .search-bar {
      width: 95%;
