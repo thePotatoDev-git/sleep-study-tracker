@@ -37,23 +37,50 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    db.collection('studies').find().sort({studyDate: -1}).toArray()
+    db.collection('wayne').find().sort({studyDate: -1}).toArray(),
+    db.collection('hackensack').find().sort({studyDate: -1}).toArray()
     .then(data => {
         res.render('index.ejs', { study: data })
     })
     .catch(error => console.error(error))
 });
 
-app.post('/addStudy', (req, res) => {
-    db.collection('studies').insertOne({lab: req.body.lab, lastName: req.body.lastName, firstName: req.body.firstName, studyDate: req.body.studyDate, studyAmount: req.body.studyAmount, techName: req.body.techName})
-    .then(result => {
-        console.log('Study Added')
-        res.redirect('/')
+// Hackensack studies page
+app.get('/hackensack', (req, res) => {
+    db.collection('hackensack').find().sort({studyDate: -1}).toArray()
+    .then(data => {
+        res.render('hackensack.ejs', { study: data })
     })
+    .catch(error => console.error(error))
+});
+
+// Wayne studies page
+app.get('/wayne', (req, res) => {
+    db.collection('wayne').find().sort({studyDate: -1}).toArray()
+    .then(data => {
+        res.render('wayne.ejs', { study: data })
+    })
+    .catch(error => console.error(error))
+});
+
+app.post('/addStudy', (req, res) => {
+    if (req.body.lab === 'hackensack') {
+        db.collection('hackensack').insertOne({lab: req.body.lab, lastName: req.body.lastName, firstName: req.body.firstName, studyDate: req.body.studyDate, studyAmount: req.body.studyAmount, techName: req.body.techName})
+        .then(result => {
+            console.log('Hackensack Study Added')
+            res.redirect('/hackensack')
+        })
+    } else if (req.body.lab === 'wayne') {
+        db.collection('wayne').insertOne({lab: req.body.lab, lastName: req.body.lastName, firstName: req.body.firstName, studyDate: req.body.studyDate, studyAmount: req.body.studyAmount, techName: req.body.techName})
+        .then(result => {
+            console.log('Wayne Study Added')
+            res.redirect('/wayne')
+        })
+    }
 });
 
 app.delete('/deleteStudy', (req, res) => {
-    db.collection('studies').deleteOne({lastName: req.body.lastNameS})
+    db.collection('studies').deleteOne({lastName: req.body.lastNameS, firstName: req.body.firstNameS, studyDate: req.body.studyDateS })
     .then(result => {
         console.log('Study deleted')
         res.json('Study deleted')
