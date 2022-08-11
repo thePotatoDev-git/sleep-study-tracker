@@ -1,6 +1,6 @@
 /* Box Model Hack */
 * {
-     /* outline: 1px solid blue; */
+     /* outline: 1px solid red; */
      box-sizing: border-box;
 }
 
@@ -30,6 +30,7 @@ body {
 .main-body {
      width: 95%;
      margin: 0 auto;
+     margin-top: 50px;
 }
 
 /******************************************
@@ -49,10 +50,32 @@ span,
 .search-bar {
      color: white;
 }
-h1, h3 {
+.title {
+     display: flex;
+     flex-direction: column;
+}
+.title h1,
+.title h3 {
      text-align: center;
      clear: both;
      margin: 10px;
+}
+.title div {
+     font-size: 1.2rem;
+     margin: 0 auto;
+     margin-top: 35px;
+}
+.title .active-lab {
+     font-weight: bolder;
+     font-size: 1.4rem;
+     color: rgb(13, 211, 194);
+}
+.title a {
+     text-decoration: none;
+     color: white;
+}
+.title a:hover {
+     color: gray;
 }
 .search-bar {
      width: 95%;
@@ -69,7 +92,7 @@ label {
 /*******************************************
      LAB TAB STYLES
 *******************************************/
-/* Tabs */
+/* Tabs
 .tab {
      overflow: hidden;
      background-color: #064588;
@@ -77,7 +100,7 @@ label {
      margin: .4rem auto 0 auto;
 }
 /* Tab button style */
-.tab button {
+/* .tab button {
      background-color: #c0bdbd;
      float: left;
      width: 120px;
@@ -89,13 +112,13 @@ label {
 }
 .tab button.active {
      background-color: white;
-}
-.tab-content {
+} */
+/* .tab-content {
      display: none;
      padding: 6px 12px;
      border: 1px solid #ccc;
      border-top: none;
-}
+} */
 
 /****************************************
      PATIENT STUDY TABLE STYLES
@@ -168,6 +191,7 @@ ADD STUDY FORM STYLES
      flex-wrap: wrap;
 }
 .lab-select {
+     text-align: center;
      width: 100%;
      margin: 20px;
 }
