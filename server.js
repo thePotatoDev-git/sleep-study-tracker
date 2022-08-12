@@ -63,6 +63,7 @@ app.get('/wayne', (req, res) => {
     .catch(error => console.error(error))
 });
 
+// Add new study
 app.post('/addStudy', (req, res) => {
     if (req.body.lab === 'hackensack') {
         db.collection('hackensack').insertOne({lab: req.body.lab, lastName: req.body.lastName, firstName: req.body.firstName, studyDate: req.body.studyDate, studyAmount: req.body.studyAmount, techName: req.body.techName})
@@ -79,6 +80,7 @@ app.post('/addStudy', (req, res) => {
     }
 });
 
+// Delete study
 app.delete('/deleteStudy', (req, res) => {
     db.collection('studies').deleteOne({lastName: req.body.lastNameS, firstName: req.body.firstNameS, studyDate: req.body.studyDateS })
     .then(result => {
