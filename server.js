@@ -6,19 +6,28 @@
 // const app = express();
 const express = require('express');
 const app = express();
-const MongoClient = require('mongodb').MongoClient;
-const PORT = 9000;
-require('dotenv').config();
+const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const flash = require('express-flash');
+const logger = require('morgan');
+const connectDB = require('./config/database');
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'hst-tracker';
+require('dotenv').config({ path: './config/.env' });
+require('./config/passport')(passport);
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} database`)
-        db = client.db(dbName)
-    });
+connectDB();
+
+// let db,
+//     dbConnectionStr = process.env.DB_STRING,
+//     dbName = 'hst-tracker';
+
+// MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+//     .then(client => {
+//         console.log(`Connected to ${dbName} database`)
+//         db = client.db(dbName)
+//     });
 
 // Account creation - FOR LATER USE
 // const Mongoose = require('mongoose');
@@ -35,6 +44,24 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(logger('dev'));
+
+// Sessions
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    })
+);
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
 
 app.get('/', (req, res) => {
     db.collection('wayne').find().sort({studyDate: -1}).toArray(),
@@ -94,6 +121,6 @@ app.delete('/deleteStudy', (req, res) => {
 //     res.sendFile(__dirname + '/index.html')
 // });
 
-app.listen(PORT, () =>{
-    console.log(`Server running on ${PORT}`)
+app.listen(process.env.PORT, () =>{
+    console.log(`Server running on ${process.env.PORT}`)
 });
