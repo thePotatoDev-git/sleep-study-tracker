@@ -13,6 +13,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
 const logger = require('morgan');
 const connectDB = require('./config/database');
+const mainRoutes = require('./routes/main');
 
 require('dotenv').config({ path: './config/.env' });
 require('./config/passport')(passport);
@@ -61,6 +62,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(flash());
+
+// Routes
+app.use('/', mainRoutes);
 
 
 app.get('/', (req, res) => {

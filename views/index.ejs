@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <title>HST Tracker</title>
+</head>
+<body>
+    <!-- Title -->
+    <section class="title">
+        <h1>Home Sleep Study Tracker</h1>
+        <h3>For the office of Samuel H.S. The</h3>
+    </section>
+
+    <section class="welcome">
+        <h2>Welcome</h2>
+        <span>Please Login</span>
+    </section>    
+
+    <section class="login">
+              <form class="box" action="/login" method="POST">
+    
+                <% if (locals.messages.errors) { %>
+                  <% messages.errors.forEach( el=> { %>
+                    <div class="notification is-danger is-light">
+                      <%= el.msg %>
+                    </div>
+                    <% }) %>
+                      <% } %>
+                        <% if (locals.messages.info) { %>
+                          <% messages.info.forEach( el=> { %>
+                            <div class="notification is-danger is-light">
+                              <%= el.msg %>
+                            </div>
+                            <% }) %>
+                              <% } %>
+    
+                                <div class="login-field">
+                                  <label class="label">Email</label>
+                                  <div class="control">
+                                    <input class="input" type="email" name="email" placeholder="e.g. alex@example.com">
+                                  </div>
+                                </div>
+    
+                                <div class="login-field">
+                                  <label class="label">Password</label>
+                                  <div class="control">
+                                    <input class="input" type="password" name="password" placeholder="********">
+                                  </div>
+                                </div>
+                                <input type="submit" class="button is-warning is-fullwidth mt-5 is-size-5" value="Log In">
+              </form>
+              <div>
+                <p>Don't have an account?
+                  <a href="/signup">Sign up</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+    </section>
+
+    <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
