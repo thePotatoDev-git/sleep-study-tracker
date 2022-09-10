@@ -46,10 +46,10 @@ body {
      height: 150px;
 }
 .welcome h2 {
-     font-size: 2rem;
+     font-size: 2.6rem;
 }
 .welcome div {
-     overflow: hidden;
+     /* overflow: hidden; */
      background-color: #064588;
      width: 50%;
      margin: .4rem auto 0 auto;
@@ -99,6 +99,9 @@ input {
      height: 35px;
      width: 100%;
 }
+/******************************************
+     SIGN UP
+******************************************/
 
 /******************************************
 /* LAYOUT
