@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const hackensackStudySchema = new mongoose.Schema({
+const wayneStudySchema = new mongoose.Schema({
     lab: {
         type: String,
         required: true,
@@ -38,4 +38,4 @@ const hackensackStudySchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('HackensackStudy', hackensackStudySchema, 'hackensack');
+module.exports = mongoose.model('WayneStudy', wayneStudySchema, 'wayne');

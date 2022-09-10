@@ -1,4 +1,5 @@
 const Hackensack = require('../models/HackensackStudy');
+const Wayne = require('../models/WayneStudy');
 
 module.exports = {
     getDashboard: async (req, res) => {
@@ -11,10 +12,19 @@ module.exports = {
     getHackensackStudies: async (req, res) => {
         console.log(req.user)
         try {
-            const hackensackStudies = await Hackensack.find();
+            const hackensackStudies = await Hackensack.find().sort({studyDate: -1});
             res.render('hackensack.ejs', { hackensack: hackensackStudies });
         } catch (error) {
-            
+            console.error(err);
+        }
+    },
+    getWayneStudies: async (req, res) => {
+        console.log(req.user)
+        try {
+            const wayneStudies = await Wayne.find().sort({studyDate: -1});
+            res.render('wayne.ejs', { wayne: wayneStudies });
+        } catch (err) {
+            console.error(err);
         }
     },
 };

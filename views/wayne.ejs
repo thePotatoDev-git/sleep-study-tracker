@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="../css/normalize.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
     <title>HST Tracker</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
         <h1>Home Sleep Study Tracker</h1>
         <h3>For the office of Samuel H.S. The</h3>
         <div>
-            <a href="/hackensack">Hackensack</a>
+            <a href="/studies/hackensack">Hackensack</a>
             <span>|</span>
             <span class="active-lab">Wayne</span>
         </div>
@@ -57,17 +57,17 @@
                             <td>Completed by M.D.</td>
                             <td></td>
                         </tr>
-                        <% for (let i = 0; i < study.length; i++) {%>
-                            <tr> <% if (study[i].lab === 'wayne') {%>
+                        <% for (let i = 0; i < wayne.length; i++) {%>
+                            <tr> <% if (wayne[i].lab === 'wayne') {%>
                                 <td><%= i + 1 %></td>
-                                <td><%= study[i].lastName %></td>
-                                <td><%= study[i].firstName %></td>
-                                <td><%= study[i].studyDate %></td>
-                                <td><%= study[i].studyAmount %></td>
-                                <td><%= study[i].techName %></td>
-                                <td><%= study[i].comment %></td>
-                                <td><%= study[i].techCompleted %></td>
-                                <td><%= study[i].doctorCompleted %></td>
+                                <td><%= wayne[i].lastName %></td>
+                                <td><%= wayne[i].firstName %></td>
+                                <td><%= wayne[i].studyDate %></td>
+                                <td><%= wayne[i].studyAmount %></td>
+                                <td><%= wayne[i].techName %></td>
+                                <td><%= wayne[i].comment %></td>
+                                <td><%= wayne[i].techCompleted %></td>
+                                <td><%= wayne[i].doctorCompleted %></td>
                                 <td class="edit-icons"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
                         <% } %>
@@ -122,6 +122,6 @@
     </section>
 
     <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
 </body>
 </html>
