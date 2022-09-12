@@ -60,8 +60,8 @@
                         <% for (let i = 0; i < wayne.length; i++) {%>
                             <tr> <% if (wayne[i].lab === 'wayne') {%>
                                 <td><%= i + 1 %></td>
-                                <td><%= wayne[i].lastName %></td>
-                                <td><%= wayne[i].firstName %></td>
+                                <td><%= wayne[i].patientLastName %></td>
+                                <td><%= wayne[i].patientFirstName %></td>
                                 <td><%= wayne[i].studyDate %></td>
                                 <td><%= wayne[i].studyAmount %></td>
                                 <td><%= wayne[i].techName %></td>
@@ -78,7 +78,7 @@
         <!-- Add study form -->
         <button class="add-patient" onclick="openForm()">Add</button>
         <section class="form-popup" id="patient-form">
-            <form action="/addStudy" method="POST" class="form-container">
+            <form action="/studies/addStudy" method="POST" class="form-container">
                 <h2 class="form-header">Add study</h2>
 
                 <div class="form-fields">

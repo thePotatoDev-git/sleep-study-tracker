@@ -68,7 +68,7 @@
                                 <td><%= hackensack[i].comment %></td>
                                 <td><%= hackensack[i].techCompleted %></td>
                                 <td><%= hackensack[i].doctorCompleted %></td>
-                                <td class="edit-icons"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+                                <td class="edit-icons" data-id="<%= hackensack[i]._id %>"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
                         <% } %>
                     </tbody>
@@ -78,7 +78,7 @@
         <!-- Add study form -->
         <button class="add-patient" onclick="openForm()">Add</button>
         <section class="form-popup" id="patient-form">
-            <form action="/addStudy" method="POST" class="form-container">
+            <form action="/studies/addStudy" method="POST" class="form-container">
                 <h2 class="form-header">Add study</h2>
 
                 <div class="form-fields">
@@ -91,12 +91,12 @@
                         </select>
                     </div>
                     <div class="field">
-                        <label for="lastName">Last name:</label>
-                        <input type="text" name="lastName">
+                        <label for="patientLastName">Last name:</label>
+                        <input type="text" name="patientLastName">
                     </div>
                     <div class="field">
-                        <label for="firstName">First name:</label>
-                        <input type="text" name="firstName">
+                        <label for="patientFirstName">First name:</label>
+                        <input type="text" name="patientFirstName">
                     </div>
                     <div class="field">
                         <label for="studyDate">Date of study:</label>
