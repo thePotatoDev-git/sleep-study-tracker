@@ -62,16 +62,32 @@ module.exports = {
             console.log(err);
         }
     },
-    deleteHackensackStudy: async (req, res) => {
-        console.log('Object id: ' + req.body.studyObjIdFromJSFile);
+    deleteStudy: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {
-            await Hackensack.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
-            console.log('Deleted Hackensack study');
-            res.json('Deleted Hackensack study');
+            if (req.body.studyLabFromJSFile === 'hackensack') {
+                await Hackensack.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
+                console.log('Deleted Hackensack study');
+                res.json('Deleted Hackensack study');
+            } else if (req.body.studyLabFromJSFile === 'wayne') {
+                await Wayne.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
+                console.log('Deleted Wayne study');
+                res.json('Deleted Wayne study');
+            }
         } catch (err) {
             console.log(err);
         }
     },
+    // deleteWayneStudy: async (req, res) => {
+    //     console.log('Object ID: ' + req.body.studyObjIdFromJSFile);
+    //     try {
+    //         await Wayne.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
+    //         console.log('Deleted Wayne study');
+    //         res.json('Deleted Wayne study');
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // },
 };
 
 // app.get('/hackensack', (req, res) => {

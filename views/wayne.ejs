@@ -68,7 +68,7 @@
                                 <td><%= wayne[i].comment %></td>
                                 <td><%= wayne[i].techCompleted %></td>
                                 <td><%= wayne[i].doctorCompleted %></td>
-                                <td class="edit-icons"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+                                <td class="edit-icons" data-id="<%= wayne[i]._id %>" data-lab="wayne"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
                         <% } %>
                     </tbody>
@@ -91,12 +91,12 @@
                         </select>
                     </div>
                     <div class="field">
-                        <label for="lastName">Last name:</label>
-                        <input type="text" name="lastName">
+                        <label for="patientLastName">Last name:</label>
+                        <input type="text" name="patientLastName">
                     </div>
                     <div class="field">
-                        <label for="firstName">First name:</label>
-                        <input type="text" name="firstName">
+                        <label for="patientFirstName">First name:</label>
+                        <input type="text" name="patientFirstName">
                     </div>
                     <div class="field">
                         <label for="studyDate">Date of study:</label>

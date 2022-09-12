@@ -7,6 +7,7 @@ router.get('/', ensureAuth, studiesController.getDashboard);
 router.get('/hackensack', ensureAuth, studiesController.getHackensackStudies);
 router.get('/wayne', ensureAuth, studiesController.getWayneStudies);
 router.post('/addStudy', studiesController.addStudy);
-router.delete('/hackensack/deleteStudy', studiesController.deleteHackensackStudy);
+router.delete('/hackensack/deleteStudy', studiesController.deleteStudy);
+router.delete('/wayne/deleteStudy', studiesController.deleteStudy);
 
 module.exports = router;

@@ -26,24 +26,43 @@ const deleteRow = document.querySelectorAll('.fa-trash-can');
 const editRow = document.querySelectorAll('.fa-pen-to-square');
 
 Array.from(deleteRow).forEach(element => {
-    element.addEventListener('click', deleteHackensackStudy)
+    element.addEventListener('click', deleteStudy)
 });
 
-async function deleteHackensackStudy() {
-    console.log(this.parentNode.dataset.id)
+async function deleteStudy() {
     const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
     try {
-        const response = await fetch('hackensack/deleteStudy', {
+        if (studyLab === 'hackensack') {
+            const response = await fetch('hackensack/deleteStudy', {
+                method: 'delete',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+    } else if (studyLab === 'wayne') {
+        const response = await fetch('wayne/deleteStudy', {
             method: 'delete',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'studyObjIdFromJSFile': studyObjId
+                'studyObjIdFromJSFile': studyObjId,
+                'studyLabFromJSFile': studyLab,
             }),
         });
-        const data = await response.json();
-        console.log(data);
-        location.reload();
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+    }
+        // const data = await response.json();
+        // console.log(data);
+        // location.reload();
     } catch (err) {
         console.log(err);
     }
+    console.log(this.parentNode.dataset.lab)
 };
