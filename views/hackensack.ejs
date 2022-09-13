@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="../css/normalize.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
     <title>HST Tracker</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
         <div>
             <span class="active-lab">Hackensack</span>
             <span>|</span>
-            <a href="/wayne">Wayne</a>
+            <a href="/studies/wayne">Wayne</a>
         </div>
     </section>
 
@@ -57,18 +57,18 @@
                             <td>Completed by M.D.</td>
                             <td></td>
                         </tr>
-                        <% for (let i = 0; i < study.length; i++) {%>
-                            <tr> <% if (study[i].lab === 'hackensack') {%>
+                        <% for (let i = 0; i < hackensack.length; i++) {%>
+                            <tr> <% if (hackensack[i].lab === 'hackensack') {%>
                                 <td><%= i + 1 %></td>
-                                <td class="last-name"><%= study[i].lastName %></td>
-                                <td class="first-name"><%= study[i].firstName %></td>
-                                <td class="study-date"><%= study[i].studyDate %></td>
-                                <td><%= study[i].studyAmount %></td>
-                                <td><%= study[i].techName %></td>
-                                <td><%= study[i].comment %></td>
-                                <td><%= study[i].techCompleted %></td>
-                                <td><%= study[i].doctorCompleted %></td>
-                                <td class="edit-icons"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+                                <td class="last-name"><%= hackensack[i].patientLastName %></td>
+                                <td class="first-name"><%= hackensack[i].patientFirstName %></td>
+                                <td class="study-date"><%= hackensack[i].studyDate %></td>
+                                <td><%= hackensack[i].studyAmount %></td>
+                                <td><%= hackensack[i].techName %></td>
+                                <td><%= hackensack[i].comment %></td>
+                                <td><%= hackensack[i].techCompleted %></td>
+                                <td><%= hackensack[i].doctorCompleted %></td>
+                                <td class="edit-icons" data-id="<%= hackensack[i]._id %>" data-lab="hackensack"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
                         <% } %>
                     </tbody>
@@ -78,7 +78,7 @@
         <!-- Add study form -->
         <button class="add-patient" onclick="openForm()">Add</button>
         <section class="form-popup" id="patient-form">
-            <form action="/addStudy" method="POST" class="form-container">
+            <form action="/studies/addStudy" method="POST" class="form-container">
                 <h2 class="form-header">Add study</h2>
 
                 <div class="form-fields">
@@ -91,12 +91,12 @@
                         </select>
                     </div>
                     <div class="field">
-                        <label for="lastName">Last name:</label>
-                        <input type="text" name="lastName">
+                        <label for="patientLastName">Last name:</label>
+                        <input type="text" name="patientLastName">
                     </div>
                     <div class="field">
-                        <label for="firstName">First name:</label>
-                        <input type="text" name="firstName">
+                        <label for="patientFirstName">First name:</label>
+                        <input type="text" name="patientFirstName">
                     </div>
                     <div class="field">
                         <label for="studyDate">Date of study:</label>
@@ -122,6 +122,6 @@
     </section>
 
     <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
 </body>
 </html>

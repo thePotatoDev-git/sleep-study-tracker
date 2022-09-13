@@ -30,26 +30,39 @@ Array.from(deleteRow).forEach(element => {
 });
 
 async function deleteStudy() {
-    console.log(document.querySelectorAll('.first-name')[0].innerText);
-    console.log(document.querySelectorAll('.last-name')[0].innerText);
-    console.log(document.querySelectorAll('.study-date')[0].innerText);
-    const lName = document.querySelectorAll('.last-name')[0].innerText;
-    const fName = document.querySelectorAll('.first-name')[0].innerText;
-    const sDate = document.querySelectorAll('.study-date')[0].innerText;
+    const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
     try {
-        const response = await fetch('deleteStudy', {
+        if (studyLab === 'hackensack') {
+            const response = await fetch('hackensack/deleteStudy', {
+                method: 'delete',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+    } else if (studyLab === 'wayne') {
+        const response = await fetch('wayne/deleteStudy', {
             method: 'delete',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'lastNameS': lName,
-                'firstNameS': fName,
-                'studyDateS': sDate
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    } catch(err) {
-        console.log(err)
+                'studyObjIdFromJSFile': studyObjId,
+                'studyLabFromJSFile': studyLab,
+            }),
+        });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
     }
-}
+        // const data = await response.json();
+        // console.log(data);
+        // location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+    console.log(this.parentNode.dataset.lab)
+};

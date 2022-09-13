@@ -6,9 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <title>Welcome | HST Tracker</title>
+    <title>HST Tracker</title>
 </head>
 <body>
+    <!-- Username -->
+    <header>
+        <div>
+            <span><i class="fa-solid fa-bell"></i></span>
+            <span>User</span><span><a href="/logout">Logout</a></span>
+        </div>
+    </header>
     <!-- Title -->
     <section class="title">
         <h1>Home Sleep Study Tracker</h1>
@@ -17,14 +24,12 @@
 
     <section class="welcome">
         <h2>Welcome</h2>
+        <span>Please select a lab</span>
         <div>
-          <a href="/login">Login</a>
-        </div>
-        <div>
-          <a href="/signup">Sign up</a>
+            <a href="/studies/hackensack">Hackensack</a>
+            <a href="/studies/wayne">Wayne</a>
         </div>
     </section>    
-
 
     <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/main.js"></script>
