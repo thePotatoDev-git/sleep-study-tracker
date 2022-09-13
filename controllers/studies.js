@@ -78,6 +78,86 @@ module.exports = {
             console.log(err);
         }
     },
+    markTechComplete: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+            if (req.body.studyLabFromJSFile === 'hackensack') {
+                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    techCompleted: true
+                });
+                console.log('Hackensack study completed by tech');
+                res.json('Hackensack study completed by tech');
+            } else if (req.body.studyLabFromJSFile === 'wayne') {
+                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    techCompleted: true
+                });
+                console.log('Wayne study completed by tech');
+                res.json('Wayne study completed by tech');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    markTechIncomplete: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+            if (req.body.studyLabFromJSFile === 'hackensack') {
+                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    techCompleted: false
+                });
+                console.log('Hackensack study incompleted by tech');
+                res.json('Hackensack study incompleted by tech');
+            } else if (req.body.studyLabFromJSFile === 'wayne') {
+                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    techCompleted: false
+                });
+                console.log('Wayne study incompleted by tech');
+                res.json('Wayne study incompleted by tech');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    markDoctorComplete: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+            if (req.body.studyLabFromJSFile === 'hackensack') {
+                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    doctorCompleted: true
+                });
+                console.log('Hackensack study completed by doctor');
+                res.json('Hackensack study completed by doctor');
+            } else if (req.body.studyLabFromJSFile === 'wayne') {
+                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    doctorCompleted: true
+                });
+                console.log('Wayne study completed by doctor');
+                res.json('Wayne study completed by doctor');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    markDoctorIncomplete: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+            if (req.body.studyLabFromJSFile === 'hackensack') {
+                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    doctorCompleted: false
+                });
+                console.log('Hackensack study incompleted by doctor');
+                res.json('Hackensack study incompleted by doctor');
+            } else if (req.body.studyLabFromJSFile === 'wayne') {
+                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    doctorCompleted: false
+                });
+                console.log('Wayne study incompleted by doctor');
+                res.json('Wayne study incompleted by doctor');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    },
     // deleteWayneStudy: async (req, res) => {
     //     console.log('Object ID: ' + req.body.studyObjIdFromJSFile);
     //     try {

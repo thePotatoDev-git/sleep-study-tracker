@@ -1,19 +1,4 @@
-// function openLab (event, labName) {
-//     let tabContent = document.getElementsByClassName('tab-content');
-//     let tabLinks = document.getElementsByClassName('tab-links');
-
-//     for (let i = 0; i < tabContent.length; i++) {
-//         tabContent[i].style.display = 'none';
-//     }
-
-//     for (let i = 0; i < tabLinks.length; i++) {
-//         tabLinks[i].className = tabLinks[i].className.replace(' active', '');
-//     }
-
-//     document.getElementById(labName).style.display = 'block';
-//     event.currentTarget.className += ' active';
-// }
-
+// Add study form
 function openForm() {
     document.getElementById('patient-form').style.display = 'block';
 }
@@ -24,7 +9,12 @@ function closeForm() {
 
 const deleteRow = document.querySelectorAll('.fa-trash-can');
 const editRow = document.querySelectorAll('.fa-pen-to-square');
+const studyTechIncomplete = document.querySelectorAll('td.techIncomplete');
+const studyTechComplete = document.querySelectorAll('td.techComplete');
+const studyDoctorIncomplete = document.querySelectorAll('td.doctorIncomplete');
+const studyDoctorComplete = document.querySelectorAll('td.doctorComplete');
 
+// Delete study
 Array.from(deleteRow).forEach(element => {
     element.addEventListener('click', deleteStudy)
 });
@@ -45,24 +35,174 @@ async function deleteStudy() {
             const data = await response.json();
             console.log(data);
             location.reload();
-    } else if (studyLab === 'wayne') {
-        const response = await fetch('wayne/deleteStudy', {
-            method: 'delete',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'studyObjIdFromJSFile': studyObjId,
-                'studyLabFromJSFile': studyLab,
-            }),
-        });
-            const data = await response.json();
-            console.log(data);
-            location.reload();
-    }
-        // const data = await response.json();
-        // console.log(data);
-        // location.reload();
+        } else if (studyLab === 'wayne') {
+            const response = await fetch('wayne/deleteStudy', {
+                method: 'delete',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+                const data = await response.json();
+                console.log(data);
+                location.reload();
+        }
     } catch (err) {
         console.log(err);
     }
-    console.log(this.parentNode.dataset.lab)
+};
+
+// Mark study complete
+Array.from(studyTechIncomplete).forEach(el => {
+    el.addEventListener('click', markTechComplete)
+});
+
+Array.from(studyDoctorIncomplete).forEach(el => {
+    el.addEventListener('click', markDoctorComplete)
+});
+
+async function markTechComplete() {
+    const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
+    try {
+        if (studyLab === 'hackensack') {
+            const response = await fetch('hackensack/markTechComplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+        } else if (studyLab === 'wayne') {
+            const response = await fetch('wayne/markTechComplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+                const data = await response.json();
+                console.log(data);
+                location.reload();
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function markDoctorComplete() {
+    const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
+    try {
+        if (studyLab === 'hackensack') {
+            const response = await fetch('hackensack/markDoctorComplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+        } else if (studyLab === 'wayne') {
+            const response = await fetch('wayne/markDoctorComplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+                const data = await response.json();
+                console.log(data);
+                location.reload();
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// Mark study incomplete
+Array.from(studyTechComplete).forEach(el => {
+    el.addEventListener('click', markTechIncomplete)
+});
+
+Array.from(studyDoctorComplete).forEach(el => {
+    el.addEventListener('click', markDoctorIncomplete)
+});
+
+async function markTechIncomplete() {
+    const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
+    try {
+        if (studyLab === 'hackensack') {
+            const response = await fetch('hackensack/markTechIncomplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+        } else if (studyLab === 'wayne') {
+            const response = await fetch('wayne/markTechIncomplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+                const data = await response.json();
+                console.log(data);
+                location.reload();
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function markDoctorIncomplete() {
+    const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
+    try {
+        if (studyLab === 'hackensack') {
+            const response = await fetch('hackensack/markDoctorIncomplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+        } else if (studyLab === 'wayne') {
+            const response = await fetch('wayne/markDoctorIncomplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+                const data = await response.json();
+                console.log(data);
+                location.reload();
+        }
+    } catch (err) {
+        console.log(err);
+    }
 };

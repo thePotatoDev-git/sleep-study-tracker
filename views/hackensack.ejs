@@ -58,7 +58,7 @@
                             <td></td>
                         </tr>
                         <% for (let i = 0; i < hackensack.length; i++) {%>
-                            <tr> <% if (hackensack[i].lab === 'hackensack') {%>
+                            <tr data-id="<%= hackensack[i]._id %>" data-lab="hackensack"> <% if (hackensack[i].lab === 'hackensack') {%>
                                 <td><%= i + 1 %></td>
                                 <td class="last-name"><%= hackensack[i].patientLastName %></td>
                                 <td class="first-name"><%= hackensack[i].patientFirstName %></td>
@@ -66,8 +66,8 @@
                                 <td><%= hackensack[i].studyAmount %></td>
                                 <td><%= hackensack[i].techName %></td>
                                 <td><%= hackensack[i].comment %></td>
-                                <td><%= hackensack[i].techCompleted %></td>
-                                <td><%= hackensack[i].doctorCompleted %></td>
+                                <td class="<%= hackensack[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><%= hackensack[i].techCompleted %></td>
+                                <td class="<%= hackensack[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><%= hackensack[i].doctorCompleted %></td>
                                 <td class="edit-icons" data-id="<%= hackensack[i]._id %>" data-lab="hackensack"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
                         <% } %>

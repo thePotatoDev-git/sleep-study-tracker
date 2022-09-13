@@ -16,7 +16,14 @@ router.delete('/hackensack/deleteStudy', studiesController.deleteStudy);
 router.delete('/wayne/deleteStudy', studiesController.deleteStudy);
 
 // PUT requests
-// router.put('/markComplete', studiesController.markComplete);
-// router.put('/markIncomplete', studiesController.markIncomplete);
+router.put('/hackensack/markTechComplete', studiesController.markTechComplete);
+router.put('/hackensack/markTechIncomplete', studiesController.markTechIncomplete);
+router.put('/wayne/markTechComplete', studiesController.markTechComplete);
+router.put('/wayne/markTechIncomplete', studiesController.markTechIncomplete);
+
+router.put('/hackensack/markDoctorComplete', studiesController.markDoctorComplete);
+router.put('/hackensack/markDoctorIncomplete', studiesController.markDoctorIncomplete);
+router.put('/wayne/markDoctorComplete', studiesController.markDoctorComplete);
+router.put('/wayne/markDoctorIncomplete', studiesController.markDoctorIncomplete);
 
 module.exports = router;

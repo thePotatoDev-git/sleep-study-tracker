@@ -58,7 +58,7 @@
                             <td></td>
                         </tr>
                         <% for (let i = 0; i < wayne.length; i++) {%>
-                            <tr> <% if (wayne[i].lab === 'wayne') {%>
+                            <tr data-id="<%= wayne[i]._id %>" data-lab="wayne"> <% if (wayne[i].lab === 'wayne') {%>
                                 <td><%= i + 1 %></td>
                                 <td><%= wayne[i].patientLastName %></td>
                                 <td><%= wayne[i].patientFirstName %></td>
@@ -66,8 +66,8 @@
                                 <td><%= wayne[i].studyAmount %></td>
                                 <td><%= wayne[i].techName %></td>
                                 <td><%= wayne[i].comment %></td>
-                                <td><%= wayne[i].techCompleted %></td>
-                                <td><%= wayne[i].doctorCompleted %></td>
+                                <td class="<%= wayne[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><%= wayne[i].techCompleted %></td>
+                                <td class="<%= wayne[i].techCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><%= wayne[i].doctorCompleted %></td>
                                 <td class="edit-icons" data-id="<%= wayne[i]._id %>" data-lab="wayne"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
                         <% } %>
