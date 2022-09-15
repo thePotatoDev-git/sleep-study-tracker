@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/normalize.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
+    <title>Edit Study</title>
+</head>
+<body>
+    <!-- Username -->
+    <header>
+        <div>
+            <span><i class="fa-solid fa-bell"></i></span>
+            <span>User</span><span><a href="/logout">Logout</a></span>
+        </div>
+    </header>
+    <!-- Title -->
+    <section class="title">
+        <h1>Home Sleep Study Tracker</h1>
+        <h3>For the office of Samuel H.S. The</h3>
+    </section>
+
+    <section class="welcome">
+        <h2>Edit</h2>
+    </section>    
+
+    <div class="container box">
+        <h2 class="title is-2 center mb-6">Edit Study</h2>
+        <% hackensack.forEach( el=> { %>
+          <% if (el._id==studyId) { %>
+            <form action="/edit/hackensack/<%= el._id %>" method="POST">
+                <div class="field">
+                    <label for="patientLastName">Last name:</label>
+                    <input type="text" value="<%= el.patientLastName %>" name ="patientLastName">
+                </div>
+                <div class="field">
+                    <label for="patientFirstName">First name:</label>
+                    <input type="text" value="<%= el.patientFirstName %>" name="patientFirstName">
+                </div>
+                <div class="field">
+                    <label for="studyDate">Date of study:</label>
+                    <input type="date" value="<%= el.studyDate %>" name="studyDate">
+                </div>
+                <div class="field">
+                    <label for="studyAmount">No. of studies:</label>
+                    <input type="text" value="<%= el.studyAmount %>" name="studyAmount">
+                </div>
+                <div class="field">
+                    <label for="techName">Assign to:</label>
+                    <input type="text" value="<%= el.techName %>" name="techName">
+                </div>
+                <div class="field">
+                    <label for="comment">Comments:</label>
+                    <input type="text" value="<%= el.comment %>" name="comment">
+                </div>
+                <button>Save</button>
+            </form>
+            <% } %>
+              <% }) %>
+      </div>
+
+    <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/../../js/main.js"></script>
+</body>
+</html>

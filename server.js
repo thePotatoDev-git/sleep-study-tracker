@@ -15,6 +15,7 @@ const logger = require('morgan');
 const connectDB = require('./config/database');
 const mainRoutes = require('./routes/main');
 const studiesRoutes = require('./routes/studies');
+const editRoutes = require('./routes/edit');
 
 require('dotenv').config({ path: './config/.env' });
 require('./config/passport')(passport);
@@ -68,6 +69,7 @@ app.use(flash());
 app.use('/', mainRoutes);
 app.use('/studies', studiesRoutes);
 app.use('/dashboard', studiesRoutes);
+app.use('/edit', editRoutes);
 
 
 // app.get('/', (req, res) => {
