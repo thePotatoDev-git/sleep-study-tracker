@@ -5,7 +5,11 @@ const Wayne = require('../models/WayneStudy');
 module.exports = {
     getDashboard: async (req, res) => {
         try {
-            res.render('dashboard.ejs');
+            if (req.user.specialAccess === true) {
+                res.render('dashboard.ejs', { user: req.user });
+            } else {
+                res.render('noaccess.ejs');
+            }
         } catch (err) {
             console.error(err);
         }
@@ -14,7 +18,11 @@ module.exports = {
         console.log(req.user)
         try {
             const hackensackStudies = await Hackensack.find().sort({studyDate: -1});
-            res.render('hackensack.ejs', { hackensack: hackensackStudies });
+            if (req.user.specialAccess === true) {
+                res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user });
+            } else {
+                res.status(403).send('Access not permitted.');
+            }
         } catch (error) {
             console.error(err);
         }
@@ -23,7 +31,11 @@ module.exports = {
         console.log(req.user)
         try {
             const wayneStudies = await Wayne.find().sort({studyDate: -1});
-            res.render('wayne.ejs', { wayne: wayneStudies });
+            if (req.user.specialAccess === true) {
+                res.render('wayne.ejs', { wayne: wayneStudies, user: req.user });
+            } else {
+                res.status(403).send('Access not permitted.');
+            }
         } catch (err) {
             console.error(err);
         }
