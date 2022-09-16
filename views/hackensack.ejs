@@ -62,7 +62,7 @@
                                 <td><%= i + 1 %></td>
                                 <td class="last-name"><%= hackensack[i].patientLastName %></td>
                                 <td class="first-name"><%= hackensack[i].patientFirstName %></td>
-                                <td class="study-date"><%= hackensack[i].studyDate %></td>
+                                <td class="study-date"><%= moment(hackensack[i].studyDate).format('l') %></td>
                                 <td><%= hackensack[i].studyAmount %></td>
                                 <td><%= hackensack[i].techName %></td>
                                 <td><%= hackensack[i].comment %></td>

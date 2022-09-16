@@ -12,6 +12,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
 const logger = require('morgan');
+const moment = require('moment');
 const connectDB = require('./config/database');
 const mainRoutes = require('./routes/main');
 const studiesRoutes = require('./routes/studies');
@@ -63,7 +64,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Flash middleware
 app.use(flash());
+
+// Moment middleware
+app.use((req, res, next) => {
+    res.locals.moment = moment;
+    next();
+});
 
 // Routes
 app.use('/', mainRoutes);

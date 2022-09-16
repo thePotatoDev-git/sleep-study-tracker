@@ -62,7 +62,7 @@
                                 <td><%= i + 1 %></td>
                                 <td><%= wayne[i].patientLastName %></td>
                                 <td><%= wayne[i].patientFirstName %></td>
-                                <td><%= wayne[i].studyDate %></td>
+                                <td><%= moment(wayne[i].studyDate).format('l') %></td>
                                 <td><%= wayne[i].studyAmount %></td>
                                 <td><%= wayne[i].techName %></td>
                                 <td><%= wayne[i].comment %></td>
