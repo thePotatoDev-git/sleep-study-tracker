@@ -8,7 +8,7 @@ module.exports = {
             if (req.user.specialAccess === true) {
                 res.render('dashboard.ejs', { user: req.user });
             } else {
-                res.render('noaccess.ejs');
+                res.render('noaccess.ejs', { user: req.user });
             }
         } catch (err) {
             console.error(err);

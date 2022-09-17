@@ -6,7 +6,7 @@ module.exports = {
         try {
             const id = req.params.id;
             await Hackensack.find({}, (err, comment) => {
-                res.render('edithackensack.ejs', { hackensack: comment, studyId: id });
+                res.render('edithackensack.ejs', { hackensack: comment, studyId: id, user: req.user });
             });
         } catch (err) {
             console.log(err);
@@ -16,7 +16,7 @@ module.exports = {
         try {
             const id = req.params.id;
             await Wayne.find({}, (err, comment) => {
-                res.render('editwayne.ejs', { wayne: comment, studyId: id });
+                res.render('editwayne.ejs', { wayne: comment, studyId: id, user: req.user });
             });
         } catch (err) {
             console.log(err);
