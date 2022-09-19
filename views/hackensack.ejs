@@ -1,4 +1,8 @@
 <%- include('partials/header') -%>
+<head>
+    <link rel="stylesheet" href="../../css/normalize.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
     <!-- Title -->
     <section class="title">
         <h1>Home Sleep Study Tracker</h1>
@@ -12,11 +16,15 @@
 
     <section class="main-body">
         <!-- Search form -->
-        <section class="search-bar">
-            <label for="patient-search">Patient search:</label>
-            <input type="search" id="patient-search">
-            <button>Search</button>
-        </section>
+        <form action="/studies/hackensack/search" method="POST">
+            <section class="search-bar">
+                <label for="patient-search">Patient search:</label>
+                <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
+                    value="<%= search %>" 
+                <% } %>>
+                <button>Search</button>
+            </section>
+        </form>
 
         <!-- Patient list -->
         <section class="table-container">
