@@ -250,7 +250,8 @@ ADD STUDY FORM STYLES
 .field input {
      margin: 0;
 }
-.form-container input[type=text] {
+.form-container input[type=text],
+.form-container select {
      width: 150px;
      height: 25px;
      padding: 15px;

@@ -99,7 +99,12 @@
                     </div>
                     <div class="field">
                         <label for="techName">Assign to:</label>
-                        <input type="text" name="techName">
+                        <select name="techName" id="techName">
+                            <option value=""></option>
+                            <% techs.forEach(tech => { %>
+                                <option value="<%= tech.firstName %>"><%= tech.firstName %></option>
+                                <% }) %>
+                        </select>
                     </div>
                 </div>
 
