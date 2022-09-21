@@ -11,10 +11,12 @@
 <body>
     <!-- Username -->
     <header>
-        <div>
-            <span><i class="fa-solid fa-bell"></i></span>
-            <span><%= `${user.firstName} ${user.lastName}` %></span>
-            <span><a href="/logout">Logout</a></span>
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i> <%= `${user.firstName} ${user.lastName}` %></button>
+            <div class="dropdown-content">
+                <a href="/studies/myStudies">My Studies</a>
+                <a href="/logout">Logout</a>
+            </div>
         </div>
     </header>
 </body>
