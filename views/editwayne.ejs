@@ -38,6 +38,14 @@
         <% wayne.forEach( el=> { %>
           <% if (el._id==studyId) { %>
             <form action="/edit/wayne/<%= el._id %>" method="POST">
+                <div class="lab-select">
+                    <label for="lab">Sleep lab:</label>
+                    <select name="lab" id="lab">
+                        <option value="<%= el.lab %>"><%= el.lab %></option>
+                        <option value="hackensack">Hackensack</option>
+                        <option value="wayne">Wayne</option>
+                    </select>
+                </div>
                 <div class="field">
                     <label for="patientLastName">Last name:</label>
                     <input type="text" value="<%= el.patientLastName %>" name ="patientLastName">

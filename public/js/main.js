@@ -66,31 +66,16 @@ async function markTechComplete() {
     const studyObjId = this.parentNode.dataset.id;
     const studyLab = this.parentNode.dataset.lab;
     try {
-        if (studyLab === 'hackensack') {
-            const response = await fetch('hackensack/markTechComplete', {
+            const response = await fetch('markTechComplete', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
             console.log(data);
             location.reload();
-        } else if (studyLab === 'wayne') {
-            const response = await fetch('wayne/markTechComplete', {
-                method: 'put',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({
-                    'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
-                }),
-            });
-                const data = await response.json();
-                console.log(data);
-                location.reload();
-        }
     } catch (err) {
         console.log(err);
     }
@@ -100,31 +85,16 @@ async function markDoctorComplete() {
     const studyObjId = this.parentNode.dataset.id;
     const studyLab = this.parentNode.dataset.lab;
     try {
-        if (studyLab === 'hackensack') {
-            const response = await fetch('hackensack/markDoctorComplete', {
+            const response = await fetch('markDoctorComplete', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
             console.log(data);
             location.reload();
-        } else if (studyLab === 'wayne') {
-            const response = await fetch('wayne/markDoctorComplete', {
-                method: 'put',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({
-                    'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
-                }),
-            });
-                const data = await response.json();
-                console.log(data);
-                location.reload();
-        }
     } catch (err) {
         console.log(err);
     }
@@ -141,33 +111,17 @@ Array.from(studyDoctorComplete).forEach(el => {
 
 async function markTechIncomplete() {
     const studyObjId = this.parentNode.dataset.id;
-    const studyLab = this.parentNode.dataset.lab;
     try {
-        if (studyLab === 'hackensack') {
-            const response = await fetch('hackensack/markTechIncomplete', {
+            const response = await fetch('markTechIncomplete', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
             console.log(data);
             location.reload();
-        } else if (studyLab === 'wayne') {
-            const response = await fetch('wayne/markTechIncomplete', {
-                method: 'put',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({
-                    'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
-                }),
-            });
-                const data = await response.json();
-                console.log(data);
-                location.reload();
-        }
     } catch (err) {
         console.log(err);
     }
@@ -175,33 +129,17 @@ async function markTechIncomplete() {
 
 async function markDoctorIncomplete() {
     const studyObjId = this.parentNode.dataset.id;
-    const studyLab = this.parentNode.dataset.lab;
     try {
-        if (studyLab === 'hackensack') {
-            const response = await fetch('hackensack/markDoctorIncomplete', {
+            const response = await fetch('markDoctorIncomplete', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
             console.log(data);
             location.reload();
-        } else if (studyLab === 'wayne') {
-            const response = await fetch('wayne/markDoctorIncomplete', {
-                method: 'put',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({
-                    'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
-                }),
-            });
-                const data = await response.json();
-                console.log(data);
-                location.reload();
-        }
     } catch (err) {
         console.log(err);
     }

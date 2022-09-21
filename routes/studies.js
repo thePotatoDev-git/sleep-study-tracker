@@ -33,15 +33,11 @@ router.delete('/wayne/deleteStudy', studiesController.deleteStudy);
 // PUT requests
 ///////////////////
 
-// Mark complete
-router.put('/hackensack/markTechComplete', studiesController.markTechComplete);
-router.put('/hackensack/markTechIncomplete', studiesController.markTechIncomplete);
-router.put('/wayne/markTechComplete', studiesController.markTechComplete);
-router.put('/wayne/markTechIncomplete', studiesController.markTechIncomplete);
-// Mark incomplete
-router.put('/hackensack/markDoctorComplete', studiesController.markDoctorComplete);
-router.put('/hackensack/markDoctorIncomplete', studiesController.markDoctorIncomplete);
-router.put('/wayne/markDoctorComplete', studiesController.markDoctorComplete);
-router.put('/wayne/markDoctorIncomplete', studiesController.markDoctorIncomplete);
+// Tech Mark complete/incomlete
+router.put('/markTechComplete', studiesController.markTechComplete);
+router.put('/markTechIncomplete', studiesController.markTechIncomplete);
+// Doctor Mark complete/incomplete
+router.put('/markDoctorComplete', studiesController.markDoctorComplete);
+router.put('/markDoctorIncomplete', studiesController.markDoctorIncomplete);
 
 module.exports = router;

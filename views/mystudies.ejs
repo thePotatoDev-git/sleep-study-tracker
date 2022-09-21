@@ -32,7 +32,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="10"><h3>Hackensack</h3></th>
+                            <th colspan="10"><h3>My Studies</h3></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,74 +48,25 @@
                             <td>Completed by M.D.</td>
                             <td></td>
                         </tr>
-                        <% for (let i = 0; i < userHackStudies.length; i++) {%>
-                            <tr data-id="<%= userHackStudies[i]._id %>" data-lab="hackensack"> <% if (userHackStudies[i].lab === 'hackensack') {%>
+                        <% for (let i = 0; i < userStudies.length; i++) {%>
+                            <tr data-id="<%= userStudies[i]._id %>">
                                 <td><%= i + 1 %></td>
-                                <td class="last-name"><%= userHackStudies[i].patientLastName %></td>
-                                <td class="first-name"><%= userHackStudies[i].patientFirstName %></td>
-                                <td class="study-date"><%= moment(userHackStudies[i].studyDate).format('l') %></td>
-                                <td><%= userHackStudies[i].studyAmount %></td>
-                                <td><%= userHackStudies[i].techName %></td>
-                                <td><%= userHackStudies[i].comment %></td>
-                                <td class="<%= userHackStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="<%= userHackStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="edit-icons" data-id="<%= userHackStudies[i]._id %>" data-lab="hackensack"><a href="/edit/hackensack/<%= userHackStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
-                            </tr> <% } %>
+                                <td class="last-name"><%= userStudies[i].patientLastName %></td>
+                                <td class="first-name"><%= userStudies[i].patientFirstName %></td>
+                                <td class="study-date"><%= moment(userStudies[i].studyDate).format('l') %></td>
+                                <td><%= userStudies[i].studyAmount %></td>
+                                <td><%= userStudies[i].techName %></td>
+                                <td><%= userStudies[i].comment %></td>
+                                <td class="<%= userStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
+                                <td class="<%= userStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
+                                <td class="edit-icons" data-id="<%= userStudies[i]._id %>" data-lab="hackensack"><a href="/edit/hackensack/<%= userStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
+                            </tr> %>
                         <% } %>
                     </tbody>
                 </table>
             </section>
         </section>
 
-          <!-- Search form -->
-          <form action="/studies/wayne/search" method="POST">
-            <section class="search-bar">
-                <label for="patient-search">Patient search:</label>
-                <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
-                    value="<%= search %>" 
-                <% } %>>
-                <button>Search</button>
-            </section>
-        </form>
-        <section class="table-container">
-            <section id="wayne" class="tab-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="10"><h3>Wayne</h3></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="category-row">
-                            <td></td>
-                            <td>Patient Last Name</td>
-                            <td>Patient First Name</td>
-                            <td>Date of Study</td>
-                            <td class="study-amount">Num. of Studies</td>
-                            <td>Assigned to:</td>
-                            <td class="study-comment">Comments</td>
-                            <td>Completed by Tech</td>
-                            <td>Completed by M.D.</td>
-                            <td></td>
-                        </tr>
-                        <% for (let i = 0; i < userWayneStudies.length; i++) {%>
-                            <tr data-id="<%= userWayneStudies[i]._id %>" data-lab="wayne"> <% if (userWayneStudies[i].lab === 'wayne') {%>
-                                <td><%= i + 1 %></td>
-                                <td class="last-name"><%= userWayneStudies[i].patientLastName %></td>
-                                <td class="first-name"><%= userWayneStudies[i].patientFirstName %></td>
-                                <td class="study-date"><%= moment(userWayneStudies[i].studyDate).format('l') %></td>
-                                <td><%= userWayneStudies[i].studyAmount %></td>
-                                <td><%= userWayneStudies[i].techName %></td>
-                                <td><%= userWayneStudies[i].comment %></td>
-                                <td class="<%= userWayneStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="<%= userWayneStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="edit-icons" data-id="<%= userWayneStudies[i]._id %>" data-lab="wayne"><a href="/edit/wayne/<%= userWayneStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
-                            </tr> <% } %>
-                        <% } %>
-                    </tbody>
-                </table>
-            </section>
-        </section>
         <!-- Add study form -->
         <button class="add-patient" onclick="openForm()">Add</button>
         <section class="form-popup" id="patient-form">

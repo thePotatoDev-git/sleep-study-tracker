@@ -49,7 +49,7 @@
                             <td></td>
                         </tr>
                         <% for (let i = 0; i < hackensack.length; i++) {%>
-                            <tr data-id="<%= hackensack[i]._id %>" data-lab="hackensack"> <% if (hackensack[i].lab === 'hackensack') {%>
+                            <tr data-id="<%= hackensack[i]._id %>">
                                 <td><%= i + 1 %></td>
                                 <td class="last-name"><%= hackensack[i].patientLastName %></td>
                                 <td class="first-name"><%= hackensack[i].patientFirstName %></td>
@@ -59,9 +59,9 @@
                                 <td><%= hackensack[i].comment %></td>
                                 <td class="<%= hackensack[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= hackensack[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="edit-icons" data-id="<%= hackensack[i]._id %>" data-lab="hackensack"><a href="/edit/hackensack/<%= hackensack[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
+                                <td class="edit-icons" data-id="<%= hackensack[i]._id %>"><a href="/edit/hackensack/<%= hackensack[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
-                        <% } %>
+                         %>
                     </tbody>
                 </table>
             </section>
