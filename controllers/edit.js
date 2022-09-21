@@ -1,11 +1,10 @@
-const Hackensack = require('../models/HackensackStudy');
-const Wayne = require('../models/WayneStudy');
+const Study = require('../models/Study');
 
 module.exports = {
     getHackensackEdit: async (req, res) => {
         try {
             const id = req.params.id;
-            await Hackensack.find({}, (err, comment) => {
+            Study.find({}, (err, comment) => {
                 res.render('edithackensack.ejs', { hackensack: comment, studyId: id, user: req.user });
             });
         } catch (err) {
@@ -15,7 +14,7 @@ module.exports = {
     getWayneEdit: async (req, res) => {
         try {
             const id = req.params.id;
-            await Wayne.find({}, (err, comment) => {
+            await Study.find({}, (err, comment) => {
                 res.render('editwayne.ejs', { wayne: comment, studyId: id, user: req.user });
             });
         } catch (err) {
@@ -25,9 +24,10 @@ module.exports = {
     editHackensackStudy: async (req, res) => {
         try {
             const id = req.params.id;
-            await Hackensack.findByIdAndUpdate(
+            await Study.findByIdAndUpdate(
                 id,
                 {
+                    lab: req.body.lab,
                     patientFirstName: req.body.patientFirstName,
                     patientLastName: req.body.patientLastName,
                     studyDate: req.body.studyDate,
@@ -48,9 +48,10 @@ module.exports = {
     editWayneStudy: async (req, res) => {
         try {
             const id = req.params.id;
-            await Wayne.findByIdAndUpdate(
+            await Study.findByIdAndUpdate(
                 id,
                 {
+                    lab: req.body.lab,
                     patientFirstName: req.body.patientFirstName,
                     patientLastName: req.body.patientLastName,
                     studyDate: req.body.studyDate,

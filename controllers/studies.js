@@ -1,5 +1,4 @@
-const Hackensack = require('../models/HackensackStudy');
-const Wayne = require('../models/WayneStudy');
+const Study = require('../models/Study');
 const User = require('../models/User');
 
 module.exports = {
@@ -16,11 +15,10 @@ module.exports = {
     },
     getMyStudies: async (req, res) => {
         try {
-            let userHackensackStudies = await Hackensack.find({techName: req.user.firstName}).sort({studyDate: -1})
-            let userWayneStudies = await Wayne.find({techName: req.user.firstName}).sort({studyDate: -1});
+            let studies = await Study.find({techName: req.user.firstName}).sort({studyDate: -1})
             let techs = await User.find({});
             if (req.user.specialAccess === true) {
-                res.render('mystudies.ejs', { user: req.user, userHackStudies: userHackensackStudies, userWayneStudies: userWayneStudies, search: '', techs: techs });
+                res.render('mystudies.ejs', { user: req.user, userStudies: studies, search: '', techs: techs });
             } else {
                 res.render('noaccess.ejs', { user: req.user });
             }
@@ -31,7 +29,7 @@ module.exports = {
     getHackensackStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let hackensackStudies = await Hackensack.find({}).sort({studyDate: -1});
+            let hackensackStudies = await Study.find({lab: 'hackensack'}).sort({studyDate: -1});
             let techs = await User.find({});
             if (req.user.specialAccess === true) {
                 res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
@@ -45,7 +43,7 @@ module.exports = {
     getWayneStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let wayneStudies = await Wayne.find({}).sort({studyDate: -1});
+            let wayneStudies = await Study.find({lab: 'wayne'}).sort({studyDate: -1});
             let techs = await User.find({});
             if (req.user.specialAccess === true) {
                 res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, techs: techs, search: '' });
@@ -62,16 +60,15 @@ module.exports = {
             let search = req.body.searchInput;
             let hackensackStudies = null;
             let techs = await User.find({});
-            let query = {patientLastName: {$regex: '^' + search, $options: 'i'}};
 
             if (search != null) {
-                let searchResult = await Hackensack.find(query).sort({studyDate: -1})
+                let searchResult = await Study.find({ lab: 'hackensack', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
                 .then((data) => {
                     hackensackStudies = data
                 });
             } else {
                 search = 'Search'
-                let searchResult = await Hackensack.find({}).sort({studyDate: -1})
+                let searchResult = await Study.find({}).sort({studyDate: -1})
                 .then((data) => {
                     hackensackStudies = data
                 });
@@ -87,16 +84,15 @@ module.exports = {
             let search = req.body.searchInput;
             let wayneStudies = null;
             let techs = await User.find({});
-            let query = {patientLastName: {$regex: '^' + search, $options: 'i'}};
 
             if (search != null) {
-                let searchResult = await Wayne.find(query).sort({studyDate: -1})
+                let searchResult = await Study.find({ lab: 'wayne', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
                 .then((data) => {
                     wayneStudies = data
                 });
             } else {
                 search = 'Search'
-                let searchResult = await Wayne.find({}).sort({studyDate: -1})
+                let searchResult = await Study.find({}).sort({studyDate: -1})
                 .then((data) => {
                     wayneStudies = data
                 });
@@ -108,35 +104,19 @@ module.exports = {
     },
     addStudy: async (req, res) => {
         try {
-            if (req.body.lab === 'hackensack') {
-                await Hackensack.create({
-                    lab: req.body.lab,
-                    patientLastName: req.body.patientLastName,
-                    patientFirstName: req.body.patientFirstName,
-                    studyDate: req.body.studyDate,
-                    studyAmount: req.body.studyAmount,
-                    techName: req.body.techName,
-                    comment: '',
-                    techCompleted: false,
-                    doctorCompleted: false,
-                });
-                console.log('Hackensack study added');
-                res.redirect('/studies/hackensack');
-            } else if (req.body.lab === 'wayne') {
-                await Wayne.create({
-                    lab: req.body.lab,
-                    patientLastName: req.body.patientLastName,
-                    patientFirstName: req.body.patientFirstName,
-                    studyDate: req.body.studyDate,
-                    studyAmount: req.body.studyAmount,
-                    techName: req.body.techName,
-                    comment: '',
-                    techCompleted: false,
-                    doctorCompleted: false,
-                });
-                console.log('Wayne study added');
-                res.redirect('/studies/wayne');
-            }
+            await Study.create({
+                lab: req.body.lab,
+                patientLastName: req.body.patientLastName,
+                patientFirstName: req.body.patientFirstName,
+                studyDate: req.body.studyDate,
+                studyAmount: req.body.studyAmount,
+                techName: req.body.techName,
+                comment: '',
+                techCompleted: false,
+                doctorCompleted: false,
+            });
+                console.log('New study added');
+                res.redirect('back');
         } catch (err) {
             console.log(err);
         }
@@ -144,15 +124,9 @@ module.exports = {
     deleteStudy: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {
-            if (req.body.studyLabFromJSFile === 'hackensack') {
-                await Hackensack.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
+                await Study.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
                 console.log('Deleted Hackensack study');
                 res.json('Deleted Hackensack study');
-            } else if (req.body.studyLabFromJSFile === 'wayne') {
-                await Wayne.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
-                console.log('Deleted Wayne study');
-                res.json('Deleted Wayne study');
-            }
         } catch (err) {
             console.log(err);
         }
@@ -160,19 +134,11 @@ module.exports = {
     markTechComplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {
-            if (req.body.studyLabFromJSFile === 'hackensack') {
-                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
                     techCompleted: true
                 });
-                console.log('Hackensack study completed by tech');
-                res.json('Hackensack study completed by tech');
-            } else if (req.body.studyLabFromJSFile === 'wayne') {
-                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    techCompleted: true
-                });
-                console.log('Wayne study completed by tech');
-                res.json('Wayne study completed by tech');
-            }
+                console.log('Study completed by tech');
+                res.json('Study completed by tech');
         } catch (err) {
             console.log(err);
         }
@@ -180,19 +146,11 @@ module.exports = {
     markTechIncomplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {
-            if (req.body.studyLabFromJSFile === 'hackensack') {
-                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
                     techCompleted: false
                 });
-                console.log('Hackensack study incompleted by tech');
-                res.json('Hackensack study incompleted by tech');
-            } else if (req.body.studyLabFromJSFile === 'wayne') {
-                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    techCompleted: false
-                });
-                console.log('Wayne study incompleted by tech');
-                res.json('Wayne study incompleted by tech');
-            }
+                console.log('Study incompleted by tech');
+                res.json('Study incompleted by tech');
         } catch (err) {
             console.log(err);
         }
@@ -200,19 +158,11 @@ module.exports = {
     markDoctorComplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {
-            if (req.body.studyLabFromJSFile === 'hackensack') {
-                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
                     doctorCompleted: true
                 });
-                console.log('Hackensack study completed by doctor');
-                res.json('Hackensack study completed by doctor');
-            } else if (req.body.studyLabFromJSFile === 'wayne') {
-                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    doctorCompleted: true
-                });
-                console.log('Wayne study completed by doctor');
-                res.json('Wayne study completed by doctor');
-            }
+                console.log('Study completed by doctor');
+                res.json('Study completed by doctor');
         } catch (err) {
             console.log(err);
         }
@@ -220,19 +170,11 @@ module.exports = {
     markDoctorIncomplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {
-            if (req.body.studyLabFromJSFile === 'hackensack') {
-                await Hackensack.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
                     doctorCompleted: false
                 });
-                console.log('Hackensack study incompleted by doctor');
-                res.json('Hackensack study incompleted by doctor');
-            } else if (req.body.studyLabFromJSFile === 'wayne') {
-                await Wayne.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    doctorCompleted: false
-                });
-                console.log('Wayne study incompleted by doctor');
-                res.json('Wayne study incompleted by doctor');
-            }
+                console.log('Study incompleted by doctor');
+                res.json('Study incompleted by doctor');
         } catch (err) {
             console.log(err);
         }

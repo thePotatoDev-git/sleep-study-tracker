@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const wayneStudySchema = new mongoose.Schema({
+const studySchema = new mongoose.Schema({
     lab: {
         type: String,
         required: true,
@@ -36,6 +36,10 @@ const wayneStudySchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
-module.exports = mongoose.model('WayneStudy', wayneStudySchema, 'wayne');
+module.exports = mongoose.model('Study', studySchema, 'studies');
