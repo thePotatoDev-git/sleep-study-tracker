@@ -176,6 +176,7 @@ a:visited {
      height: 65vh;
      background: white;
      margin: 0 auto;
+     overflow: auto;
 }
 table,
 td {
@@ -254,7 +255,6 @@ ADD STUDY FORM STYLES
 .form-container select {
      width: 150px;
      height: 25px;
-     padding: 15px;
      margin: 5px 0 22px 0;
      border: none;
      background: white;

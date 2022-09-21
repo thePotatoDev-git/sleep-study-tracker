@@ -14,6 +14,20 @@ module.exports = {
             console.error(err);
         }
     },
+    getMyStudies: async (req, res) => {
+        try {
+            let userHackensackStudies = await Hackensack.find({techName: req.user.firstName}).sort({studyDate: -1})
+            let userWayneStudies = await Wayne.find({techName: req.user.firstName}).sort({studyDate: -1});
+            let techs = await User.find({});
+            if (req.user.specialAccess === true) {
+                res.render('mystudies.ejs', { user: req.user, userHackStudies: userHackensackStudies, userWayneStudies: userWayneStudies, search: '', techs: techs });
+            } else {
+                res.render('noaccess.ejs', { user: req.user });
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    },
     getHackensackStudies: async (req, res) => {
         console.log(req.user)
         try {
@@ -47,6 +61,7 @@ module.exports = {
             const session = req.session;
             let search = req.body.searchInput;
             let hackensackStudies = null;
+            let techs = await User.find({});
             let query = {patientLastName: {$regex: '^' + search, $options: 'i'}};
 
             if (search != null) {
@@ -61,7 +76,7 @@ module.exports = {
                     hackensackStudies = data
                 });
             }
-            res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, search: search });
+            res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, search: search, techs: techs });
         } catch (err) {
             console.log(err);
         }
@@ -71,6 +86,7 @@ module.exports = {
             const session = req.session;
             let search = req.body.searchInput;
             let wayneStudies = null;
+            let techs = await User.find({});
             let query = {patientLastName: {$regex: '^' + search, $options: 'i'}};
 
             if (search != null) {
@@ -85,7 +101,7 @@ module.exports = {
                     wayneStudies = data
                 });
             }
-            res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, search: search });
+            res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, search: search, techs: techs });
         } catch (err) {
             console.log(err);
         }

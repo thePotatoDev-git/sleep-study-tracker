@@ -1,0 +1,170 @@
+<%- include('partials/header') -%>
+<head>
+    <link rel="stylesheet" href="../../css/normalize.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+    <!-- Title -->
+    <section class="title">
+        <h1>Home Sleep Study Tracker</h1>
+        <h3>For the office of Samuel H.S. The</h3>
+        <div>
+            <span class="active-lab">Hackensack</span>
+            <span>|</span>
+            <a href="/studies/wayne">Wayne</a>
+        </div>
+    </section>
+
+    <section class="main-body">
+        <!-- Search form -->
+        <form action="/studies/hackensack/search" method="POST">
+            <section class="search-bar">
+                <label for="patient-search">Patient search:</label>
+                <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
+                    value="<%= search %>" 
+                <% } %>>
+                <button>Search</button>
+            </section>
+        </form>
+
+        <!-- Patient list -->
+        <section class="table-container">
+            <section id="hackensack" class="tab-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="10"><h3>Hackensack</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-row">
+                            <td></td>
+                            <td>Patient Last Name</td>
+                            <td>Patient First Name</td>
+                            <td>Date of Study</td>
+                            <td class="study-amount">Num. of Studies</td>
+                            <td>Assigned to:</td>
+                            <td class="study-comment">Comments</td>
+                            <td>Completed by Tech</td>
+                            <td>Completed by M.D.</td>
+                            <td></td>
+                        </tr>
+                        <% for (let i = 0; i < userHackStudies.length; i++) {%>
+                            <tr data-id="<%= userHackStudies[i]._id %>" data-lab="hackensack"> <% if (userHackStudies[i].lab === 'hackensack') {%>
+                                <td><%= i + 1 %></td>
+                                <td class="last-name"><%= userHackStudies[i].patientLastName %></td>
+                                <td class="first-name"><%= userHackStudies[i].patientFirstName %></td>
+                                <td class="study-date"><%= moment(userHackStudies[i].studyDate).format('l') %></td>
+                                <td><%= userHackStudies[i].studyAmount %></td>
+                                <td><%= userHackStudies[i].techName %></td>
+                                <td><%= userHackStudies[i].comment %></td>
+                                <td class="<%= userHackStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
+                                <td class="<%= userHackStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
+                                <td class="edit-icons" data-id="<%= userHackStudies[i]._id %>" data-lab="hackensack"><a href="/edit/hackensack/<%= userHackStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
+                            </tr> <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+
+          <!-- Search form -->
+          <form action="/studies/wayne/search" method="POST">
+            <section class="search-bar">
+                <label for="patient-search">Patient search:</label>
+                <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
+                    value="<%= search %>" 
+                <% } %>>
+                <button>Search</button>
+            </section>
+        </form>
+        <section class="table-container">
+            <section id="wayne" class="tab-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="10"><h3>Wayne</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-row">
+                            <td></td>
+                            <td>Patient Last Name</td>
+                            <td>Patient First Name</td>
+                            <td>Date of Study</td>
+                            <td class="study-amount">Num. of Studies</td>
+                            <td>Assigned to:</td>
+                            <td class="study-comment">Comments</td>
+                            <td>Completed by Tech</td>
+                            <td>Completed by M.D.</td>
+                            <td></td>
+                        </tr>
+                        <% for (let i = 0; i < userWayneStudies.length; i++) {%>
+                            <tr data-id="<%= userWayneStudies[i]._id %>" data-lab="wayne"> <% if (userWayneStudies[i].lab === 'wayne') {%>
+                                <td><%= i + 1 %></td>
+                                <td class="last-name"><%= userWayneStudies[i].patientLastName %></td>
+                                <td class="first-name"><%= userWayneStudies[i].patientFirstName %></td>
+                                <td class="study-date"><%= moment(userWayneStudies[i].studyDate).format('l') %></td>
+                                <td><%= userWayneStudies[i].studyAmount %></td>
+                                <td><%= userWayneStudies[i].techName %></td>
+                                <td><%= userWayneStudies[i].comment %></td>
+                                <td class="<%= userWayneStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
+                                <td class="<%= userWayneStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
+                                <td class="edit-icons" data-id="<%= userWayneStudies[i]._id %>" data-lab="wayne"><a href="/edit/wayne/<%= userWayneStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
+                            </tr> <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        <!-- Add study form -->
+        <button class="add-patient" onclick="openForm()">Add</button>
+        <section class="form-popup" id="patient-form">
+            <form action="/studies/addStudy" method="POST" class="form-container">
+                <h2 class="form-header">Add study</h2>
+
+                <div class="form-fields">
+                    <div class="lab-select">
+                        <label for="lab">Sleep lab:</label>
+                        <select name="lab" id="lab">
+                            <option value="select">Select lab</option>
+                            <option value="hackensack">Hackensack</option>
+                            <option value="wayne">Wayne</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="patientLastName">Last name:</label>
+                        <input type="text" name="patientLastName">
+                    </div>
+                    <div class="field">
+                        <label for="patientFirstName">First name:</label>
+                        <input type="text" name="patientFirstName">
+                    </div>
+                    <div class="field">
+                        <label for="studyDate">Date of study:</label>
+                        <input type="date" name="studyDate">
+                    </div>
+                    <div class="field">
+                        <label for="studyAmount">No. of studies:</label>
+                        <input type="text" name="studyAmount">
+                    </div>
+                    <div class="field">
+                        <label for="techName">Assign to:</label>
+                        <select name="techName" id="techName">
+                            <option value=""></option>
+                            <% techs.forEach(tech => { %>
+                                <option value="<%= tech.firstName %>"><%= tech.firstName %></option>
+                                <% }) %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn">Add</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+    </section>
+
+<%- include('partials/footer') -%>
