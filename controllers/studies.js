@@ -29,7 +29,7 @@ module.exports = {
     getHackensackStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let hackensackStudies = await Study.find({lab: 'hackensack'}).sort({studyDate: -1});
+            let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({studyDate: -1});
             let techs = await User.find({});
             if (req.user.specialAccess === true) {
                 res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
@@ -43,13 +43,21 @@ module.exports = {
     getWayneStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let wayneStudies = await Study.find({lab: 'wayne'}).sort({studyDate: -1});
+            let wayneStudies = await Study.find({lab: 'Wayne'}).sort({studyDate: -1});
             let techs = await User.find({});
             if (req.user.specialAccess === true) {
                 res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, techs: techs, search: '' });
             } else {
                 res.status(403).send('Access not permitted.');
             }
+        } catch (err) {
+            console.error(err);
+        }
+    },
+    getStudy: async (req, res) => {
+        try {
+            const study = await Study.findById(req.params.id);
+            res.render('study.ejs', { study: study, user: req.user });
         } catch (err) {
             console.error(err);
         }
@@ -62,7 +70,7 @@ module.exports = {
             let techs = await User.find({});
 
             if (search != null) {
-                let searchResult = await Study.find({ lab: 'hackensack', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+                let searchResult = await Study.find({ lab: 'Hackensack', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
                 .then((data) => {
                     hackensackStudies = data
                 });
@@ -86,7 +94,7 @@ module.exports = {
             let techs = await User.find({});
 
             if (search != null) {
-                let searchResult = await Study.find({ lab: 'wayne', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+                let searchResult = await Study.find({ lab: 'Wayne', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
                 .then((data) => {
                     wayneStudies = data
                 });

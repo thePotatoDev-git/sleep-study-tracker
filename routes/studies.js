@@ -10,6 +10,7 @@ router.get('/', ensureAuth, studiesController.getDashboard);
 router.get('/hackensack', ensureAuth, studiesController.getHackensackStudies);
 router.get('/wayne', ensureAuth, studiesController.getWayneStudies);
 router.get('/myStudies', ensureAuth, studiesController.getMyStudies);
+router.get('/:id', ensureAuth, studiesController.getStudy);
 
 ///////////////////
 // POST requests

@@ -8,7 +8,7 @@
         <h1>Home Sleep Study Tracker</h1>
         <h3>For the office of Samuel H.S. The</h3>
         <div>
-            <span class="active-lab">Hackensack</span>
+            <a href="/studies/hackensack">Hackensack</a>
             <span>|</span>
             <a href="/studies/wayne">Wayne</a>
         </div>
@@ -32,7 +32,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="10"><h3>My Studies</h3></th>
+                            <th colspan="11"><h3>My Studies</h3></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +40,7 @@
                             <td></td>
                             <td>Patient Last Name</td>
                             <td>Patient First Name</td>
+                            <td>Lab</td>
                             <td>Date of Study</td>
                             <td class="study-amount">Num. of Studies</td>
                             <td>Assigned to:</td>
@@ -53,13 +54,14 @@
                                 <td><%= i + 1 %></td>
                                 <td class="last-name"><%= userStudies[i].patientLastName %></td>
                                 <td class="first-name"><%= userStudies[i].patientFirstName %></td>
+                                <td class="lab"><%= userStudies[i].lab %></td>
                                 <td class="study-date"><%= moment(userStudies[i].studyDate).format('l') %></td>
                                 <td><%= userStudies[i].studyAmount %></td>
                                 <td><%= userStudies[i].techName %></td>
-                                <td><%= userStudies[i].comment %></td>
+                                <td><%= userStudies[i].comment %> <a href="/study/<%= userStudies[i]._id %>">View more</a></td>
                                 <td class="<%= userStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= userStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="edit-icons" data-id="<%= userStudies[i]._id %>" data-lab="hackensack"><a href="/edit/hackensack/<%= userStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
+                                <td class="edit-icons" data-id="<%= userStudies[i]._id %>"><a href="/edit/<%= userStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
                             </tr> %>
                         <% } %>
                     </tbody>
@@ -77,9 +79,9 @@
                     <div class="lab-select">
                         <label for="lab">Sleep lab:</label>
                         <select name="lab" id="lab">
-                            <option value="select">Select lab</option>
-                            <option value="hackensack">Hackensack</option>
-                            <option value="wayne">Wayne</option>
+                            <option value="select" selected="true" disabled="disabled">Select lab</option>
+                            <option value="Hackensack">Hackensack</option>
+                            <option value="Wayne">Wayne</option>
                         </select>
                     </div>
                     <div class="field">

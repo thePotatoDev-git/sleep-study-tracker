@@ -51,6 +51,7 @@ app.use((req, res, next) => {
 app.use('/', mainRoutes);
 app.use('/studies', studiesRoutes);
 app.use('/dashboard', studiesRoutes);
+app.use('/study', studiesRoutes);
 app.use('/edit', editRoutes);
 
 // Port listening

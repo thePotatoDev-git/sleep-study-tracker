@@ -1,8 +1,5 @@
 <%- include('partials/header') -%>
-<head>
-    <link rel="stylesheet" href="../../css/normalize.css"/>
-    <link rel="stylesheet" href="../../css/style.css"/>
-</head>
+
     <!-- Title -->
     <section class="title">
         <h1>Home Sleep Study Tracker</h1>
@@ -59,7 +56,7 @@
                                 <td><%= hackensack[i].comment %></td>
                                 <td class="<%= hackensack[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= hackensack[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="edit-icons" data-id="<%= hackensack[i]._id %>"><a href="/edit/hackensack/<%= hackensack[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
+                                <td class="edit-icons" data-id="<%= hackensack[i]._id %>"><a href="/edit/<%= hackensack[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a><i class="fa-solid fa-trash-can"></i></td>
                             </tr> <% } %>
                          %>
                     </tbody>
@@ -76,9 +73,9 @@
                     <div class="lab-select">
                         <label for="lab">Sleep lab:</label>
                         <select name="lab" id="lab">
-                            <option value="select">Select lab</option>
-                            <option value="hackensack">Hackensack</option>
-                            <option value="wayne">Wayne</option>
+                            <option value="select" selected="true" disabled="disabled">Select lab</option>
+                            <option value="Hackensack">Hackensack</option>
+                            <option value="Wayne">Wayne</option>
                         </select>
                     </div>
                     <div class="field">

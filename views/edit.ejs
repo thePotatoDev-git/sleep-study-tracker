@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/../../css/normalize.css"/>
-    <link rel="stylesheet" href="/../../css/style.css"/>
-    <title>HST Tracker</title>
-</head>
-<body>
-    <!-- Username -->
-    <header>
-        <div>
-            <span><i class="fa-solid fa-bell"></i></span>
-            <span><%= user.userName %></span>
-            <span><a href="/logout">Logout</a></span>
-        </div>
-    </header>
+<%- include('partials/header') -%>
 
     <!-- Title -->
     <section class="title">
@@ -32,13 +14,13 @@
         <h2 class="title is-2 center mb-6">Edit Study</h2>
         <% hackensack.forEach( el=> { %>
           <% if (el._id==studyId) { %>
-            <form action="/edit/hackensack/<%= el._id %>" method="POST">
+            <form action="/edit/<%= el._id %>" method="POST">
                 <div class="lab-select">
                     <label for="lab">Sleep lab:</label>
                     <select name="lab" id="lab">
                         <option value="<%= el.lab %>"><%= el.lab %></option>
-                        <option value="hackensack">Hackensack</option>
-                        <option value="wayne">Wayne</option>
+                        <option value="Hackensack">Hackensack</option>
+                        <option value="Wayne">Wayne</option>
                     </select>
                 </div>
                 <div class="field">
@@ -71,7 +53,4 @@
               <% }) %>
       </div>
 
-    <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../../js/main.js"></script>
-</body>
-</html>
+<%- include('partials/footer') -%>

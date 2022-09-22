@@ -3,11 +3,10 @@ const router = express.Router();
 const editController = require('../controllers/edit');
 
 // GET edit pages
-router.get('/hackensack/:id', editController.getHackensackEdit);
-router.get('/wayne/:id', editController.getWayneEdit);
+router.get('/:id', editController.getEdit);
+
 
 // POST edits
-router.post('/hackensack/:id', editController.editHackensackStudy);
-router.post('/wayne/:id', editController.editWayneStudy);
+router.post('/:id', editController.editStudy);
 
 module.exports = router;

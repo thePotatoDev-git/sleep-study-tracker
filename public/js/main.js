@@ -23,31 +23,16 @@ async function deleteStudy() {
     const studyObjId = this.parentNode.dataset.id;
     const studyLab = this.parentNode.dataset.lab;
     try {
-        if (studyLab === 'hackensack') {
-            const response = await fetch('hackensack/deleteStudy', {
+            const response = await fetch('deleteStudy', {
                 method: 'delete',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
             console.log(data);
             location.reload();
-        } else if (studyLab === 'wayne') {
-            const response = await fetch('wayne/deleteStudy', {
-                method: 'delete',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({
-                    'studyObjIdFromJSFile': studyObjId,
-                    'studyLabFromJSFile': studyLab,
-                }),
-            });
-                const data = await response.json();
-                console.log(data);
-                location.reload();
-        }
     } catch (err) {
         console.log(err);
     }
