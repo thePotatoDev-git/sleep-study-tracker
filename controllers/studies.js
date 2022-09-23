@@ -119,7 +119,7 @@ module.exports = {
                 studyDate: req.body.studyDate,
                 studyAmount: req.body.studyAmount,
                 techName: req.body.techName,
-                comment: '',
+                comment: req.body.comment,
                 techCompleted: false,
                 doctorCompleted: false,
             });

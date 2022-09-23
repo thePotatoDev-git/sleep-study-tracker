@@ -243,8 +243,8 @@ td {
      width: 75px;
 }
 .study-comment {
-     min-width: 40%;
-     width: 95%;
+     min-width: 45%;
+     width: 90%;
 }
 
 /******************************************
@@ -261,10 +261,12 @@ ADD STUDY FORM STYLES
      display: none;
      position: fixed;
      width: 50%;
+     height: auto;
      top: 20%;
      left: 25%;
      border: 3px solid black;
      z-index: 9;
+     background-color: #d9d9d9;
 }
 .form-container {
      background-color: #d9d9d9;
@@ -282,6 +284,7 @@ ADD STUDY FORM STYLES
      display: flex;
      flex-direction: row;
      flex-wrap: wrap;
+     height: auto;
 }
 .lab-select {
      text-align: center;
@@ -306,6 +309,7 @@ ADD STUDY FORM STYLES
 .form-buttons {
      float: right;
      margin-right: 25px;
+     margin-bottom: 20px;
 }
 .form-buttons button {
      margin: 0 5px;
@@ -320,15 +324,20 @@ ADD STUDY FORM STYLES
      justify-content: center;
      align-items: center;
      height: 65px;
-     width: 55px;
+     width: 85px;
      padding: 0;
 }
 .fa-pen-to-square,
-.fa-trash-can {
+.fa-trash-can,
+.fa-file-lines {
     margin: 0 5px;
     opacity: 0.15;
     font-size: 1.2rem;
     color: black;
+}
+.fa-file-lines:hover {
+     opacity: 1;
+     color: green;
 }
 .fa-pen-to-square:hover {
      opacity: 1;
