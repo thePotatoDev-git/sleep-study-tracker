@@ -25,7 +25,7 @@
 body {
      height: 1500px;
      background: #064588;
-     color: black;
+     color: white;
 }
 .main-body {
      width: 95%;
@@ -42,6 +42,12 @@ header div {
      float: right;
      margin-right: 75px;
 }
+.navbar {
+     background-color: #064588;
+}
+.navbar-brand {
+     color: white;
+}
 /* Dropdown Button */
 .dropbtn {
      background-color: #064588;
@@ -54,7 +60,7 @@ header div {
    .dropdown {
      position: relative;
      display: inline-block;
-     margin-top: 25px;
+     margin-right: 40px;
    }
    
    /* Dropdown Content (Hidden by Default) */
@@ -92,7 +98,7 @@ header div {
      flex-direction: column;
      align-items: center;
      margin-top: 100px;
-     color: white;
+     color: #064588;
      width: 400px;
      height: 150px;
 }
@@ -109,11 +115,10 @@ header div {
      text-align: center;
 }
 .welcome div a {
-     background-color: white;
-     color: black;
+     background-color: #1282a2;
+     color: white;
      text-decoration: none;
      float: left;
-     width: 120px;
      padding: 14px 0;
      border: 1px solid black;
      transition: 0.3s;
@@ -127,14 +132,27 @@ header div {
 ***********************************************/
 .login {
      margin: 0 auto;
-     width: 25%;
+     margin-top: 50px;
+     width: 35%;
+     height: 800px;
+     background-color: white;
      border: 1px solid white;
      text-align: center;
+}
+.login h2 {
+     color: #064588;
+     font-size: 2.375rem;
+     font-weight: bold;
 }
 .login-field {
      color: white;
      width: 65%;
      margin: 20px auto;
+}
+.login-field input {
+     padding: 10px;
+     width: 100%;
+     color: black;
 }
 .button {
      display: block;
@@ -147,8 +165,38 @@ header div {
      background-color: #064588;
 }
 input {
-     height: 35px;
+     height: 50px;
      width: 100%;
+     border: 1px solid gray;
+     border-radius: 5px;
+     padding: 10px;
+}
+.input {
+     border: 1px solid gray;
+}
+.login .btn {
+     background-color: #1282a2;
+     width: 200px;
+}
+.login .btn:hover {
+     background-color: #406e8e;
+}
+.alert {
+     background-color: white;
+     color: red;
+     margin: 10px;
+}
+.label {
+     color: black;
+}
+.notification {
+     color: red;
+}
+.login div p {
+     color: black;
+}
+.login div p a {
+     color: #064588;
 }
 /******************************************
      SIGN UP
@@ -170,6 +218,16 @@ h1 {
 .title {
      display: flex;
      flex-direction: column;
+     color: white;
+     font-family: "Roboto Condensed";
+}
+.title h1 {
+     font-size: 5.375rem;
+     font-weight: bold;
+     text-transform: uppercase;
+}
+.title h3 {
+     font-size: 1.75rem;
 }
 .title h1,
 .title h3 {
@@ -206,6 +264,14 @@ p {
 }
 a:visited {
      color: inherit;
+}
+.navbrand {
+     color: white;
+     font-size: 2rem;
+     margin-left: 40px;
+}
+.navbrand:visited {
+     color: white;
 }
 /******************************************
 /* ADDITIONAL STYLES
