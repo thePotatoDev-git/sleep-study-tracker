@@ -1,12 +1,8 @@
 <%- include('partials/header') -%>
-<head>
-    <link rel="stylesheet" href="../../css/normalize.css"/>
-    <link rel="stylesheet" href="../../css/style.css"/>
-</head>
+<body class="main">
     <!-- Title -->
     <section class="title">
-        <h1>Home Sleep Study Tracker</h1>
-        <h3>For the office of Samuel H.S. The</h3>
+        <h2><%= user.firstName %>'s Studies</h2>
         <div>
             <a href="/studies/hackensack">Hackensack</a>
             <span>|</span>
@@ -22,7 +18,7 @@
                 <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
                     value="<%= search %>" 
                 <% } %>>
-                <button>Search</button>
+                <button class="btn btn-accent btn-lg">Search</button>
             </section>
         </form>
 
@@ -74,7 +70,7 @@
         </section>
 
         <!-- Add study form -->
-        <button class="add-patient" onclick="openForm()">Add</button>
+        <button class="add-patient btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-accent" onclick="openForm()">Add</button>
         <section class="form-popup" id="patient-form">
             <form action="/studies/addStudy" method="POST" class="form-container">
                 <h2 class="form-header">Add study</h2>
@@ -123,5 +119,6 @@
         </section>
 
     </section>
+</body>
 
 <%- include('partials/footer') -%>

@@ -30,7 +30,7 @@ body {
 }
 .main-body {
      width: 95%;
-     height: 800px;
+     height: 825px;
      margin: 0 auto;
      margin-top: 50px;
      background-color: #e0d9d5;
@@ -358,20 +358,21 @@ ADD STUDY FORM STYLES
 /** Add button **/
 .add-patient {
      float: right;
-     margin: 1rem 0 0 0;
+     margin: 3rem 0 0 0;
      width: 200px;
 }
 /** Popup form **/
 .form-popup {
      display: none;
      position: fixed;
-     width: 50%;
-     height: auto;
+     width: 1000px;
+     height: 500px;
      top: 20%;
-     left: 25%;
+     left: 20%;
      border: 3px solid black;
      z-index: 9;
      background-color: #d9d9d9;
+     color: black;
 }
 .form-container {
      background-color: #d9d9d9;
@@ -402,14 +403,16 @@ ADD STUDY FORM STYLES
 .field label,
 .field input {
      margin: 0;
+     display: block;
 }
-.form-container input[type=text],
+.form-container input,
 .form-container select {
      width: 150px;
      height: 25px;
      margin: 5px 0 22px 0;
      border: none;
      background: white;
+     padding-left: 10px;
 }
 .form-buttons {
      float: right;
@@ -419,6 +422,14 @@ ADD STUDY FORM STYLES
 .form-buttons button {
      margin: 0 5px;
      width: 80px;
+     background-color: #37cdbe;
+     color: #153734;
+}
+.form-buttons button:hover {
+     background-color: #2aa79b;
+}
+.field textarea {
+     padding: 8px;
 }
 /***************************************
      EDIT BUTTONS
