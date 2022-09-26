@@ -1,9 +1,8 @@
 <%- include('partials/header') -%>
-
+<body class="main">
     <!-- Title -->
     <section class="title">
-        <h1>Home Sleep Study Tracker</h1>
-        <h3>For the office of Samuel H.S. The</h3>
+        <h2>Wayne Lab</h2>
         <div>
             <a href="/studies/hackensack">Hackensack</a>
             <span>|</span>
@@ -19,7 +18,7 @@
                 <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
                     value="<%= search %>" 
                 <% } %>>
-                <button>Search</button>
+                <button class="btn btn-accent btn-lg">Search</button>
             </section>
         </form>
 
@@ -48,9 +47,9 @@
                         <% for (let i = 0; i < wayne.length; i++) {%>
                             <tr data-id="<%= wayne[i]._id %>">
                                 <td><%= i + 1 %></td>
-                                <td><%= wayne[i].patientLastName %></td>
-                                <td><%= wayne[i].patientFirstName %></td>
-                                <td><%= moment(wayne[i].studyDate).format('l') %></td>
+                                <td class="last-name"><%= wayne[i].patientLastName %></td>
+                                <td class="first-name"><%= wayne[i].patientFirstName %></td>
+                                <td class="study-date"><%= moment(wayne[i].studyDate).format('l') %></td>
                                 <td><%= wayne[i].studyAmount %></td>
                                 <td><%= wayne[i].techName %></td>
                                 <td><%= wayne[i].comment %></td>
@@ -62,13 +61,13 @@
                                     <i class="fa-solid fa-trash-can"></i>
                                 </td>
                             </tr> <% } %>
-                        %>
+                         %>
                     </tbody>
                 </table>
             </section>
         </section>
         <!-- Add study form -->
-        <button class="add-patient" onclick="openForm()">Add</button>
+        <button class="add-patient btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-accent" onclick="openForm()">Add Study</button>
         <section class="form-popup" id="patient-form">
             <form action="/studies/addStudy" method="POST" class="form-container">
                 <h2 class="form-header">Add study</h2>
@@ -106,6 +105,11 @@
                                 <option value="<%= tech.firstName %>"><%= tech.firstName %></option>
                                 <% }) %>
                         </select>
+                    </div>
+                    <div class="field">
+                        <label for="comment">Comments:</label>
+                        <textarea rows="4" cols="50" name="comment"></textarea>
+                    </div>
                 </div>
 
                 <div class="form-buttons">
@@ -116,5 +120,5 @@
         </section>
 
     </section>
-
+</body>
 <%- include('partials/footer') -%>

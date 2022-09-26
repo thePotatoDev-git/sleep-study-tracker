@@ -1,9 +1,8 @@
 <%- include('partials/header') -%>
-
+<body class="main">
     <!-- Title -->
     <section class="title">
-        <h1>Home Sleep Study Tracker</h1>
-        <h3>For the office of Samuel H.S. The</h3>
+        <h2>Hackensack Lab</h2>
         <div>
             <span class="active-lab">Hackensack</span>
             <span>|</span>
@@ -19,7 +18,7 @@
                 <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
                     value="<%= search %>" 
                 <% } %>>
-                <button>Search</button>
+                <button class="btn btn-accent btn-lg">Search</button>
             </section>
         </form>
 
@@ -68,7 +67,7 @@
             </section>
         </section>
         <!-- Add study form -->
-        <button class="add-patient" onclick="openForm()">Add</button>
+        <button class="add-patient btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-accent" onclick="openForm()">Add Study</button>
         <section class="form-popup" id="patient-form">
             <form action="/studies/addStudy" method="POST" class="form-container">
                 <h2 class="form-header">Add study</h2>
@@ -121,5 +120,5 @@
         </section>
 
     </section>
-
+</body>
 <%- include('partials/footer') -%>
