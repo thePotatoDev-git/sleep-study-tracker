@@ -1,17 +1,21 @@
 <%- include('partials/header') -%>
 
 <!-- Title -->
-<section class="title">
+<!-- <section class="title">
     <h1>Home Sleep Study Tracker</h1>
     <h3>For the office of Samuel H.S. The</h3>
-</section>
+</section> -->
 
-<section>
-    <h2><%= `${study.patientLastName}, ${study.patientFirstName}` %></h2>
-    <span>Lab: <%= study.lab %></span>
-    <span>Date of Study: <%= study.studyDate %></span>
-    <span>Assigned to: <%= study.techName %></span>
-    <p>Comments: <%= study.comment %></p>
-    <a href="/edit/<%= study._id %>">Edit</a>
+<section class="study">
+    <section>
+        <h2><%= `${study.patientLastName}, ${study.patientFirstName}` %></h2>
+        <span><b>Lab:</b> <%= study.lab %></span>
+        <span><b>Date of Study:</b> <%= moment(study.studyDate).format('l') %></span>
+        <span><b>Assigned to:</b> <%= study.techName %></span>
+        <span><b>Comments:</b></span>
+        <p><%= study.comment %></p>
+    </section>
+    <a class="btn btn-accent" href="/edit/<%= study._id %>">Edit</a>
+    <!-- <a href="/deleteStudy/<%= study._id %>" class="btn btn-accent">Delete</a> -->
 </section>
 <%- include('partials/footer') -%>
