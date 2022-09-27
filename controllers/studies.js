@@ -62,6 +62,30 @@ module.exports = {
             console.error(err);
         }
     },
+    searchStudies: async (req, res) => {
+        try {
+            const session = req.session;
+            let search = req.body.searchInput;
+            let studies = null;
+            let techs = await User.find({});
+
+            if (search != null) {
+                let searchResult = await Study.find({ patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+                .then((data) => {
+                    studies = data
+                });
+            } else {
+                search = 'Search'
+                let searchResult = await Study.find({}).sort({studyDate: -1})
+                .then((data) => {
+                    hackensackStudies = data
+                });
+            }
+            res.render('mystudies.ejs', { userStudies: studies, user: req.user, search: search, techs: techs });
+        } catch (err) {
+            console.log(err);
+        }
+    },
     searchHackensackStudies: async (req, res) => {
         try {
             const session = req.session;

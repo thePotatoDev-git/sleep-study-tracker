@@ -19,6 +19,7 @@ router.get('/:id', ensureAuth, studiesController.getStudy);
 // Add study
 router.post('/addStudy', studiesController.addStudy);
 // Search studies
+router.post('/search', studiesController.searchStudies);
 router.post('/hackensack/search', studiesController.searchHackensackStudies);
 router.post('/wayne/search', studiesController.searchWayneStudies);
 
