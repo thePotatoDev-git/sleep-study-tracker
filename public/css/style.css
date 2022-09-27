@@ -189,6 +189,13 @@ input {
      border-radius: 5px;
      padding: 10px;
 }
+select {
+     height: 50px;
+     width: 200px;
+     border: 1px solid gray;
+     border-radius: 5px;
+     padding: 10px;
+}
 .input {
      border: 1px solid gray;
 }
@@ -431,6 +438,7 @@ ADD STUDY FORM STYLES
 }
 .field textarea {
      padding: 8px;
+     border-radius: 5px;
 }
 /***************************************
      EDIT BUTTONS
@@ -492,14 +500,16 @@ ADD STUDY FORM STYLES
 /*************************************
      Individual Study
 *************************************/
-.study {
+.study,
+.edit-study {
      width: 100%;
      height: 100%;
      background-color: white;
      color: black;
      padding: 50px;
 }
-.study section {
+.study section,
+.edit-study section {
      border: 1px solid black;
      background-color: #e0d9d5;
      height: 600px;
@@ -521,4 +531,37 @@ ADD STUDY FORM STYLES
 .study p {
      height: auto;
      width: 500px;
+}
+.study a {
+     width: 100px;
+}
+/**************************************
+     Edit study
+**************************************/
+.edit-field input,
+.edit-field select {
+     display: block;
+     width: 200px;
+     padding: 10px;
+}
+.edit-field textarea {
+     display: block;
+     padding: 10px;
+     border-radius: 5px;
+}
+.edit-study section {
+     display: flex;
+     
+}
+.row {
+     display: flex;
+     margin: 40px;
+}
+.edit-field {
+     margin: 0 15px 0 15px;
+}
+.edit-study button,
+.edit-study a {
+     margin-top: 50px;
+     width: 100px;
 }

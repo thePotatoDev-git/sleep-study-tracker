@@ -1,11 +1,13 @@
 const Study = require('../models/Study');
+const User = require('../models/User');
 
 module.exports = {
     getEdit: async (req, res) => {
         try {
             const id = req.params.id;
+            let techs = await User.find({});
             Study.find({}, (err, comment) => {
-                res.render('edit.ejs', { hackensack: comment, studyId: id, user: req.user });
+                res.render('edit.ejs', { hackensack: comment, studyId: id, user: req.user, techs: techs });
             });
         } catch (err) {
             console.log(err);

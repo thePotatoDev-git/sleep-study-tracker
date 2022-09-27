@@ -39,7 +39,6 @@
                             <td>Lab</td>
                             <td>Date of Study</td>
                             <td class="study-amount">Num. of Studies</td>
-                            <td>Assigned to:</td>
                             <td class="study-comment">Comments</td>
                             <td>Completed by Tech</td>
                             <td>Completed by M.D.</td>
@@ -53,7 +52,6 @@
                                 <td class="lab"><%= userStudies[i].lab %></td>
                                 <td class="study-date"><%= moment(userStudies[i].studyDate).format('l') %></td>
                                 <td><%= userStudies[i].studyAmount %></td>
-                                <td><%= userStudies[i].techName %></td>
                                 <td><%= userStudies[i].comment %></td>
                                 <td class="<%= userStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= userStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>

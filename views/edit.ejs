@@ -1,56 +1,66 @@
 <%- include('partials/header') -%>
-
-    <!-- Title -->
+<body class="main">
     <section class="title">
-        <h1>Home Sleep Study Tracker</h1>
-        <h3>For the office of Samuel H.S. The</h3>
+        <h2>Edit Study</h2>
     </section>
 
-    <section class="welcome">
-        <h2>Edit</h2>
-    </section>    
-
-    <div class="container box">
-        <h2 class="title is-2 center mb-6">Edit Study</h2>
-        <% hackensack.forEach( el=> { %>
-          <% if (el._id==studyId) { %>
-            <form action="/edit/<%= el._id %>" method="POST">
-                <div class="lab-select">
-                    <label for="lab">Sleep lab:</label>
-                    <select name="lab" id="lab">
-                        <option value="<%= el.lab %>"><%= el.lab %></option>
-                        <option value="Hackensack">Hackensack</option>
-                        <option value="Wayne">Wayne</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="patientLastName">Last name:</label>
-                    <input type="text" value="<%= el.patientLastName %>" name ="patientLastName">
-                </div>
-                <div class="field">
-                    <label for="patientFirstName">First name:</label>
-                    <input type="text" value="<%= el.patientFirstName %>" name="patientFirstName">
-                </div>
-                <div class="field">
-                    <label for="studyDate">Date of study:</label>
-                    <input type="date" value="<%= el.studyDate %>" name="studyDate">
-                </div>
-                <div class="field">
-                    <label for="studyAmount">No. of studies:</label>
-                    <input type="text" value="<%= el.studyAmount %>" name="studyAmount">
-                </div>
-                <div class="field">
-                    <label for="techName">Assign to:</label>
-                    <input type="text" value="<%= el.techName %>" name="techName">
-                </div>
-                <div class="field">
-                    <label for="comment">Comments:</label>
-                    <input type="text" value="<%= el.comment %>" name="comment">
-                </div>
-                <button>Save</button>
-            </form>
-            <% } %>
-              <% }) %>
+    <div class="edit-study">
+        <section>
+            <% hackensack.forEach( el=> { %>
+            <% if (el._id==studyId) { %>
+                <form action="/edit/<%= el._id %>" method="POST">
+                    <div class="row">
+                        <div class="edit-field">
+                            <label for="lab">Sleep lab:</label>
+                            <select name="lab" id="lab">
+                                <option value="<%= el.lab %>"><%= el.lab %></option>
+                                <option value="Hackensack">Hackensack</option>
+                                <option value="Wayne">Wayne</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="edit-field">
+                            <label for="patientLastName">Last name:</label>
+                            <input type="text" value="<%= el.patientLastName %>" name ="patientLastName">
+                        </div>
+                        <div class="edit-field">
+                            <label for="patientFirstName">First name:</label>
+                            <input type="text" value="<%= el.patientFirstName %>" name="patientFirstName">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="edit-field">
+                            <label for="studyDate">Date of study:</label>
+                            <input type="date" value="<%= el.studyDate %>" name="studyDate">
+                        </div>
+                        <div class="edit-field">
+                            <label for="studyAmount">No. of studies:</label>
+                            <input type="text" value="<%= el.studyAmount %>" name="studyAmount">
+                        </div>
+                        <div class="edit-field">
+                            <label for="techName">Assign to:</label>
+                            <select name="techName" id="techName">
+                            <option value="<%= el.techName %>"><%= el.techName %></option>
+                            <% techs.forEach(tech => { %>
+                                <option value="<%= tech.firstName %>"><%= tech.firstName %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="edit-field">
+                            <label for="comment">Comments:</label>
+                            <textarea rows="4" cols="89" name="comment"><%= el.comment %></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-accent">Save</button>
+                    <button class="btn btn-accent" onclick="javascript:history.back()">Cancel</button>
+                </form>
+                <% } %>
+                <% }) %>
+        </section>
       </div>
+</body>
 
 <%- include('partials/footer') -%>
