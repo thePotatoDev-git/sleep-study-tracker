@@ -27,8 +27,7 @@ router.post('/wayne/search', studiesController.searchWayneStudies);
 ////////////////////
 
 // Delete studies
-router.delete('/hackensack/deleteStudy', studiesController.deleteStudy);
-router.delete('/wayne/deleteStudy', studiesController.deleteStudy);
+router.delete('/deleteStudy', studiesController.deleteStudy);
 
 ///////////////////
 // PUT requests

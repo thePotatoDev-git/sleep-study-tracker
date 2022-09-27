@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <title>Sign Up | HST Tracker</title>
-</head>
+<%- include('partials/guestheader') -%>
 <body>
     <section class="title">
-        <a href="/"><h1>Home Sleep Study Tracker</h1></a>
+        <h1>Home Sleep Study Tracker</h1>
         <h3>For the office of Samuel H.S. The</h3>
     </section>
    
@@ -23,17 +14,30 @@
                 <% }) %>    
             <% } %>
             <form action="/signup" method="POST">
-                <input type="text" name="firstName" placeholder="First Name">
-                <input type="text" name="lastName" placeholder="Last Name">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <input type="password" name="confirmPassword" placeholder="Confirm Password">
-                <input type="submit">
+                <div class="login-field">
+                    <label class="label">First Name*</label>
+                    <input type="text" name="firstName" placeholder="First Name">
+                </div>
+                <div class="login-field">
+                    <label class="label">Last Name*</label>
+                    <input type="text" name="lastName" placeholder="Last Name">
+                </div>
+                <div class="login-field">
+                    <label class="label">Email*</label>
+                    <input type="email" name="email" placeholder="Email">
+                </div>
+                <div class="login-field">
+                    <label class="label">Password*</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <div class="login-field">
+                    <label class="label">Confirm Password*</label>
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                </div>
+                <input type="submit" class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">
             </form>
+            <p>Already have an account? <a href="/login">Login.</a></p>
         </div>
     </section>
 
-    <script src="https://kit.fontawesome.com/c92b06f6cd.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-</body>
-</html>
+<%- include('partials/footer') -%>
