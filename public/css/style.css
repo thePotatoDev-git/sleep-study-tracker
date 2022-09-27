@@ -55,6 +55,9 @@ header div {
 .navbar-brand {
      color: white;
 }
+.navbar span {
+     padding: 0 3px 0 3px;
+}
 /* Dropdown Button */
 .dropbtn {
      background-color: #064588;
@@ -161,6 +164,7 @@ header div {
      color: #064588;
      font-size: 2.375rem;
      font-weight: bold;
+     margin-top: 30px;
 }
 .login-field {
      color: white;
