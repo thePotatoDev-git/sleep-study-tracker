@@ -55,6 +55,6 @@ app.use('/study', studiesRoutes);
 app.use('/edit', editRoutes);
 
 // Port listening
-app.listen(process.env.PORT || 3000, () =>{
+app.listen(process.env.PORT, () =>{
     console.log(`Server running on ${process.env.PORT}`)
 });
