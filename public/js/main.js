@@ -15,28 +15,28 @@ const studyDoctorIncomplete = document.querySelectorAll('td.doctorIncomplete');
 const studyDoctorComplete = document.querySelectorAll('td.doctorComplete');
 
 // Delete study
-Array.from(deleteRow).forEach(element => {
-    element.addEventListener('click', deleteStudy)
-});
+// Array.from(deleteRow).forEach(element => {
+//     element.addEventListener('click', deleteStudy)
+// });
 
-async function deleteStudy() {
-    const studyObjId = this.parentNode.dataset.id;
-    const studyLab = this.parentNode.dataset.lab;
-    try {
-            const response = await fetch('deleteStudy', {
-                method: 'delete',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({
-                    'studyObjIdFromJSFile': studyObjId,
-                }),
-            });
-            const data = await response.json();
-            console.log(data);
-            location.reload();
-    } catch (err) {
-        console.log(err);
-    }
-};
+// async function deleteStudy() {
+//     const studyObjId = this.parentNode.dataset.id;
+//     const studyLab = this.parentNode.dataset.lab;
+//     try {
+//             const response = await fetch('deleteStudy', {
+//                 method: 'delete',
+//                 headers: {'Content-type': 'application/json'},
+//                 body: JSON.stringify({
+//                     'studyObjIdFromJSFile': studyObjId,
+//                 }),
+//             });
+//             const data = await response.json();
+//             console.log(data);
+//             location.reload();
+//     } catch (err) {
+//         console.log(err);
+//     }
+// };
 
 // Mark study complete
 Array.from(studyTechIncomplete).forEach(el => {

@@ -9,4 +9,8 @@ router.get('/:id', editController.getEdit);
 // POST edits
 router.post('/:id', editController.editStudy);
 
+// DELETE study
+router.post('/deleteStudy/:id', editController.deleteStudy);
+router.post('/deleteFromViewStudy/:id', editController.deleteFromViewStudy);
+
 module.exports = router;

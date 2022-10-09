@@ -153,16 +153,16 @@ module.exports = {
             console.log(err);
         }
     },
-    deleteStudy: async (req, res) => {
-        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
-                console.log('Deleted study');
-                res.json('Deleted study');
-        } catch (err) {
-            console.log(err);
-        }
-    },
+    // deleteStudy: async (req, res) => {
+    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+    //     try {
+    //             await Study.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
+    //             console.log('Deleted study');
+    //             res.json('Deleted study');
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // },
     markTechComplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {

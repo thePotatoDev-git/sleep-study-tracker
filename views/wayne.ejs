@@ -59,7 +59,9 @@
                                 <td class="edit-icons" data-id="<%= wayne[i]._id %>">
                                     <a href="/study/<%= wayne[i]._id %>"><i class="fa-regular fa-file-lines"></i></a>
                                     <a href="/edit/<%= wayne[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <i class="fa-solid fa-trash-can"></i>
+                                    <form action="/edit/deleteStudy/<%= wayne[i]._id %>?_method=DELETE" method="POST">
+                                        <button><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
                                 </td>
                             </tr> <% } %>
                          %>

@@ -1,7 +1,9 @@
 /* Box Model Hack */
 * {
      /* outline: 1px solid red; */
-     box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 /* Clear fix hack */
@@ -23,7 +25,7 @@
 /*******************************************/
 
 body {
-     height: 1500px;
+     height: 100vh;
      background: #064588;
      color: white;
      font-family: "Roboto Condensed";
@@ -338,8 +340,7 @@ a:visited {
      margin-top: 35px;
      color: black;
 }
-table,
-td {
+table {
      border: 1px solid black;
 }
 thead,
@@ -354,6 +355,7 @@ tfoot {
 td {
      width: 100px;
      padding: 10px;
+     border-bottom: 1px solid black;
 }
 .study-amount {
      width: 75px;
@@ -539,6 +541,11 @@ ADD STUDY FORM STYLES
 .study a {
      width: 100px;
 }
+.study form,
+.study button {
+     display: inline;
+     width: 100px;
+}
 /**************************************
      Edit study
 **************************************/
@@ -568,4 +575,8 @@ ADD STUDY FORM STYLES
 .edit-study a {
      margin-top: 50px;
      width: 100px;
+}
+footer {
+     position: fixed;
+     bottom: 0;
 }

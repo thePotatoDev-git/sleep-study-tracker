@@ -28,7 +28,7 @@ router.post('/wayne/search', studiesController.searchWayneStudies);
 ////////////////////
 
 // Delete studies
-router.delete('/deleteStudy', studiesController.deleteStudy);
+// router.post("/deleteStudy/:id", studiesController.deleteStudy);
 
 ///////////////////
 // PUT requests

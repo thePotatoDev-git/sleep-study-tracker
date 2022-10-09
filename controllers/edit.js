@@ -13,16 +13,6 @@ module.exports = {
             console.log(err);
         }
     },
-    // getWayneEdit: async (req, res) => {
-    //     try {
-    //         const id = req.params.id;
-    //         await Study.find({}, (err, comment) => {
-    //             res.render('editwayne.ejs', { wayne: comment, studyId: id, user: req.user });
-    //         });
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
     editStudy: async (req, res) => {
         try {
             const id = req.params.id;
@@ -51,28 +41,22 @@ module.exports = {
             console.log(err);
         }
     },
-    // editWayneStudy: async (req, res) => {
-    //     try {
-    //         const id = req.params.id;
-    //         await Study.findByIdAndUpdate(
-    //             id,
-    //             {
-    //                 lab: req.body.lab,
-    //                 patientFirstName: req.body.patientFirstName,
-    //                 patientLastName: req.body.patientLastName,
-    //                 studyDate: req.body.studyDate,
-    //                 studyAmount: req.body.studyAmount,
-    //                 techName: req.body.techName,
-    //                 comment: req.body.comment,
-    //             },
-
-    //             err => {
-    //                 if (err) return res.status(500).send(err);
-    //                 res.redirect('/studies/wayne');
-    //             }
-    //         );
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
+    deleteStudy: async (req, res) => {
+        try {
+            await Study.deleteOne({ _id: req.params.id });
+            console.log('Deleted study');
+            res.redirect('back');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    deleteFromViewStudy: async (req, res) => {
+        try {
+            await Study.deleteOne({ _id: req.params.id });
+            console.log('Deleted study');
+            res.redirect('/dashboard');
+        } catch (err) {
+            console.log(err);
+        }
+    },
 };
