@@ -41,6 +41,99 @@ body {
      height: 100%;
      background-color: white;
 }
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+h1,
+h3,
+span,
+.search-bar {
+     color: white;
+}
+h1 {
+     font-size: 3rem;
+}
+.title {
+     display: flex;
+     flex-direction: column;
+     color: white;
+     font-family: "Roboto Condensed";
+}
+.title h1 {
+     font-size: 5.375rem;
+     font-weight: bold;
+     text-transform: uppercase;
+}
+.title h2 {
+     font-size: 4.5rem;
+     font-weight: bold;
+     color: #064588;
+     margin-left: 5%;
+}
+.title h3 {
+     font-size: 1.75rem;
+}
+.title h1,
+.title h3 {
+     text-align: center;
+     clear: both;
+     margin: 10px;
+}
+.title div {
+     font-size: 1.2rem;
+     margin: 0 auto;
+     margin-top: 35px;
+}
+.title .active-lab {
+     font-weight: bolder;
+     font-size: 1.4rem;
+     color: rgb(13, 211, 194);
+}
+.title span {
+     color: black;
+}
+.title a {
+     text-decoration: underline;
+     color: white;
+}
+.title > a {
+     text-decoration: none;
+}
+.title a:hover {
+     color: rgb(13, 211, 194);
+}
+.search-bar {
+     width: 95%;
+     margin: .4rem auto;
+     color: gray;
+}
+.search-bar input {
+     width: 85%;
+     padding: 10px;
+}
+.search-bar button {
+     width: auto;
+     margin-left: 20px;
+}
+.search-bar label {
+     padding-top: 30px;
+     display: block;
+}
+p {
+     color: white;
+}
+a:visited {
+     color: black;
+}
+.navbrand {
+     color: white;
+     font-size: 2rem;
+     margin-left: 40px;
+}
+.navbrand:visited {
+     color: white;
+}
 /*******************************************
      HEADER
 *******************************************/
@@ -149,6 +242,10 @@ header div {
 .welcome div a:hover {
      background-color: rgb(13, 211, 194);
 }
+.title img {
+     width: 500px;
+     margin: 0 auto;
+}
 
 /**********************************************
      LOGIN
@@ -226,103 +323,15 @@ select {
 .login div p {
      color: black;
 }
-.login div p a {
+.login div p a,
+.control a {
      color: #064588;
 }
 /******************************************
      SIGN UP
 ******************************************/
 
-/******************************************
-/* LAYOUT
-/*******************************************/
 
-h1,
-h3,
-span,
-.search-bar {
-     color: white;
-}
-h1 {
-     font-size: 3rem;
-}
-.title {
-     display: flex;
-     flex-direction: column;
-     color: white;
-     font-family: "Roboto Condensed";
-}
-.title h1 {
-     font-size: 5.375rem;
-     font-weight: bold;
-     text-transform: uppercase;
-}
-.title h2 {
-     font-size: 4.5rem;
-     font-weight: bold;
-     color: #064588;
-     margin-left: 5%;
-}
-.title h3 {
-     font-size: 1.75rem;
-}
-.title h1,
-.title h3 {
-     text-align: center;
-     clear: both;
-     margin: 10px;
-}
-.title div {
-     font-size: 1.2rem;
-     margin: 0 auto;
-     margin-top: 35px;
-}
-.title .active-lab {
-     font-weight: bolder;
-     font-size: 1.4rem;
-     color: rgb(13, 211, 194);
-}
-.title span {
-     color: black;
-}
-.title a {
-     text-decoration: underline;
-     color: white;
-}
-.title a:hover {
-     color: rgb(13, 211, 194);
-}
-.search-bar {
-     width: 95%;
-     margin: .4rem auto;
-     color: gray;
-}
-.search-bar input {
-     width: 85%;
-     padding: 10px;
-}
-.search-bar button {
-     width: auto;
-     margin-left: 20px;
-}
-.search-bar label {
-     padding-top: 30px;
-     display: block;
-}
-p {
-     color: white;
-}
-a:visited {
-     color: black;
-}
-.navbrand {
-     color: white;
-     font-size: 2rem;
-     margin-left: 40px;
-}
-.navbrand:visited {
-     color: white;
-}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
