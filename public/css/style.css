@@ -32,13 +32,13 @@ body {
 }
 .main-body {
      width: 95%;
-     height: 825px;
+     height: 950px;
      margin: 0 auto;
      margin-top: 50px;
      background-color: #e0d9d5;
 }
 .main {
-     height: 100%;
+     height: 1500px;
      background-color: white;
 }
 /******************************************
@@ -211,6 +211,7 @@ header div {
      font-size: 4.5rem;
      font-weight: bold;
      margin-bottom: 50px;
+     text-align: center;
 }
 .welcome span {
      color: black;
@@ -381,7 +382,7 @@ ADD STUDY FORM STYLES
 /** Add button **/
 .add-patient {
      float: right;
-     margin: 3rem 0 0 0;
+     margin: 3rem 1.5rem 0 0;
      width: 200px;
 }
 /** Popup form **/
@@ -588,4 +589,35 @@ ADD STUDY FORM STYLES
 footer {
      position: fixed;
      bottom: 0;
+}
+
+@media (max-width: 1400px) {
+     .login {
+          width: 65%;
+     }
+}
+@media (max-width: 600px) {
+     .add-patient,
+     .search-bar button,
+     .search-bar input {
+          width: 100%;
+          margin: 10px 0 0 0;
+     }
+     .title h1 {
+          font-size: 3rem;
+     }
+     .title h3 {
+          font-size: 1.2rem;
+     }
+     .welcome .btn {
+          width: 200px;
+          height: 50px;
+          font-size: 1rem;
+     }
+     .welcome {
+          margin-top: 20px;
+     }
+     .login {
+          width: 95%;
+     }
 }
