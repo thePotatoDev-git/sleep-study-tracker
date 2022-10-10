@@ -596,15 +596,23 @@ footer {
           width: 65%;
      }
 }
+@media (max-width: 1100px) {
+     body {
+          height: 1200px;
+     }
+     .title h1 {
+          font-size: 3rem;
+     }
+     .title h3 {
+          font-size: 1.2rem;
+     }
+}
 @media (max-width: 600px) {
      .add-patient,
      .search-bar button,
      .search-bar input {
           width: 100%;
           margin: 10px 0 0 0;
-     }
-     .title h1 {
-          font-size: 3rem;
      }
      .title h3 {
           font-size: 1.2rem;
@@ -619,5 +627,13 @@ footer {
      }
      .login {
           width: 95%;
+     }
+     .body {
+          height: 1200px;
+     }
+}
+@media (max-width: 480px) {
+     body {
+          height: 1200px;
      }
 }
