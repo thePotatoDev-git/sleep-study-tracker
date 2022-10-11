@@ -678,6 +678,9 @@ footer {
      .edit-study textarea {
           max-width: 40%;
      }
+     .footer {
+          height: 120px;
+     }
 }
 @media (max-width: 480px) {
      body {
@@ -699,6 +702,9 @@ footer {
      .welcome h2,
      .title h2 {
           font-size: 2.4rem;
+     }
+     .title img {
+          width: 300px;
      }
      .navbrand {
           font-size: 1rem;
