@@ -628,6 +628,24 @@ footer {
      .search-bar input {
           width: 80%;
      }
+     .edit-study section {
+          height: 1200px;
+     }
+     .edit-study form {
+          display: flex;
+          flex-direction: column;
+     }
+     .edit-study .row {
+          display: flex;
+          flex-direction: column;
+     }
+     .edit-study .edit-field input {
+          max-width: 50%;
+          width: 90%;
+     }
+     .edit-study textarea {
+          max-width: 50%;
+     }
 }
 @media (max-width: 750px) {
      .add-patient,
@@ -653,9 +671,48 @@ footer {
      .body {
           height: 1200px;
      }
+     .study h2 {
+          font-size: 2rem;
+     }
+     .edit-study .edit-field input,
+     .edit-study textarea {
+          max-width: 40%;
+     }
 }
 @media (max-width: 480px) {
      body {
           height: 1200px;
+     }
+     .edit-study .edit-field input {
+          max-width: 30%;
+     }
+     .edit-study textarea {
+          max-width: 30%;
+     }
+     .edit-study section {
+          width: 100%;
+     }
+     .welcome h1,
+     .title h1 {
+          font-size: 3rem;
+     }
+     .welcome h2,
+     .title h2 {
+          font-size: 2.4rem;
+     }
+     .navbrand {
+          font-size: 1rem;
+     }
+     .row {
+          margin: 40px 0 40px 0;
+     }
+     .edit-study button {
+          margin-top: 10px;
+          width: 250px;
+     }
+     .study button,
+     .study a {
+          width: 100%;
+          margin-bottom: 10px;
      }
 }
