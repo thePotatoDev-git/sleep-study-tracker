@@ -16,3 +16,21 @@ For the frontend, I used HTML, CSS, and Tailwind to create the UI of the app. Fo
 This was my biggest project yet. I had a lot of challenges with the backend and spent hours troubleshooting my code. When I first started with MongoDB, I only knew how to lay out all my data from the database into one page. This project required separate data for each lab. At first I had two separate database collections for lab data, but I learned how to keep it all in one database while still being able to grab specific entries and plug them into their corresponding pages.
 
 When first learning to do backend, it really intimidated me. But after working on this project, I started to really enjoy working on backend code. My biggest takeaway from this project is that learning new technologies may feel overwhelming and confusing at first, but if you dive in and play with around with it enough, you'll start to see patterns and gradually figure out how everything works.
+
+# Packages/Dependencies used 
+
+bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
+
+---
+
+# Install all the dependencies or node packages used for development via Terminal
+
+`npm install` 
+
+---
+
+# Things to add
+
+- Create a `.env` file and add the following as `key: value` 
+  - PORT: 9000 (can be any port example: 3000) 
+  - DB_STRING: `your database URI` 
