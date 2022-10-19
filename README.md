@@ -3,6 +3,10 @@ A fullstack app created for a sleep doctor's practice. This tracks home sleep st
 
 **Link to project:** https://hst-tracker.herokuapp.com/
 
+**Demo User** <br>
+Email: user@test.com <br>
+Password: tester123
+
 ![Sleep study tracker gif](https://i.imgur.com/vrgWCPA.gif)
 
 ## How It's Made:
