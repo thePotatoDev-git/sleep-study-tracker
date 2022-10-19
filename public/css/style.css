@@ -375,6 +375,9 @@ td {
      width: 400px;
      overflow: hidden;
 }
+td p {
+     color: black;
+}
 
 /******************************************
 ADD STUDY FORM STYLES

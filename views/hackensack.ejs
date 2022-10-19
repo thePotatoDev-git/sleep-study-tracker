@@ -53,7 +53,11 @@
                                 <td class="study-date"><%= moment(hackensack[i].studyDate).format('l') %></td>
                                 <td><%= hackensack[i].studyAmount %></td>
                                 <td><%= hackensack[i].techName %></td>
-                                <td><%= hackensack[i].comment %></td>
+                                <td><% const commentBreaks = hackensack[i].comment.split('\r\n') %>
+                                    <% for (let i = 0; i < commentBreaks.length; i++) {%>
+                                        <p><%= commentBreaks[i] %></p>
+                                    <%} %>
+                                </td>
                                 <td class="<%= hackensack[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= hackensack[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="edit-icons" data-id="<%= hackensack[i]._id %>">

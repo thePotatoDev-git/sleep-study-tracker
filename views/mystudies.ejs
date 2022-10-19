@@ -52,7 +52,11 @@
                                 <td class="lab"><%= userStudies[i].lab %></td>
                                 <td class="study-date"><%= moment(userStudies[i].studyDate).format('l') %></td>
                                 <td><%= userStudies[i].studyAmount %></td>
-                                <td><%= userStudies[i].comment %></td>
+                                <td><% const commentBreaks = userStudies[i].comment.split('\r\n') %>
+                                    <% for (let i = 0; i < commentBreaks.length; i++) {%>
+                                        <p><%= commentBreaks[i] %></p>
+                                    <%} %>
+                                </td>
                                 <td class="<%= userStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= userStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="edit-icons" data-id="<%= userStudies[i]._id %>">

@@ -13,7 +13,11 @@
         <span><b>Date of Study:</b> <%= moment(study.studyDate).format('l') %></span>
         <span><b>Assigned to:</b> <%= study.techName %></span>
         <span><b>Comments:</b></span>
-        <p><%= study.comment %></p>
+        <% let commentBreaks = study.comment.split('\r\n') %>
+        <% for (let i = 0; i < commentBreaks.length; i++)  {%>
+            <p><%= commentBreaks[i] %></p>
+        <%} %>
+        <!-- <p><%= study.comment %></p> -->
     </section>
     <a class="btn btn-accent" href="/edit/<%= study._id %>">Edit</a>
     <form class="delete-btn" action="/edit/deleteFromViewStudy/<%= study._id %>?_method=DELETE" method="POST">
