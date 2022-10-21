@@ -5,7 +5,7 @@ module.exports = {
     getEdit: async (req, res) => {
         try {
             const id = req.params.id;
-            let techs = await User.find({});
+            let techs = await User.find({specialAccess: true});
             Study.find({}, (err, comment) => {
                 res.render('edit.ejs', { hackensack: comment, studyId: id, user: req.user, techs: techs });
             });

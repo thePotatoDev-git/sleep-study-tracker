@@ -16,7 +16,7 @@ module.exports = {
     getMyStudies: async (req, res) => {
         try {
             let studies = await Study.find({techName: req.user.firstName}).sort({studyDate: -1})
-            let techs = await User.find({});
+            let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
                 res.render('mystudies.ejs', { user: req.user, userStudies: studies, search: '', techs: techs });
             } else {
@@ -30,7 +30,7 @@ module.exports = {
         console.log(req.user)
         try {
             let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({studyDate: -1});
-            let techs = await User.find({});
+            let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
                 res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
             } else {
@@ -44,7 +44,7 @@ module.exports = {
         console.log(req.user)
         try {
             let wayneStudies = await Study.find({lab: 'Wayne'}).sort({studyDate: -1});
-            let techs = await User.find({});
+            let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
                 res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, techs: techs, search: '' });
             } else {
@@ -67,7 +67,7 @@ module.exports = {
             const session = req.session;
             let search = req.body.searchInput;
             let studies = null;
-            let techs = await User.find({});
+            let techs = await User.find({specialAccess: true});
 
             if (search != null) {
                 let searchResult = await Study.find({ patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
@@ -91,7 +91,7 @@ module.exports = {
             const session = req.session;
             let search = req.body.searchInput;
             let hackensackStudies = null;
-            let techs = await User.find({});
+            let techs = await User.find({specialAccess: true});
 
             if (search != null) {
                 let searchResult = await Study.find({ lab: 'Hackensack', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
@@ -115,7 +115,7 @@ module.exports = {
             const session = req.session;
             let search = req.body.searchInput;
             let wayneStudies = null;
-            let techs = await User.find({});
+            let techs = await User.find({specialAccess: true});
 
             if (search != null) {
                 let searchResult = await Study.find({ lab: 'Wayne', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
