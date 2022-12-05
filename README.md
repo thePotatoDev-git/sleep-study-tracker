@@ -1,7 +1,7 @@
 # Sleep Study Tracker
 A fullstack app created for a sleep doctor's practice. This tracks home sleep studies administered to patients. Add patients to a database along with details of their sleep studies.
 
-**Link to project:** https://hst-tracker.herokuapp.com/
+**Link to project:** https://hst-tracker.up.railway.app/
 
 **Demo User** <br>
 Email: user@test.com <br>
