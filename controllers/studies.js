@@ -4,8 +4,10 @@ const User = require('../models/User');
 module.exports = {
     getDashboard: async (req, res) => {
         try {
+            let studies = await Study.find({techName: req.user.firstName, techCompleted: false}).sort({studyDate: -1});
+
             if (req.user.specialAccess === true) {
-                res.render('dashboard.ejs', { user: req.user });
+                res.render('dashboard.ejs', { user: req.user, userStudies: studies });
             } else {
                 res.render('noaccess.ejs', { user: req.user });
             }
@@ -15,7 +17,7 @@ module.exports = {
     },
     getMyStudies: async (req, res) => {
         try {
-            let studies = await Study.find({techName: req.user.firstName}).sort({studyDate: -1})
+            let studies = await Study.find({techName: req.user.firstName}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1})
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
                 res.render('mystudies.ejs', { user: req.user, userStudies: studies, search: '', techs: techs });
@@ -29,7 +31,7 @@ module.exports = {
     getHackensackStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({studyDate: -1});
+            let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
                 res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
@@ -43,7 +45,7 @@ module.exports = {
     getWayneStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let wayneStudies = await Study.find({lab: 'Wayne'}).sort({studyDate: -1});
+            let wayneStudies = await Study.find({lab: 'Wayne'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
                 res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, techs: techs, search: '' });
