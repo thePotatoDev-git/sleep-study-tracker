@@ -202,10 +202,10 @@ header div {
      display: flex;
      flex-direction: column;
      align-items: center;
-     margin-top: 100px;
+     margin-top: 50px;
      color: #064588;
      width: 100%;
-     height: 150px;
+     /* height: 150px; */
 }
 .welcome h2 {
      font-size: 4.5rem;
@@ -246,6 +246,9 @@ header div {
 .title img {
      width: 500px;
      margin: 0 auto;
+}
+.dashboard-img img{
+     max-width: 30%;
 }
 
 /**********************************************
@@ -378,7 +381,9 @@ td {
 td p {
      color: black;
 }
-
+.glance {
+     width: 40%;
+}
 /******************************************
 ADD STUDY FORM STYLES
 ******************************************/

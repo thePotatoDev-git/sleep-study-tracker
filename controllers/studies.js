@@ -5,9 +5,10 @@ module.exports = {
     getDashboard: async (req, res) => {
         try {
             let studies = await Study.find({techName: req.user.firstName, techCompleted: false}).sort({studyDate: -1});
+            let techs = await User.find({spectialAccess: true});
 
             if (req.user.specialAccess === true) {
-                res.render('dashboard.ejs', { user: req.user, userStudies: studies });
+                res.render('dashboard.ejs', { user: req.user, userStudies: studies, techs: techs });
             } else {
                 res.render('noaccess.ejs', { user: req.user });
             }
