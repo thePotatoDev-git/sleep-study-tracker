@@ -213,7 +213,8 @@ header div {
      margin-bottom: 50px;
      text-align: center;
 }
-.welcome span {
+.welcome span,
+.welcome p {
      color: black;
 }
 .welcome div {
