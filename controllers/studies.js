@@ -57,6 +57,20 @@ module.exports = {
             console.error(err);
         }
     },
+    getHackensackCPAP: async (req, res) => {
+        console.log(req.user)
+        try {
+            let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
+            let techs = await User.find({specialAccess: true});
+            if (req.user.specialAccess === true) {
+                res.render('hackensack-cpap.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
+            } else {
+                res.status(403).send('Access not permitted.');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    },
     getStudy: async (req, res) => {
         try {
             const study = await Study.findById(req.params.id);
@@ -210,6 +224,30 @@ module.exports = {
                 });
                 console.log('Study incompleted by doctor');
                 res.json('Study incompleted by doctor');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    markOSAPositive: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    osaPositive: true
+                });
+                console.log('Patient positive for OSA');
+                res.json('Patient positive for OSA');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    markOSANegative: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    osaPositive: false
+                });
+                console.log('Patient negative for OSA');
+                res.json('Patient negative for OSA');
         } catch (err) {
             console.log(err);
         }

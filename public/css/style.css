@@ -501,24 +501,29 @@ ADD STUDY FORM STYLES
      color: red;
 }
 .techIncomplete,
-.doctorIncomplete {
+.doctorIncomplete,
+.osaNegative {
      color: rgba(0, 0, 0, 0.13);
      font-size: 1.6rem;
      text-align: center;
      padding: 0;
 }
 .techIncomplete:hover,
-.doctorIncomplete:hover {
+.doctorIncomplete:hover,
+.osaNegative:hover {
      color:rgb(8, 143, 8);
 }
 .techIncomplete:active,
 .techComplete:active,
 .doctorIncomplete:active,
-.doctorComplete:active {
+.doctorComplete:active,
+.osaNegative:active,
+.osaPositive:active {
      color: rgb(231, 109, 9);
 }
 .techComplete,
-.doctorComplete {
+.doctorComplete,
+.osaPositive {
      color: rgb(8, 143, 8);
      font-weight: bold;
      font-size: 1.6rem;
