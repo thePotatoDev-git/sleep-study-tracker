@@ -60,7 +60,7 @@ module.exports = {
     getHackensackCPAP: async (req, res) => {
         console.log(req.user)
         try {
-            let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
+            let hackensackStudies = await Study.find({lab: 'Hackensack', osaPositive: true}).sort({techCompleted: 1, studyDate: -1});
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
                 res.render('hackensack-cpap.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });

@@ -45,12 +45,18 @@ const studySchema = new mongoose.Schema({
         type: Date,
         default: null,
     },
-    // doctorFollowUp: {
-    //     type: Date,
-    // },
-    // maskFitting: {
-    //     type: Date,
-    // },
+    doctorFollowUp: {
+        type: Date,
+        default: null,
+    },
+    maskFitting: {
+        type: Date,
+        default: null,
+    },
+    cpapOrdered: {
+        type: Date,
+        default: null,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
