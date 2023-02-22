@@ -110,7 +110,7 @@ async function markOSAPositive() {
     }
 };
 
-// Mark study incomplete
+// Mark study incomplete/negative
 Array.from(studyTechComplete).forEach(el => {
     el.addEventListener('click', markTechIncomplete)
 });

@@ -529,7 +529,15 @@ ADD STUDY FORM STYLES
      font-size: 1.6rem;
      text-align: center;
 }
-
+.date-now {
+     border: 1px solid black;
+     border-radius: 7px;
+     padding: 3px 15px;
+     background-color: rgb(245, 241, 241);
+}
+.date-now:hover {
+     background-color: greenyellow;
+}
 /*************************************
      Individual Study
 *************************************/
