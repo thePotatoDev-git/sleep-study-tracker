@@ -36,6 +36,27 @@ const studySchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    osaPositive: {
+        type: Boolean,
+        default: false,
+        required: true,
+    },
+    techFollowUp: {
+        type: Date,
+        default: null,
+    },
+    doctorFollowUp: {
+        type: Date,
+        default: null,
+    },
+    maskFitting: {
+        type: Date,
+        default: null
+    },
+    cpapOrdered: {
+        type: Date,
+        default: null,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

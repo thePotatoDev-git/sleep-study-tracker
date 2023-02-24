@@ -1,13 +1,13 @@
 <%- include('partials/header') -%>
-<title>My Studies | Summit Medical</title>
+<title>Hackensack CPAP Setups | Summit Medical</title>
 <body class="main">
     <!-- Title -->
     <section class="title">
-        <h2>My Studies</h2>
+        <h2>Hackensack CPAP Setups</h2>
         <div>
             <a href="/studies/hackensack">Hackensack</a>
             <span>|</span>
-            <a href="/studies/hackensack-cpap">Hackensack CPAP</a>
+            <span class="active-lab">Hackensack CPAP</span>
             <span>|</span>
             <a href="/studies/wayne">Wayne</a>
         </div>
@@ -15,7 +15,7 @@
 
     <section class="main-body">
         <!-- Search form -->
-        <form action="/studies/search" method="POST">
+        <form action="/studies/hackensack/search" method="POST">
             <section class="search-bar">
                 <label for="patient-search">Patient search:</label>
                 <input type="text" placeholder="Search by last name..." name="searchInput" <% if (search != '') { %> 
@@ -31,7 +31,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="11"><h3>My Studies</h3></th>
+                            <th colspan="10"><h3>Hackensack</h3></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,43 +39,70 @@
                             <td></td>
                             <td>Patient Last Name</td>
                             <td>Patient First Name</td>
-                            <td>Lab</td>
                             <td>Date of Study</td>
-                            <td class="study-amount">Num. of Studies</td>
                             <td class="study-comment">Comments</td>
-                            <td>Completed by Tech</td>
-                            <td>Completed by M.D.</td>
+                            <td>Mask Fitting</td>
+                            <td>CPAP ordered</td>
+                            <td>Last Tech Follow-up</td>
+                            <td>Last M.D. Follow-up</td>
                             <td class="edit-icons"></td>
                         </tr>
-                        <% for (let i = 0; i < userStudies.length; i++) {%>
-                            <tr data-id="<%= userStudies[i]._id %>">
+                        <% for (let i = 0; i < hackensack.length; i++) {%>
+                            <tr data-id="<%= hackensack[i]._id %>">
                                 <td><%= i + 1 %></td>
-                                <td class="last-name"><%= userStudies[i].patientLastName %></td>
-                                <td class="first-name"><%= userStudies[i].patientFirstName %></td>
-                                <td class="lab"><%= userStudies[i].lab %></td>
-                                <td class="study-date"><%= moment(userStudies[i].studyDate).format('l') %></td>
-                                <td><%= userStudies[i].studyAmount %></td>
-                                <td><% const commentBreaks = userStudies[i].comment.split('\r\n') %>
+                                <td class="last-name"><%= hackensack[i].patientLastName %></td>
+                                <td class="first-name"><%= hackensack[i].patientFirstName %></td>
+                                <td class="study-date"><%= moment(hackensack[i].studyDate).format('l') %></td>
+                                <td><% const commentBreaks = hackensack[i].comment.split('\r\n') %>
                                     <% for (let i = 0; i < commentBreaks.length; i++) {%>
                                         <p><%= commentBreaks[i] %></p>
                                     <%} %>
                                 </td>
-                                <td class="<%= userStudies[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="<%= userStudies[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
-                                <td class="edit-icons" data-id="<%= userStudies[i]._id %>">
-                                    <a href="/study/<%= userStudies[i]._id %>"><i class="fa-regular fa-file-lines"></i></a>
-                                    <a href="/edit/<%= userStudies[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <form action="/edit/deleteStudy/<%= userStudies[i]._id %>?_method=DELETE" method="POST">
+
+                                <%
+                                    if (hackensack[i].maskFitting === null) {%>
+                                        <td><button class="date-now">TBD</button></td>
+                                    <%} else {%>
+                                            <td><%= moment(hackensack[i].maskFitting).format('l') %></td>
+                                        <%}
+                                %>
+
+                                <%
+                                    if (hackensack[i].cpapOrdered === null) {%>
+                                        <td><button class="date-now">TBD</button></td>
+                                    <%} else {%>
+                                            <td><%= moment(hackensack[i].cpapOrdered).format('l') %></td>
+                                        <%}
+                                %>
+
+                                <%
+                                    if (hackensack[i].techFollowUp === null) {%>
+                                        <td><button class="date-now">TBD</button></td>
+                                    <%} else {%>
+                                            <td><%= moment(hackensack[i].techFollowUp).format('l') %></td>
+                                        <%}
+                                %>
+                                
+                                <%
+                                    if (hackensack[i].doctorFollowUp === null) {%>
+                                        <td><button class="date-now">TBD</button></td>
+                                    <%} else {%>
+                                            <td><%= moment(hackensack[i].doctorFollowUp).format('l') %></td>
+                                        <%}
+                                %>
+                                <td class="edit-icons" data-id="<%= hackensack[i]._id %>">
+                                    <a href="/study/<%= hackensack[i]._id %>"><i class="fa-regular fa-file-lines"></i></a>
+                                    <a href="/edit/<%= hackensack[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <form action="/edit/deleteStudy/<%= hackensack[i]._id %>?_method=DELETE" method="POST">
                                         <button><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
                                 </td>
-                            </tr> %>
-                        <% } %>
+                            </tr> <% } %>
+                         %>
                     </tbody>
                 </table>
             </section>
         </section>
-
         <!-- Add study form -->
         <button class="add-patient btn md:btn-md lg:btn-lg btn-accent" onclick="openForm()">Add Study</button>
         <section class="form-popup" id="patient-form">
@@ -112,9 +139,15 @@
                         <select name="techName" id="techName">
                             <option value=""></option>
                             <% techs.forEach(tech => { %>
-                                <option value="<%= tech.firstName %>"><%= tech.firstName %></option>
+                                <option value="<%= tech.firstName %>">
+                                    <%= tech.firstName %>
+                                </option>
                                 <% }) %>
                         </select>
+                    </div>
+                    <div class="field">
+                        <label for="comment">Comments:</label>
+                        <textarea rows="4" cols="50" name="comment"></textarea>
                     </div>
                 </div>
 
@@ -127,5 +160,4 @@
 
     </section>
 </body>
-
 <%- include('partials/footer') -%>
