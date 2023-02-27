@@ -371,6 +371,7 @@ td {
      width: 100px;
      padding: 10px;
      border-bottom: 1px solid black;
+     text-align: center;
 }
 .study-amount {
      width: 75px;
@@ -529,14 +530,35 @@ ADD STUDY FORM STYLES
      font-size: 1.6rem;
      text-align: center;
 }
-.date-now {
+.followup-date-tbd,
+.cpap-order-date-tbd,
+.tech-followup-date-tbd,
+.doctor-followup-date-tbd {
      border: 1px solid black;
-     border-radius: 7px;
-     padding: 3px 15px;
-     background-color: rgb(245, 241, 241);
+     text-align: center;
+     background-color: orange;
 }
-.date-now:hover {
+.followup-date-tbd:hover,
+.cpap-order-date-tbd:hover,
+.tech-followup-date-tbd:hover,
+.doctor-followup-date-tbd:hover {
      background-color: greenyellow;
+     transition: .4s;
+}
+.followup-date,
+.cpap-order-date,
+.tech-followup-date,
+.doctor-followup-date {
+     border: 1px solid black;
+     text-align: center;
+     background-color: greenyellow;
+}
+.followup-date:hover,
+.cpap-order-date:hover,
+.tech-followup-date:hover,
+.doctor-followup-date:hover {
+     background-color: orange;
+     transition: .4s;
 }
 /*************************************
      Individual Study

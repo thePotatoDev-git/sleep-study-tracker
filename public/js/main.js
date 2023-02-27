@@ -15,6 +15,14 @@ const studyDoctorIncomplete = document.querySelectorAll('td.doctorIncomplete');
 const studyDoctorComplete = document.querySelectorAll('td.doctorComplete');
 const osaPositive = document.querySelectorAll('td.osaPositive');
 const osaNegative = document.querySelectorAll('td.osaNegative');
+const maskFittingFollowupDateTBD = document.querySelectorAll('td.mask-fitting-date-tbd');
+const maskFittingFollowUpDate = document.querySelectorAll('td.mask-fitting-date');
+const cpapOrderDateTBD = document.querySelectorAll('td.cpap-order-date-tbd');
+const cpapOrderDate = document.querySelectorAll('td.cpap-order-date');
+const techFollowUpDateTBD = document.querySelectorAll('td.tech-followup-date-tbd');
+const techFollowUpDate = document.querySelectorAll('td.tech-followup-date');
+const doctorFollowUpDateTBD = document.querySelectorAll('td.doctor-followup-date-tbd');
+const doctorFollowUpDate = document.querySelectorAll('td.doctor-followup-date');
 
 // Delete study
 // Array.from(deleteRow).forEach(element => {
@@ -153,6 +161,7 @@ async function markDoctorIncomplete() {
             });
             const data = await response.json();
             console.log(data);
+            console.log(studyObjId)
             location.reload();
     } catch (err) {
         console.log(err);
@@ -171,6 +180,195 @@ async function markOSANegative() {
             });
             const data = await response.json();
             console.log(data);
+            console.log(studyObjId)
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// Update follow-up to current date
+
+Array.from(maskFittingFollowupDateTBD).forEach(el => {
+    el.addEventListener('click', updateMaskFittingDate)
+});
+
+Array.from(cpapOrderDateTBD).forEach(el => {
+    el.addEventListener('click', updateCPAPOrderDate)
+});
+
+Array.from(techFollowUpDateTBD).forEach(el => {
+    el.addEventListener('click', updateTechFollowUpDate)
+});
+
+Array.from(doctorFollowUpDateTBD).forEach(el => {
+    el.addEventListener('click', updateDoctorFollowUpDate)
+});
+
+async function updateMaskFittingDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('updateMaskFittingDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function updateCPAPOrderDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('updateCPAPOrderDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function updateTechFollowUpDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('updateTechFollowUpDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function updateDoctorFollowUpDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('updateDoctorFollowUpDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// Clear follow-up date
+
+Array.from(maskFittingFollowUpDate).forEach(el => {
+    el.addEventListener('click', clearMaskFittingDate)
+});
+
+Array.from(cpapOrderDate).forEach(el => {
+    el.addEventListener('click', clearCPAPOrderDate)
+});
+
+Array.from(techFollowUpDate).forEach(el => {
+    el.addEventListener('click', clearTechFollowUpDate)
+});
+
+Array.from(doctorFollowUpDate).forEach(el => {
+    el.addEventListener('click', clearDoctorFollowUpDate)
+});
+
+async function clearMaskFittingDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('clearMaskFittingDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function clearCPAPOrderDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('clearCPAPOrderDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function clearTechFollowUpDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('clearTechFollowUpDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function clearDoctorFollowUpDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('clearDoctorFollowUpDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
             location.reload();
     } catch (err) {
         console.log(err);

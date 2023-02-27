@@ -51,9 +51,9 @@ const studySchema = new mongoose.Schema({
     },
     maskFitting: {
         type: Date,
-        default: null
+        default: null,
     },
-    cpapOrdered: {
+    cpapOrder: {
         type: Date,
         default: null,
     },

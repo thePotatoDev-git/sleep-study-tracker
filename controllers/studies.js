@@ -252,4 +252,103 @@ module.exports = {
             console.log(err);
         }
     },
+    // Update to current date
+    updateMaskFittingDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    maskFitting: Date()
+                });
+                console.log('Mask fitting date updated');
+                res.json('Mask fitting date updated');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    updateCPAPOrderDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    cpapOrder: Date()
+                });
+                console.log('CPAP ordered');
+                res.json('CPAP ordered');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    updateTechFollowUpDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    techFollowUp: Date()
+                });
+                console.log('Follow-up date updated');
+                res.json('Follow-up date updated');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    updateDoctorFollowUpDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    doctorFollowUp: Date()
+                });
+                console.log('Follow-up date updated');
+                res.json('Follow-up date updated');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    // Clear current date
+    clearMaskFittingDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    maskFitting: undefined
+                });
+                console.log('Follow-up date cleared');
+                res.json('Follow-up date cleared');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    clearCPAPOrderDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    cpapOrder: undefined
+                });
+                console.log('CPAP order date cleared');
+                res.json('CPAP order date cleared');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    clearTechFollowUpDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    techFollowUp: undefined
+                });
+                console.log('Follow-up date cleared');
+                res.json('Follow-up date cleared');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    clearDoctorFollowUpDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    doctorFollowUp: undefined
+                });
+                console.log('Follow-up date cleared');
+                res.json('Follow-up date cleared');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+
 };

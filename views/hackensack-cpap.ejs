@@ -61,33 +61,33 @@
 
                                 <%
                                     if (hackensack[i].maskFitting === null) {%>
-                                        <td><button class="date-now">TBD</button></td>
+                                        <td class="followup-date-tbd mask-fitting-date-tbd">TBD</td>
                                     <%} else {%>
-                                            <td><%= moment(hackensack[i].maskFitting).format('l') %></td>
+                                            <td class="followup-date mask-fitting-date"><%= moment(hackensack[i].maskFitting).format('l') %></td>
                                         <%}
                                 %>
 
                                 <%
-                                    if (hackensack[i].cpapOrdered === null) {%>
-                                        <td><button class="date-now">TBD</button></td>
+                                    if (hackensack[i].cpapOrder === null) {%>
+                                        <td class="followup-date-tbd cpap-order-date-tbd">TBD</td>
                                     <%} else {%>
-                                            <td><%= moment(hackensack[i].cpapOrdered).format('l') %></td>
+                                            <td class="followupdate-date cpap-order-date"><%= moment(hackensack[i].cpapOrdered).format('l') %></td>
                                         <%}
                                 %>
 
                                 <%
                                     if (hackensack[i].techFollowUp === null) {%>
-                                        <td><button class="date-now">TBD</button></td>
+                                        <td class="followup-date-tbd tech-followup-date-tbd">TBD</td>
                                     <%} else {%>
-                                            <td><%= moment(hackensack[i].techFollowUp).format('l') %></td>
+                                            <td class="followupdate-date tech-followup-date"><%= moment(hackensack[i].techFollowUp).format('l') %></td>
                                         <%}
                                 %>
                                 
                                 <%
                                     if (hackensack[i].doctorFollowUp === null) {%>
-                                        <td><button class="date-now">TBD</button></td>
+                                        <td class="followup-date-tbd doctor-followup-date-tbd">TBD</td>
                                     <%} else {%>
-                                            <td><%= moment(hackensack[i].doctorFollowUp).format('l') %></td>
+                                            <td class="followupdate-date doctor-followup-date"><%= moment(hackensack[i].doctorFollowUp).format('l') %></td>
                                         <%}
                                 %>
                                 <td class="edit-icons" data-id="<%= hackensack[i]._id %>">

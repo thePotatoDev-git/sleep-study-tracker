@@ -48,4 +48,16 @@ router.put('/markDoctorIncomplete', studiesController.markDoctorIncomplete);
 router.put('/markOSAPositive', studiesController.markOSAPositive);
 router.put('/markOSANegative', studiesController.markOSANegative);
 
+// Update current date
+router.put('/updateMaskFittingDate', studiesController.updateMaskFittingDate);
+router.put('/updateCPAPOrderDate', studiesController.updateCPAPOrderDate);
+router.put('/updateTechFollowUpDate', studiesController.updateTechFollowUpDate);
+router.put('/updateDoctorFollowUpDate', studiesController.updateDoctorFollowUpDate);
+
+// Clear current date
+router.put('/clearMaskFittingDate', studiesController.clearMaskFittingDate);
+router.put('/clearCPAPOrderDate', studiesController.clearCPAPOrderDate);
+router.put('/clearTechFollowUpDate', studiesController.clearTechFollowUpDate);
+router.put('/clearDoctorFollowUpDate', studiesController.clearDoctorFollowUpDate);
+
 module.exports = router;
