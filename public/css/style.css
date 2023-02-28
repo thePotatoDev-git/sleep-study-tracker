@@ -532,6 +532,7 @@ ADD STUDY FORM STYLES
 }
 .followup-date-tbd,
 .cpap-order-date-tbd,
+.cpap-received-date-tbd,
 .tech-followup-date-tbd,
 .doctor-followup-date-tbd {
      border: 1px solid black;
@@ -540,6 +541,7 @@ ADD STUDY FORM STYLES
 }
 .followup-date-tbd:hover,
 .cpap-order-date-tbd:hover,
+.cpap-received-date-tbd:hover,
 .tech-followup-date-tbd:hover,
 .doctor-followup-date-tbd:hover {
      background-color: greenyellow;
@@ -547,6 +549,7 @@ ADD STUDY FORM STYLES
 }
 .followup-date,
 .cpap-order-date,
+.cpap-received-date,
 .tech-followup-date,
 .doctor-followup-date {
      border: 1px solid black;
@@ -555,10 +558,23 @@ ADD STUDY FORM STYLES
 }
 .followup-date:hover,
 .cpap-order-date:hover,
+.cpap-received-date:hover,
 .tech-followup-date:hover,
 .doctor-followup-date:hover {
      background-color: orange;
      transition: .4s;
+}
+.followup-date-tbd:active,
+.cpap-order-date-tbd:active,
+.tech-followup-date-tbd:active,
+.doctor-followup-date-tbd:active
+.followup-date:active,
+.cpap-order-date:active,
+.cpap-received-date:active,
+.tech-followup-date:active,
+.doctor-followup-date:active {
+     background-color: white;
+     transition: 0s;
 }
 /*************************************
      Individual Study

@@ -277,6 +277,18 @@ module.exports = {
             console.log(err);
         }
     },
+    updateCPAPReceivedDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    cpapReceived: Date()
+                });
+                console.log('Patient Received CPAP machine');
+                res.json('Patient Received CPAP machine');
+        } catch (err) {
+            console.log(err);
+        }
+    },
     updateTechFollowUpDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         try {
@@ -322,6 +334,18 @@ module.exports = {
                 });
                 console.log('CPAP order date cleared');
                 res.json('CPAP order date cleared');
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    clearCPAPReceivedDate: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        try {
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+                    cpapReceived: undefined
+                });
+                console.log('CPAP received date cleared');
+                res.json('CPAP received date cleared');
         } catch (err) {
             console.log(err);
         }

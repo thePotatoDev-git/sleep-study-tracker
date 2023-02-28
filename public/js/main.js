@@ -19,6 +19,8 @@ const maskFittingFollowupDateTBD = document.querySelectorAll('td.mask-fitting-da
 const maskFittingFollowUpDate = document.querySelectorAll('td.mask-fitting-date');
 const cpapOrderDateTBD = document.querySelectorAll('td.cpap-order-date-tbd');
 const cpapOrderDate = document.querySelectorAll('td.cpap-order-date');
+const cpapReceivedDateTBD = document.querySelectorAll('td.cpap-received-date-tbd');
+const cpapReceivedDate = document.querySelectorAll('td.cpap-received-date');
 const techFollowUpDateTBD = document.querySelectorAll('td.tech-followup-date-tbd');
 const techFollowUpDate = document.querySelectorAll('td.tech-followup-date');
 const doctorFollowUpDateTBD = document.querySelectorAll('td.doctor-followup-date-tbd');
@@ -197,6 +199,10 @@ Array.from(cpapOrderDateTBD).forEach(el => {
     el.addEventListener('click', updateCPAPOrderDate)
 });
 
+Array.from(cpapReceivedDateTBD).forEach(el => {
+    el.addEventListener('click', updateCPAPReceivedDate)
+});
+
 Array.from(techFollowUpDateTBD).forEach(el => {
     el.addEventListener('click', updateTechFollowUpDate)
 });
@@ -228,6 +234,25 @@ async function updateCPAPOrderDate() {
     const studyObjId = this.parentNode.dataset.id;
     try {
             const response = await fetch('updateCPAPOrderDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function updateCPAPReceivedDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('updateCPAPReceivedDate', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
@@ -291,6 +316,10 @@ Array.from(cpapOrderDate).forEach(el => {
     el.addEventListener('click', clearCPAPOrderDate)
 });
 
+Array.from(cpapReceivedDate).forEach(el => {
+    el.addEventListener('click', clearCPAPReceivedDate)
+});
+
 Array.from(techFollowUpDate).forEach(el => {
     el.addEventListener('click', clearTechFollowUpDate)
 });
@@ -322,6 +351,25 @@ async function clearCPAPOrderDate() {
     const studyObjId = this.parentNode.dataset.id;
     try {
             const response = await fetch('clearCPAPOrderDate', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function clearCPAPReceivedDate() {
+    const studyObjId = this.parentNode.dataset.id;
+    try {
+            const response = await fetch('clearCPAPReceivedDate', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({

@@ -53,11 +53,13 @@ router.put('/updateMaskFittingDate', studiesController.updateMaskFittingDate);
 router.put('/updateCPAPOrderDate', studiesController.updateCPAPOrderDate);
 router.put('/updateTechFollowUpDate', studiesController.updateTechFollowUpDate);
 router.put('/updateDoctorFollowUpDate', studiesController.updateDoctorFollowUpDate);
+router.put('/updateCPAPReceivedDate', studiesController.updateCPAPReceivedDate);
 
 // Clear current date
 router.put('/clearMaskFittingDate', studiesController.clearMaskFittingDate);
 router.put('/clearCPAPOrderDate', studiesController.clearCPAPOrderDate);
 router.put('/clearTechFollowUpDate', studiesController.clearTechFollowUpDate);
 router.put('/clearDoctorFollowUpDate', studiesController.clearDoctorFollowUpDate);
+router.put('/clearCPAPReceivedDate', studiesController.clearCPAPReceivedDate);
 
 module.exports = router;

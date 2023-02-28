@@ -31,7 +31,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="10"><h3>Hackensack</h3></th>
+                            <th colspan="11"><h3>Hackensack</h3></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,10 +42,11 @@
                             <td>Date of Study</td>
                             <td class="study-comment">Comments</td>
                             <td>Mask Fitting</td>
-                            <td>CPAP ordered</td>
+                            <td>CPAP Ordered</td>
+                            <td>CPAP Receieved</td>
                             <td>Last Tech Follow-up</td>
                             <td>Last M.D. Follow-up</td>
-                            <td class="edit-icons"></td>
+                            <td class="edit-icons">View/Edit/Delete</td>
                         </tr>
                         <% for (let i = 0; i < hackensack.length; i++) {%>
                             <tr data-id="<%= hackensack[i]._id %>">
@@ -71,7 +72,15 @@
                                     if (hackensack[i].cpapOrder === null) {%>
                                         <td class="followup-date-tbd cpap-order-date-tbd">TBD</td>
                                     <%} else {%>
-                                            <td class="followupdate-date cpap-order-date"><%= moment(hackensack[i].cpapOrdered).format('l') %></td>
+                                            <td class="followupdate-date cpap-order-date"><%= moment(hackensack[i].cpapOrder).format('l') %></td>
+                                        <%}
+                                %>
+
+                                <%
+                                    if (hackensack[i].cpapReceived === null) {%>
+                                        <td class="followup-date-tbd cpap-received-date-tbd">TBD</td>
+                                    <%} else {%>
+                                            <td class="followupdate-date cpap-received-date"><%= moment(hackensack[i].cpapReceived).format('l') %></td>
                                         <%}
                                 %>
 
