@@ -10,15 +10,24 @@
 <section class="study">
     <section>
         <h2><%= `${study.patientLastName}, ${study.patientFirstName}` %></h2>
+
         <span><b>Lab:</b> <%= study.lab %></span>
         <span><b>Date of Study:</b> <%= moment(study.studyDate).format('l') %></span>
         <span><b>Assigned to:</b> <%= study.techName %></span>
+        <% 
+            if (study.lab === 'Hackensack') {%>
+                <span><b>Mask fitting date:</b> <%= study.maskFitting === null ? 'TBD' : moment(study.maskFitting).format('l') %></span>
+                <span><b>CPAP ordered on:</b> <%= study.cpapOrder === null ? 'TBD' : moment(study.cpapOrder).format('l') %></span>
+                <span><b>Patient received CPAP:</b> <%= study.cpapReceived === null ? 'TBD' : moment(study.cpapReceived).format('l') %></span>
+                <span><b>Last tech follow-up:</b> <%= study.techFollowUp === null ? 'TBD' : moment(study.techFollowUp).format('l') %></span>
+                <span><b>Last doctor follow-up:</b> <%= study.doctorFollowUp === null ? 'TBD' : moment(study.doctorFollowUp).format('l') %></span> <br>
+            <%}
+        %>
         <span><b>Comments:</b></span>
         <% let commentBreaks = study.comment.split('\r\n') %>
         <% for (let i = 0; i < commentBreaks.length; i++)  {%>
             <p><%= commentBreaks[i] %></p>
         <%} %>
-        <!-- <p><%= study.comment %></p> -->
     </section>
     <a class="btn btn-accent" href="/edit/<%= study._id %>">Edit</a>
     <form class="delete-btn" action="/edit/deleteFromViewStudy/<%= study._id %>?_method=DELETE" method="POST">
