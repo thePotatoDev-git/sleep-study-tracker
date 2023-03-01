@@ -25,7 +25,7 @@
 /*******************************************/
 
 body {
-     height: 140vh;
+     height: 130vh;
      background: #064588;
      color: white;
      font-family: "Roboto Condensed";
@@ -38,8 +38,12 @@ body {
      background-color: #e0d9d5;
 }
 .main {
-     height: 1500px;
+     height: auto;
      background-color: white;
+}
+.index {
+     position: fixed;
+     bottom: 0;
 }
 /******************************************
 /* LAYOUT
@@ -591,7 +595,7 @@ ADD STUDY FORM STYLES
 .edit-study section {
      border: 1px solid black;
      background-color: #e0d9d5;
-     height: 600px;
+     height: auto;
      padding: 20px;
      margin-bottom: 15px;
 }
@@ -650,7 +654,7 @@ ADD STUDY FORM STYLES
      width: 100px;
 }
 footer {
-     position: fixed;
+     /* position: fixed; */
      bottom: 0;
 }
 
@@ -675,6 +679,9 @@ footer {
      .form-popup {
           left: 4%;
      }
+     .glance {
+          width: 80%;
+     }
 }
 @media (max-width: 980px) {
      .form-popup {
@@ -689,7 +696,7 @@ footer {
           width: 80%;
      }
      .edit-study section {
-          height: 1200px;
+          height: auto;
      }
      .edit-study form {
           display: flex;
@@ -705,6 +712,13 @@ footer {
      }
      .edit-study textarea {
           max-width: 50%;
+     }
+     .edit-study button,
+     .edit0study a {
+          margin-top: 10px;
+     }
+     .glance {
+          width: 80%;
      }
 }
 @media (max-width: 750px) {
@@ -738,9 +752,9 @@ footer {
      .edit-study textarea {
           max-width: 40%;
      }
-     .footer {
+     /* .footer {
           height: 120px;
-     }
+     } */
 }
 @media (max-width: 480px) {
      body {
