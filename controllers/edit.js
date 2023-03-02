@@ -7,7 +7,7 @@ module.exports = {
             const id = req.params.id;
             let techs = await User.find({specialAccess: true});
             Study.find({}, (err, comment) => {
-                res.render('edit.ejs', { hackensack: comment, studyId: id, user: req.user, techs: techs });
+                res.render('edit.ejs', { study: comment, studyId: id, user: req.user, techs: techs });
             });
         } catch (err) {
             console.log(err);
@@ -26,6 +26,11 @@ module.exports = {
                     studyAmount: req.body.studyAmount,
                     techName: req.body.techName,
                     comment: req.body.comment,
+                    maskFitting: req.body.maskFitting,
+                    cpapOrder: req.body.cpapOrder,
+                    cpapReceived: req.body.cpapReceived,
+                    techFollowUp: req.body.techFollowUp,
+                    doctorFollowUp: req.body.doctorFollowUp,
                 },
                 
                 err => {

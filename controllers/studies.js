@@ -255,9 +255,10 @@ module.exports = {
     // Update to current date
     updateMaskFittingDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const today = new Date();
         try {
                 await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    maskFitting: Date()
+                    maskFitting: today.toISOString().split('T')[0]
                 });
                 console.log('Mask fitting date updated');
                 res.json('Mask fitting date updated');
@@ -267,9 +268,10 @@ module.exports = {
     },
     updateCPAPOrderDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const today = new Date();
         try {
                 await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    cpapOrder: Date()
+                    cpapOrder: today.toISOString().split('T')[0]
                 });
                 console.log('CPAP ordered');
                 res.json('CPAP ordered');
@@ -279,9 +281,10 @@ module.exports = {
     },
     updateCPAPReceivedDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const today = new Date();
         try {
                 await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    cpapReceived: Date()
+                    cpapReceived: today.toISOString().split('T')[0]
                 });
                 console.log('Patient Received CPAP machine');
                 res.json('Patient Received CPAP machine');
@@ -291,9 +294,10 @@ module.exports = {
     },
     updateTechFollowUpDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const today = new Date();
         try {
                 await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    techFollowUp: Date()
+                    techFollowUp: today.toISOString().split('T')[0]
                 });
                 console.log('Follow-up date updated');
                 res.json('Follow-up date updated');
@@ -303,9 +307,10 @@ module.exports = {
     },
     updateDoctorFollowUpDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const today = new Date();
         try {
                 await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    doctorFollowUp: Date()
+                    doctorFollowUp: today.toISOString().split('T')[0]
                 });
                 console.log('Follow-up date updated');
                 res.json('Follow-up date updated');

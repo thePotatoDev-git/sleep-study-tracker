@@ -42,23 +42,23 @@ const studySchema = new mongoose.Schema({
         required: true,
     },
     techFollowUp: {
-        type: Date,
+        type: String,
         default: null,
     },
     doctorFollowUp: {
-        type: Date,
+        type: String,
         default: null,
     },
     maskFitting: {
-        type: Date,
+        type: String,
         default: null,
     },
     cpapOrder: {
-        type: Date,
+        type: String,
         default: null,
     },
     cpapReceived: {
-        type: Date,
+        type: String,
         default: null,
     },
     createdAt: {

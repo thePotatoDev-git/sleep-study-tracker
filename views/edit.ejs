@@ -7,7 +7,7 @@
 
     <div class="edit-study">
         <section>
-            <% hackensack.forEach( el=> { %>
+            <% study.forEach( el=> { %>
             <% if (el._id==studyId) { %>
                 <form action="/edit/<%= el._id %>" method="POST">
                     <div class="row">
@@ -47,6 +47,30 @@
                                 <option value="<%= tech.firstName %>"><%= tech.firstName %></option>
                                 <% }) %>
                             </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="edit-field">
+                            <label for="maskFitting">Mask fitting date:</label>
+                            <input type="date" value="<%= el.maskFitting %>" name="maskFitting">
+                        </div>
+                        <div class="edit-field">
+                            <label for="cpapOrder">CPAP order date:</label>
+                            <input type="date" value="<%= el.cpapOrder %>" name="cpapOrder">
+                        </div>
+                        <div class="edit-field">
+                            <label for="cpapReceived">CPAP received date:</label>
+                            <input type="date" value="<%= el.cpapReceived %>" name="cpapReceived">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="edit-field">
+                            <label for="techFollowUp">Last Tech follow-up:</label>
+                            <input type="date" value="<%= el.techFollowUp %>" name="techFollowUp">
+                        </div>
+                        <div class="edit-field">
+                            <label for="doctorFollowUp">Last Doctor follow-up:</label>
+                            <input type="date" value="<%= el.doctorFollowUp %>" name="doctorFollowUp">
                         </div>
                     </div>
                     <div class="row">
