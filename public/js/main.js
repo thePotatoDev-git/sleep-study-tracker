@@ -1,11 +1,15 @@
 // Add study form
 function openForm() {
     document.getElementById('patient-form').style.display = 'block';
-}
+};
 
 function closeForm() {
     document.getElementById('patient-form').style.display = 'none';
-}
+};
+
+function previousPage() {
+    window.history.back()
+};
 
 const deleteRow = document.querySelectorAll('.fa-trash-can');
 const editRow = document.querySelectorAll('.fa-pen-to-square');

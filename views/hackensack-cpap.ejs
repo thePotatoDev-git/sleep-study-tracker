@@ -61,7 +61,7 @@
                                 </td>
 
                                 <%
-                                    if (hackensack[i].maskFitting === null) {%>
+                                    if (!hackensack[i].maskFitting) {%>
                                         <td class="followup-date-tbd mask-fitting-date-tbd">TBD</td>
                                     <%} else {%>
                                             <td class="followup-date mask-fitting-date"><%= moment(hackensack[i].maskFitting).format('l') %></td>
@@ -69,7 +69,7 @@
                                 %>
 
                                 <%
-                                    if (hackensack[i].cpapOrder === null) {%>
+                                    if (!hackensack[i].cpapOrder) {%>
                                         <td class="followup-date-tbd cpap-order-date-tbd">TBD</td>
                                     <%} else {%>
                                             <td class="followupdate-date cpap-order-date"><%= moment(hackensack[i].cpapOrder).format('l') %></td>
@@ -77,7 +77,7 @@
                                 %>
 
                                 <%
-                                    if (hackensack[i].cpapReceived === null) {%>
+                                    if (!hackensack[i].cpapReceived) {%>
                                         <td class="followup-date-tbd cpap-received-date-tbd">TBD</td>
                                     <%} else {%>
                                             <td class="followupdate-date cpap-received-date"><%= moment(hackensack[i].cpapReceived).format('l') %></td>
@@ -85,7 +85,7 @@
                                 %>
 
                                 <%
-                                    if (hackensack[i].techFollowUp === null) {%>
+                                    if (!hackensack[i].techFollowUp) {%>
                                         <td class="followup-date-tbd tech-followup-date-tbd">TBD</td>
                                     <%} else {%>
                                             <td class="followupdate-date tech-followup-date"><%= moment(hackensack[i].techFollowUp).format('l') %></td>
@@ -93,7 +93,7 @@
                                 %>
                                 
                                 <%
-                                    if (hackensack[i].doctorFollowUp === null) {%>
+                                    if (!hackensack[i].doctorFollowUp) {%>
                                         <td class="followup-date-tbd doctor-followup-date-tbd">TBD</td>
                                     <%} else {%>
                                             <td class="followupdate-date doctor-followup-date"><%= moment(hackensack[i].doctorFollowUp).format('l') %></td>
