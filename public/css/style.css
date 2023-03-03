@@ -45,6 +45,9 @@ body {
      position: fixed;
      bottom: 0;
 }
+.pointer {
+     cursor: pointer;
+}
 /******************************************
 /* LAYOUT
 /*******************************************/
@@ -512,6 +515,7 @@ ADD STUDY FORM STYLES
      font-size: 1.6rem;
      text-align: center;
      padding: 0;
+     cursor: pointer;
 }
 .techIncomplete:hover,
 .doctorIncomplete:hover,
@@ -533,6 +537,7 @@ ADD STUDY FORM STYLES
      font-weight: bold;
      font-size: 1.6rem;
      text-align: center;
+     cursor: pointer;
 }
 .followup-date-tbd,
 .cpap-order-date-tbd,
@@ -542,6 +547,7 @@ ADD STUDY FORM STYLES
      border: 1px solid black;
      text-align: center;
      background-color: orange;
+     cursor: pointer;
 }
 .followup-date-tbd:hover,
 .cpap-order-date-tbd:hover,
@@ -559,6 +565,7 @@ ADD STUDY FORM STYLES
      border: 1px solid black;
      text-align: center;
      background-color: greenyellow;
+     cursor: pointer;
 }
 .followup-date:hover,
 .cpap-order-date:hover,
