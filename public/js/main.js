@@ -68,14 +68,15 @@ Array.from(osaNegative).forEach(el => {
 });
 
 async function markTechComplete() {
-    const studyObjId = this.parentNode.dataset.id;
-    const studyLab = this.parentNode.dataset.lab;
+    const studyObjId = this.parentNode.dataset.id; // Unique ID of study entry
+    const studyLab = this.parentNode.dataset.lab; // Sleep lab of study entry
     try {
             const response = await fetch('markTechComplete', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
@@ -95,6 +96,7 @@ async function markDoctorComplete() {
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
@@ -114,6 +116,7 @@ async function markOSAPositive() {
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
@@ -139,12 +142,14 @@ Array.from(osaPositive).forEach(el => {
 
 async function markTechIncomplete() {
     const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
     try {
             const response = await fetch('markTechIncomplete', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
@@ -157,12 +162,14 @@ async function markTechIncomplete() {
 
 async function markDoctorIncomplete() {
     const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
     try {
             const response = await fetch('markDoctorIncomplete', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();
@@ -176,12 +183,14 @@ async function markDoctorIncomplete() {
 
 async function markOSANegative() {
     const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
     try {
             const response = await fetch('markOSANegative', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
                 }),
             });
             const data = await response.json();

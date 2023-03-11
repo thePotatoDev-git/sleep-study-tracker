@@ -2,13 +2,13 @@ const Study = require('../models/Study');
 const User = require('../models/User');
 
 module.exports = {
-    getDashboard: async (req, res) => {
+    getDashboard: async (req, res) => { // For /dashboard page
         try {
-            let studies = await Study.find({techName: req.user.firstName, techCompleted: false}).sort({studyDate: -1});
-            let techs = await User.find({spectialAccess: true});
+            let studies = await Study.find({techName: req.user.firstName, techCompleted: false}).sort({studyDate: -1}); // Goes to "Study" model DB and finds entries including user's name and incomplete by user
+            let techs = await User.find({specialAccess: true}); // Goes to "User" model DB and finds users with the specialAccess property
 
-            if (req.user.specialAccess === true) {
-                res.render('dashboard.ejs', { user: req.user, userStudies: studies, techs: techs });
+            if (req.user.specialAccess === true) { // If user has specialAccess, render /dashboard. Else render /noaccess page.
+                res.render('dashboard.ejs', { user: req.user, userStudies: studies, techs: techs }); // All variables in {...} are for referencing in ejs files
             } else {
                 res.render('noaccess.ejs', { user: req.user });
             }
@@ -153,7 +153,7 @@ module.exports = {
     },
     addStudy: async (req, res) => {
         try {
-            await Study.create({
+            await Study.create({ // Adds a new study to DB. req.body.*** takes value entered in the DOM.
                 lab: req.body.lab,
                 patientLastName: req.body.patientLastName,
                 patientFirstName: req.body.patientFirstName,
@@ -181,10 +181,10 @@ module.exports = {
     //     }
     // },
     markTechComplete: async (req, res) => {
-        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`); // Gets the ID from parentNode.dataset.id/lab in main.js
         try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    techCompleted: true
+                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, { // Finds DB entry with given ID
+                    techCompleted: true // Updates entry to true
                 });
                 console.log('Study completed by tech');
                 res.json('Study completed by tech');
