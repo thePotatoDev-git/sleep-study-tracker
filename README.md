@@ -16,6 +16,11 @@ Password: tester123
 
 For the frontend, I used HTML, CSS, and Tailwind to create the UI of the app. The backend was created using Node.js with the Express framework. To create my database, I used MongoDB. For user authentication, I implemented Passport.js.
 
+---
+
+# Optimizations
+
+React can be implemented to further optimize and enhance the user experience when marking studies complete, making the application more seamless and fluid. A notification system still needs to be added to alert users of studies being assigned to them.
 
 # Packages/Dependencies used 
 
