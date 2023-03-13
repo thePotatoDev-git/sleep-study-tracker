@@ -22,6 +22,8 @@ For the frontend, I used HTML, CSS, and Tailwind to create the UI of the app. Th
 
 React can be implemented to further optimize and enhance the user experience when marking studies complete, making the application more seamless and fluid. A notification system still needs to be added to alert users of studies being assigned to them.
 
+---
+
 # Packages/Dependencies used 
 
 bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
