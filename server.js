@@ -11,6 +11,7 @@ const connectDB = require('./config/database');
 const mainRoutes = require('./routes/main');
 const studiesRoutes = require('./routes/studies');
 const editRoutes = require('./routes/edit');
+const nodemailer = require('nodemailer');
 
 require('dotenv').config({ path: './config/.env' });
 require('./config/passport')(passport);
