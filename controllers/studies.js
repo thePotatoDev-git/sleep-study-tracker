@@ -1,7 +1,74 @@
 const Study = require('../models/Study');
 const User = require('../models/User');
 
+async function updateTechCompleted(studyId, completed) { // Takes parameters of study ID and completed true/false
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        techCompleted: completed // Changes techCompleted property in object and changes to argument passed in 'completed'
+    });
+
+    return `Study ${completed ? 'completed' : 'incompleted'} by tech`;
+}
+
+async function updateDoctorCompleted(studyId, completed) { // Takes parameters of study ID and completed true/false
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        doctorCompleted: completed // Changes techCompleted property in object and changes to argument passed in 'completed'
+    });
+
+    return `Study ${completed ? 'completed' : 'incompleted'} by doctor`;
+}
+
+async function markOSA(studyId, positive) { // Takes parameters of study ID and completed true/false
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        osaPositive: positive // Changes osaPositive property in object and changes to argument passed in 'positive'
+    });
+
+    return `Study ${positive ? 'positive' : 'negative'} for OSA`;
+}
+
+async function maskFitDate(studyId, date) { // Takes parameters of study ID and date
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        maskFitting: date // Changes maskFitting property in object and changes to date passed in 'date'
+    });
+
+    return `Mask fitting ${date ? `on ${date}` : 'cleared'}.`;
+}
+
+async function cpapOrderDate(studyId, date) { // Takes parameters of study ID and date
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        cpapOrder: date // Changes cpapOrder property in object and changes to date passed in 'date'
+    });
+
+    return `CPAP ordered ${date ? `on ${date}` : 'date cleared'}.`;
+}
+
+async function cpapReceivedDate(studyId, date) { // Takes parameters of study ID and date
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        cpapReceived: date // Changes cpapReceived property in object and changes to date passed in 'date'
+    });
+
+    return `CPAP received ${date ? `on ${date}` : 'date cleared'}.`;
+}
+
+async function techFollowUpDate(studyId, date) { // Takes parameters of study ID and date
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        techFollowUp: date // Changes techFollowUp property in object and changes to date passed in 'date'
+    });
+
+    return `Tech follow-up ${date ? `on ${date}` : 'date cleared'}.`;
+}
+
+async function doctorFollowUpDate(studyId, date) { // Takes parameters of study ID and date
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        doctorFollowUp: date // Changes doctorFollowUp property in object and changes to date passed in 'date'
+    });
+
+    return `Doctor follow-up ${date ? `on ${date}` : 'date cleared'}.`;
+}
+
 module.exports = {
+//////////////////////////////////////////////////////////////////////////
+//  GET
+//////////////////////////////////////////////////////////////////////////
     getDashboard: async (req, res) => { // For /dashboard page
         try {
             let studies = await Study.find({techName: req.user.firstName, techCompleted: false}).sort({studyDate: -1}); // Goes to "Study" model DB and finds entries including user's name and incomplete by user
@@ -79,6 +146,9 @@ module.exports = {
             console.error(err);
         }
     },
+//////////////////////////////////////////////////////////////////////////
+//  SEARCH DB
+//////////////////////////////////////////////////////////////////////////
     searchStudies: async (req, res) => {
         try {
             const session = req.session;
@@ -151,6 +221,9 @@ module.exports = {
             console.log(err);
         }
     },
+//////////////////////////////////////////////////////////////////////////
+//  ADD STUDY
+//////////////////////////////////////////////////////////////////////////
     addStudy: async (req, res) => {
         try {
             await Study.create({ // Adds a new study to DB. req.body.*** takes value entered in the DOM.
@@ -180,204 +253,157 @@ module.exports = {
     //         console.log(err);
     //     }
     // },
+//////////////////////////////////////////////////////////////////////////
+//  MARK/UPDATE STUDIES
+//////////////////////////////////////////////////////////////////////////
     markTechComplete: async (req, res) => {
-        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`); // Gets the ID from parentNode.dataset.id/lab in main.js
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, { // Finds DB entry with given ID
-                    techCompleted: true // Updates entry to true
-                });
-                console.log('Study completed by tech');
-                res.json('Study completed by tech');
-        } catch (err) {
-            console.log(err);
-        }
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const message = await updateTechCompleted(req.body.studyObjIdFromJSFile, true); // Runs updateTechCompleted function from above and passes ID and boolean arguments to parameters
+        console.log(message);
+        res.json(message);
     },
     markTechIncomplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    techCompleted: false
-                });
-                console.log('Study incompleted by tech');
-                res.json('Study incompleted by tech');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await updateTechCompleted(req.body.studyObjIdFromJSFile, false);
+        console.log(message);
+        res.json(message);
     },
+
+    // markTechComplete: async (req, res) => {
+    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`); // Gets the ID from parentNode.dataset.id/lab in main.js
+    //     try {
+    //             await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, { // Finds DB entry with given ID
+    //                 techCompleted: true // Updates entry to true
+    //             });
+    //             console.log('Study completed by tech');
+    //             res.json('Study completed by tech');
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // },
+    // markTechIncomplete: async (req, res) => {
+    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+    //     try {
+    //             await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+    //                 techCompleted: false
+    //             });
+    //             console.log('Study incompleted by tech');
+    //             res.json('Study incompleted by tech');
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // },
     markDoctorComplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    doctorCompleted: true
-                });
-                console.log('Study completed by doctor');
-                res.json('Study completed by doctor');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await updateDoctorCompleted(req.body.studyObjIdFromJSFile, true); // Runs updateDoctorCompleted function from above and passes ID and boolean arguments to parameters
+        console.log(message);
+        res.json(message);
     },
     markDoctorIncomplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    doctorCompleted: false
-                });
-                console.log('Study incompleted by doctor');
-                res.json('Study incompleted by doctor');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await updateDoctorCompleted(req.body.studyObjIdFromJSFile, false);
+        console.log(message);
+        res.json(message);
     },
     markOSAPositive: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    osaPositive: true
-                });
-                console.log('Patient positive for OSA');
-                res.json('Patient positive for OSA');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await markOSA(req.body.studyObjIdFromJSFile, true); // Runs markOSA function from above and passes ID and boolean arguments to parameters
+        console.log(message);
+        res.json(message);
     },
     markOSANegative: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    osaPositive: false
-                });
-                console.log('Patient negative for OSA');
-                res.json('Patient negative for OSA');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await markOSA(req.body.studyObjIdFromJSFile, false);
+        console.log(message);
+        res.json(message);
     },
     // Update to current date
     updateMaskFittingDate: async (req, res) => {
+        // console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        // const today = new Date();
+        // try {
+        //         await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+        //             maskFitting: today.toISOString().split('T')[0]
+        //         });
+        //         console.log('Mask fitting date updated');
+        //         res.json('Mask fitting date updated');
+        // } catch (err) {
+        //     console.log(err);
+        // }
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        const today = new Date();
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    maskFitting: today.toISOString().split('T')[0]
-                });
-                console.log('Mask fitting date updated');
-                res.json('Mask fitting date updated');
-        } catch (err) {
-            console.log(err);
-        }
+        const today = new Date().toISOString().split('T')[0];
+        const message = await maskFitDate(req.body.studyObjIdFromJSFile, today);
+        console.log(message);
+        res.json(message);
     },
     updateCPAPOrderDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        const today = new Date();
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    cpapOrder: today.toISOString().split('T')[0]
-                });
-                console.log('CPAP ordered');
-                res.json('CPAP ordered');
-        } catch (err) {
-            console.log(err);
-        }
+        const today = new Date().toISOString().split('T')[0];
+        const message = await cpapOrderDate(req.body.studyObjIdFromJSFile, today);
+        console.log(message);
+        res.json(message);
     },
     updateCPAPReceivedDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        const today = new Date();
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    cpapReceived: today.toISOString().split('T')[0]
-                });
-                console.log('Patient Received CPAP machine');
-                res.json('Patient Received CPAP machine');
-        } catch (err) {
-            console.log(err);
-        }
+        const today = new Date().toISOString().split('T')[0];
+        const message = await cpapReceivedDate(req.body.studyObjIdFromJSFile, today);
+        console.log(message);
+        res.json(message);
     },
     updateTechFollowUpDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        const today = new Date();
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    techFollowUp: today.toISOString().split('T')[0]
-                });
-                console.log('Follow-up date updated');
-                res.json('Follow-up date updated');
-        } catch (err) {
-            console.log(err);
-        }
+        const today = new Date().toISOString().split('T')[0];
+        const message = await techFollowUpDate(req.body.studyObjIdFromJSFile, today);
+        console.log(message);
+        res.json(message);
     },
     updateDoctorFollowUpDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        const today = new Date();
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    doctorFollowUp: today.toISOString().split('T')[0]
-                });
-                console.log('Follow-up date updated');
-                res.json('Follow-up date updated');
-        } catch (err) {
-            console.log(err);
-        }
+        const today = new Date().toISOString().split('T')[0];
+        const message = await doctorFollowUpDate(req.body.studyObjIdFromJSFile, today);
+        console.log(message);
+        res.json(message);
     },
     // Clear current date
     clearMaskFittingDate: async (req, res) => {
+        // console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        // try {
+        //         await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
+        //             maskFitting: undefined
+        //         });
+        //         console.log('Follow-up date cleared');
+        //         res.json('Follow-up date cleared');
+        // } catch (err) {
+        //     console.log(err);
+        // }
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    maskFitting: undefined
-                });
-                console.log('Follow-up date cleared');
-                res.json('Follow-up date cleared');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await maskFitDate(req.body.studyObjIdFromJSFile, undefined);
+        console.log(message);
+        res.json(message);
     },
     clearCPAPOrderDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    cpapOrder: undefined
-                });
-                console.log('CPAP order date cleared');
-                res.json('CPAP order date cleared');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await cpapOrderDate(req.body.studyObjIdFromJSFile, undefined);
+        console.log(message);
+        res.json(message);
     },
     clearCPAPReceivedDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    cpapReceived: undefined
-                });
-                console.log('CPAP received date cleared');
-                res.json('CPAP received date cleared');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await cpapReceivedDate(req.body.studyObjIdFromJSFile, undefined);
+        console.log(message);
+        res.json(message);
     },
     clearTechFollowUpDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    techFollowUp: undefined
-                });
-                console.log('Follow-up date cleared');
-                res.json('Follow-up date cleared');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await techFollowUpDate(req.body.studyObjIdFromJSFile, undefined);
+        console.log(message);
+        res.json(message);
     },
     clearDoctorFollowUpDate: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        try {
-                await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-                    doctorFollowUp: undefined
-                });
-                console.log('Follow-up date cleared');
-                res.json('Follow-up date cleared');
-        } catch (err) {
-            console.log(err);
-        }
+        const message = await doctorFollowUpDate(req.body.studyObjIdFromJSFile, undefined);
+        console.log(message);
+        res.json(message);
     },
 
 };
