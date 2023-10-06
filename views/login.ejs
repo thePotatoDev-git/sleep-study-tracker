@@ -9,7 +9,7 @@
 
     <section class="login">
       <h2>Login</h2>
-              <form class="box" action="/login" method="POST">
+              <form data-test="login-form" class="box" action="/login" method="POST">
     
                 <% if (locals.messages.errors) { %>
                   <% messages.errors.forEach( el=> { %>
@@ -40,7 +40,7 @@
                           <a href="">Forgot password?</a>
                         </div>
                       </div>
-                      <input type="submit" class="btn md:btn-md lg:btn-lg" value="Log In">
+                      <input data-type="login-button" type="submit" class="btn md:btn-md lg:btn-lg" value="Log In">
                 </form>
               <div>
                 <p>Don't have an account?
