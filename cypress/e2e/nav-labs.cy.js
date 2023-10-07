@@ -79,4 +79,5 @@ describe('Test Lab selection tabs', () => {
     cy.contains('Hackensack CPAP Setup');
     cy.wait(500);
   });
+
 })
