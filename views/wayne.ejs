@@ -31,7 +31,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="10"><h3>Wayne</h3></th>
+                            <th colspan="11"><h3>Wayne</h3></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +43,7 @@
                             <td class="study-amount">Num. of Studies</td>
                             <td>Assigned to:</td>
                             <td class="study-comment">Comments</td>
+                            <td>In Network</td>
                             <td>Completed by Tech</td>
                             <td>Completed by M.D.</td>
                             <td class="edit-icons">View/Edit/Delete</td>
@@ -60,6 +61,7 @@
                                         <p><%= commentBreaks[i] %></p>
                                     <%} %>
                                 </td>
+                                <td class="<%= wayne[i].inNetwork === true ? "inNetwork" : "outNetwork" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= wayne[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= wayne[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="edit-icons" data-id="<%= wayne[i]._id %>">

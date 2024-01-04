@@ -36,6 +36,10 @@ router.post('/wayne/search', studiesController.searchWayneStudies);
 // PUT requests
 ///////////////////
 
+// Mark in/out network
+router.put('/markInNetwork', studiesController.markInNetwork);
+router.put('/markOutNetwork', studiesController.markOutNetwork);
+
 // Tech Mark complete/incomlete
 router.put('/markTechComplete', studiesController.markTechComplete);
 router.put('/markTechIncomplete', studiesController.markTechIncomplete);

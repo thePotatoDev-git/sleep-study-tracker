@@ -17,6 +17,8 @@ const studyTechIncomplete = document.querySelectorAll('td.techIncomplete');
 const studyTechComplete = document.querySelectorAll('td.techComplete');
 const studyDoctorIncomplete = document.querySelectorAll('td.doctorIncomplete');
 const studyDoctorComplete = document.querySelectorAll('td.doctorComplete');
+const inNetwork = document.querySelectorAll('td.inNetwork');
+const outNetwork = document.querySelectorAll('td.outNetwork');
 const osaPositive = document.querySelectorAll('td.osaPositive');
 const osaNegative = document.querySelectorAll('td.osaNegative');
 const maskFittingFollowupDateTBD = document.querySelectorAll('td.mask-fitting-date-tbd');
@@ -63,6 +65,9 @@ Array.from(studyDoctorIncomplete).forEach(el => {
     el.addEventListener('click', markDoctorComplete)
 });
 
+Array.from(outNetwork).forEach(el => {
+    el.addEventListener('click', markInNetwork)
+});
 Array.from(osaNegative).forEach(el => {
     el.addEventListener('click', markOSAPositive)
 });
@@ -107,6 +112,26 @@ async function markDoctorComplete() {
     }
 };
 
+async function markInNetwork() {
+    const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
+    try {
+            const response = await fetch('markInNetwork', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 async function markOSAPositive() {
     const studyObjId = this.parentNode.dataset.id;
     const studyLab = this.parentNode.dataset.lab;
@@ -135,6 +160,11 @@ Array.from(studyTechComplete).forEach(el => {
 Array.from(studyDoctorComplete).forEach(el => {
     el.addEventListener('click', markDoctorIncomplete)
 });
+
+Array.from(inNetwork).forEach(el => {
+    el.addEventListener('click', markOutNetwork)
+});
+
 
 Array.from(osaPositive).forEach(el => {
     el.addEventListener('click', markOSANegative)
@@ -165,6 +195,27 @@ async function markDoctorIncomplete() {
     const studyLab = this.parentNode.dataset.lab;
     try {
             const response = await fetch('markDoctorIncomplete', {
+                method: 'put',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'studyObjIdFromJSFile': studyObjId,
+                    'studyLabFromJSFile': studyLab,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            console.log(studyObjId)
+            location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+async function markOutNetwork() {
+    const studyObjId = this.parentNode.dataset.id;
+    const studyLab = this.parentNode.dataset.lab;
+    try {
+            const response = await fetch('markOutNetwork', {
                 method: 'put',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({

@@ -41,6 +41,10 @@ const studySchema = new mongoose.Schema({
         default: false,
         required: true,
     },
+    inNetwork: {
+        type: Boolean,
+        default: false,
+    },
     techFollowUp: {
         type: String,
         default: null,

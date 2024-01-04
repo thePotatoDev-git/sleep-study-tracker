@@ -17,6 +17,14 @@ async function updateDoctorCompleted(studyId, completed) { // Takes parameters o
     return `Study ${completed ? 'completed' : 'incompleted'} by doctor`;
 }
 
+async function markNetwork(studyId, network) { // Takes parameters of study ID and completed true/false
+    await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
+        inNetwork: network // Changes inNetwork property in object and changes to argument passed in 'positive'
+    });
+
+    return `Study ${network ? 'in' : 'out of'} network`;
+}
+
 async function markOSA(studyId, positive) { // Takes parameters of study ID and completed true/false
     await Study.findOneAndUpdate({_id: studyId}, { // Updates object with _id in MongoDB
         osaPositive: positive // Changes osaPositive property in object and changes to argument passed in 'positive'
@@ -302,6 +310,18 @@ module.exports = {
     markDoctorIncomplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         const message = await updateDoctorCompleted(req.body.studyObjIdFromJSFile, false);
+        console.log(message);
+        res.json(message);
+    },
+    markInNetwork: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const message = await markNetwork(req.body.studyObjIdFromJSFile, true); // Runs markNetwork function from above and passes ID and boolean arguments to parameters
+        console.log(message);
+        res.json(message);
+    },
+    markOutNetwork: async (req, res) => {
+        console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
+        const message = await markNetwork(req.body.studyObjIdFromJSFile, false); // Runs markNetwork function from above and passes ID and boolean arguments to parameters
         console.log(message);
         res.json(message);
     },

@@ -510,7 +510,8 @@ ADD STUDY FORM STYLES
 }
 .techIncomplete,
 .doctorIncomplete,
-.osaNegative {
+.osaNegative,
+.outNetwork {
      color: rgba(0, 0, 0, 0.13);
      font-size: 1.6rem;
      text-align: center;
@@ -519,7 +520,8 @@ ADD STUDY FORM STYLES
 }
 .techIncomplete:hover,
 .doctorIncomplete:hover,
-.osaNegative:hover {
+.osaNegative:hover,
+.outNetwork:hover {
      color:rgb(8, 143, 8);
 }
 .techIncomplete:active,
@@ -527,12 +529,15 @@ ADD STUDY FORM STYLES
 .doctorIncomplete:active,
 .doctorComplete:active,
 .osaNegative:active,
-.osaPositive:active {
+.osaPositive:active,
+.inNetwork:active,
+.outNetwork:active {
      color: rgb(231, 109, 9);
 }
 .techComplete,
 .doctorComplete,
-.osaPositive {
+.osaPositive,
+.inNetwork {
      color: rgb(8, 143, 8);
      font-weight: bold;
      font-size: 1.6rem;
