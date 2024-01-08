@@ -42,8 +42,8 @@
                             <td>Date of Study</td>
                             <td class="study-amount">Num. of Studies</td>
                             <td>Assigned to:</td>
-                            <td class="study-comment">Comments</td>
                             <td>In Network</td>
+                            <td class="study-comment">Comments</td>
                             <td>Completed by Tech</td>
                             <td>Completed by M.D.</td>
                             <td class="edit-icons">View/Edit/Delete</td>
@@ -56,12 +56,12 @@
                                 <td class="study-date"><%= moment(wayne[i].studyDate).format('l') %></td>
                                 <td><%= wayne[i].studyAmount %></td>
                                 <td><%= wayne[i].techName %></td>
+                                <td class="<%= wayne[i].inNetwork === true ? "inNetwork" : "outNetwork" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td><% const commentBreaks = wayne[i].comment.split('\r\n') %>
                                     <% for (let i = 0; i < commentBreaks.length; i++) {%>
                                         <p><%= commentBreaks[i] %></p>
                                     <%} %>
                                 </td>
-                                <td class="<%= wayne[i].inNetwork === true ? "inNetwork" : "outNetwork" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= wayne[i].techCompleted === true ? "techComplete" : "techIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="<%= wayne[i].doctorCompleted === true ? "doctorComplete" : "doctorIncomplete" %>"><i class="fa-solid fa-circle-check"></i></td>
                                 <td class="edit-icons" data-id="<%= wayne[i]._id %>">
