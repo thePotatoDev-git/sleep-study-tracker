@@ -486,3 +486,104 @@ async function clearDoctorFollowUpDate() {
         console.log(err);
     }
 };
+
+// Pagination controls
+
+// const labW = [/* Your data */]; 
+// const itemsPerPage = 10;
+// let currentPage = 1;  
+
+// function showPage(page) {
+//     const startIndex = (page - 1) * itemsPerPage;
+//     const endIndex = startIndex + itemsPerPage;
+//     const pageData = labW.slice(startIndex, endIndex);
+
+//     // Clear existing table content
+//     const tableBody = document.getElementById('study-list');
+//     tableBody.innerHTML = ''; 
+
+//     // Add rows for the current page of data
+//     pageData.forEach((item, index) => {
+//         // Create a <tr> element with your content (similar to what you already have)
+//         // ...
+
+//         tableBody.appendChild(row);
+//     });
+
+//     updatePaginationControls();
+// }
+
+// function updatePaginationControls() {
+//     const totalPages = Math.ceil(labW.length / itemsPerPage);
+
+//     // ... (Create your pagination buttons and event listeners here )
+//     // Example:
+//     const prevButton = document.getElementById('prev-page');
+//     prevButton.disabled = currentPage === 1;
+//     prevButton.addEventListener('click', () => {
+//         if (currentPage > 1) { 
+//           currentPage--;
+//           showPage(currentPage); 
+//         }
+//     });
+
+//     // Similar logic for the 'next' button
+// }
+
+// // Initial display
+// showPage(currentPage);
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const prevPageBtn = document.querySelector('.prev-page');
+//     const nextPageBtn = document.querySelector('.next-page');
+//     const currentPageSpan = document.querySelector('.current-page');
+    
+//     let currentPage = 1;
+
+//     // Function to update studies based on current page
+//     function updateStudies() {
+//         fetch(`/studies/wayne?page=${currentPage}`)
+//             .then(response => response.json())
+//             .then(data => {
+//                 renderWayneStudies(data.wayneStudies);
+//                 currentPageSpan.textContent = currentPage;
+//                 if (currentPage <= 1) {
+//                     prevPageBtn.disabled = true;
+//                 } else {
+//                     prevPageBtn.disabled = false;
+//                 }
+//                 if (currentPage >= data.totalPages) {
+//                     nextPageBtn.disabled = true;
+//                 } else {
+//                     nextPageBtn.disabled = false;
+//                 }
+//             })
+//             .catch(error => console.error('Error:', error));
+//     }
+
+//     // Event listener for previous page button
+//     prevPageBtn.addEventListener('click', function () {
+//         if (currentPage > 1) {
+//             currentPage--;
+//             updateStudies();
+//         }
+//     });
+
+//     // Event listener for next page button
+//     nextPageBtn.addEventListener('click', function () {
+//         currentPage++;
+//         updateStudies();
+//     });
+
+//     // Initial update of studies
+//     updateStudies();
+// });
+
+$(document).ready(function() {
+    $('.pagination').on('click', '.btn', function(event) {
+        event.preventDefault();
+        const targetPage = $(this).data('page');
+        window.location.href = `/studies/wayne?page=${targetPage}`; // Redirect with the new page
+        console.log('target page: ', targetPage);
+    });
+});

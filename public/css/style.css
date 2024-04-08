@@ -592,6 +592,13 @@ ADD STUDY FORM STYLES
      background-color: white;
      transition: 0s;
 }
+
+/*************************************
+     Pagination buttons
+*************************************/
+.pagination {
+     margin: 20px;
+}
 /*************************************
      Individual Study
 *************************************/
