@@ -107,10 +107,35 @@ module.exports = {
     getHackensackStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+    
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+    
+            const results = await Promise.all([
+                Study.find({ lab: 'Hackensack' })
+                     .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
+                     .skip(startIndex)
+                     .limit(limit),
+                Study.countDocuments({ lab: 'Hackensack' })
+            ]);
+            
+            const hackensackStudies = results[0];
+            const count = results[1];
+            const totalPages = Math.ceil(count / limit)
+            console.log('Hackensack studies: ', count);
+            
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
-                res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
+                res.render('hackensack.ejs', { 
+                    hackensack: hackensackStudies, 
+                    user: req.user, 
+                    techs: techs, 
+                    search: '',
+                    currentPage: page, // Pass current page to view
+                    totalPages: totalPages, // Pass total pages to view
+                 });
             } else {
                 res.status(403).send('Access not permitted.');
             }
