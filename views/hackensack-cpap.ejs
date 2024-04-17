@@ -112,6 +112,22 @@
                 </table>
             </section>
         </section>
+
+        <!-- Pagination buttons -->
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <button id="prev-page" class="btn" data-page="<%= currentPage - 1 %>">Previous</button>
+            <% } %>
+    
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <button class="btn pagination-btn <%= i === currentPage ? 'active' : '' %>" data-page="<%= i %>"><%= i %></button>
+            <% } %>
+    
+            <% if (currentPage < totalPages) { %>
+                <button id="next-page" class="btn" data-page="<%= currentPage + 1 %>">Next</button>
+            <% } %>
+        </div>
+
         <!-- Add study form -->
         <button class="add-patient btn md:btn-md lg:btn-lg btn-accent" onclick="openForm()">Add Study</button>
         <section class="form-popup" id="patient-form">
