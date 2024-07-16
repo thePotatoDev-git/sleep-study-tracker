@@ -1,7 +1,7 @@
 # Sleep Study Tracker
 A fullstack app created for a sleep doctor's practice. This tracks home sleep studies administered to patients. Add patients to a database along with details of their sleep studies.
 
-**Link to project:**  https://sleep-study-tracker.onrender.com <br>
+**Link to project:**  https://sleep-study-tracker.onrender.com <br> (Please note: Host may take up to a few minutes to load)
 
 **Demo User** <br>
 Email: user@test.com <br>
