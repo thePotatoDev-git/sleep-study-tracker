@@ -1,3 +1,6 @@
 node_modules
 .env
 index-alpha.ejs
+controllers/studies copy.js
+public/js/main-dat-copy.js
+views/wayne-dat-copy.ejs

@@ -92,13 +92,38 @@ module.exports = {
         }
     },
     getMyStudies: async (req, res) => {
+        console.log(req.user)
         try {
-            let studies = await Study.find({techName: req.user.firstName}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1})
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+    
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+    
+            const results = await Promise.all([
+                Study.find({ techName: req.user.firstName })
+                     .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
+                     .skip(startIndex)
+                     .limit(limit),
+                Study.countDocuments({ techName: req.user.firstName })
+            ]);
+            
+            const userStudies = results[0];
+            const count = results[1];
+            const totalPages = Math.ceil(count / limit)
+            
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
-                res.render('mystudies.ejs', { user: req.user, userStudies: studies, search: '', techs: techs });
+                res.render('mystudies.ejs', { 
+                    userStudies: userStudies, 
+                    user: req.user, 
+                    techs: techs, 
+                    search: '',
+                    currentPage: page, // Pass current page to view
+                    totalPages: totalPages, // Pass total pages to view
+                 });
             } else {
-                res.render('noaccess.ejs', { user: req.user });
+                res.status(403).send('Access not permitted.');
             }
         } catch (err) {
             console.error(err);
@@ -107,10 +132,35 @@ module.exports = {
     getHackensackStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let hackensackStudies = await Study.find({lab: 'Hackensack'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+    
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+    
+            const results = await Promise.all([
+                Study.find({ lab: 'Hackensack' })
+                     .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
+                     .skip(startIndex)
+                     .limit(limit),
+                Study.countDocuments({ lab: 'Hackensack' })
+            ]);
+            
+            const hackensackStudies = results[0];
+            const count = results[1];
+            const totalPages = Math.ceil(count / limit)
+            console.log('Hackensack studies: ', count);
+            
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
-                res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
+                res.render('hackensack.ejs', { 
+                    hackensack: hackensackStudies, 
+                    user: req.user, 
+                    techs: techs, 
+                    search: '',
+                    currentPage: page, // Pass current page to view
+                    totalPages: totalPages, // Pass total pages to view
+                 });
             } else {
                 res.status(403).send('Access not permitted.');
             }
@@ -121,10 +171,35 @@ module.exports = {
     getWayneStudies: async (req, res) => {
         console.log(req.user)
         try {
-            let wayneStudies = await Study.find({lab: 'Wayne'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+    
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+    
+            const results = await Promise.all([
+                Study.find({ lab: 'Wayne' })
+                     .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
+                     .skip(startIndex)
+                     .limit(limit),
+                Study.countDocuments({ lab: 'Wayne' })
+            ]);
+            
+            const wayneStudies = results[0];
+            const count = results[1];
+            const totalPages = Math.ceil(count / limit)
+            console.log('Wayne studies: ', count);
+            
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
-                res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, techs: techs, search: '' });
+                res.render('wayne.ejs', { 
+                    wayne: wayneStudies, 
+                    user: req.user, 
+                    techs: techs, 
+                    search: '',
+                    currentPage: page, // Pass current page to view
+                    totalPages: totalPages, // Pass total pages to view
+                 });
             } else {
                 res.status(403).send('Access not permitted.');
             }
@@ -135,10 +210,35 @@ module.exports = {
     getHackensackCPAP: async (req, res) => {
         console.log(req.user)
         try {
-            let hackensackStudies = await Study.find({lab: 'Hackensack', osaPositive: true}).sort({techCompleted: 1, studyDate: -1});
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+    
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+    
+            const results = await Promise.all([
+                Study.find({ lab: 'Hackensack', osaPositive: true })
+                     .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
+                     .skip(startIndex)
+                     .limit(limit),
+                Study.countDocuments({ lab: 'Hackensack', osaPositive: true })
+            ]);
+            
+            const hackensackStudies = results[0];
+            const count = results[1];
+            const totalPages = Math.ceil(count / limit)
+            console.log('Hackensack CPAP: ', count);
+            
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
-                res.render('hackensack-cpap.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
+                res.render('hackensack-cpap.ejs', { 
+                    hackensack: hackensackStudies, 
+                    user: req.user, 
+                    techs: techs, 
+                    search: '',
+                    currentPage: page, // Pass current page to view
+                    totalPages: totalPages, // Pass total pages to view
+                 });
             } else {
                 res.status(403).send('Access not permitted.');
             }
@@ -251,16 +351,7 @@ module.exports = {
             console.log(err);
         }
     },
-    // deleteStudy: async (req, res) => {
-    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-    //     try {
-    //             await Study.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
-    //             console.log('Deleted study');
-    //             res.json('Deleted study');
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
+
 //////////////////////////////////////////////////////////////////////////
 //  MARK/UPDATE STUDIES
 //////////////////////////////////////////////////////////////////////////
@@ -276,31 +367,6 @@ module.exports = {
         console.log(message);
         res.json(message);
     },
-
-    // markTechComplete: async (req, res) => {
-    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`); // Gets the ID from parentNode.dataset.id/lab in main.js
-    //     try {
-    //             await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, { // Finds DB entry with given ID
-    //                 techCompleted: true // Updates entry to true
-    //             });
-    //             console.log('Study completed by tech');
-    //             res.json('Study completed by tech');
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
-    // markTechIncomplete: async (req, res) => {
-    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-    //     try {
-    //             await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-    //                 techCompleted: false
-    //             });
-    //             console.log('Study incompleted by tech');
-    //             res.json('Study incompleted by tech');
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
     markDoctorComplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         const message = await updateDoctorCompleted(req.body.studyObjIdFromJSFile, true); // Runs updateDoctorCompleted function from above and passes ID and boolean arguments to parameters
@@ -339,17 +405,6 @@ module.exports = {
     },
     // Update to current date
     updateMaskFittingDate: async (req, res) => {
-        // console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        // const today = new Date();
-        // try {
-        //         await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-        //             maskFitting: today.toISOString().split('T')[0]
-        //         });
-        //         console.log('Mask fitting date updated');
-        //         res.json('Mask fitting date updated');
-        // } catch (err) {
-        //     console.log(err);
-        // }
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         const today = new Date().toISOString().split('T')[0];
         const message = await maskFitDate(req.body.studyObjIdFromJSFile, today);
@@ -386,16 +441,6 @@ module.exports = {
     },
     // Clear current date
     clearMaskFittingDate: async (req, res) => {
-        // console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        // try {
-        //         await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-        //             maskFitting: undefined
-        //         });
-        //         console.log('Follow-up date cleared');
-        //         res.json('Follow-up date cleared');
-        // } catch (err) {
-        //     console.log(err);
-        // }
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         const message = await maskFitDate(req.body.studyObjIdFromJSFile, undefined);
         console.log(message);
