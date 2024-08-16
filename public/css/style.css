@@ -599,6 +599,15 @@ ADD STUDY FORM STYLES
 .pagination {
      margin: 20px;
 }
+.ellipsis {
+     display: inline-block;
+     min-width: 40px;
+     height: 30px; /* Adjust this height to match your button height */
+     text-align: center;
+     line-height: 30px; /* Same as height to center the text vertically */
+     font-weight: bold;
+     color: #bbb; /* You can set this to match your pagination button color */
+ }
 /*************************************
      Individual Study
 *************************************/
@@ -816,12 +825,3 @@ footer {
      }
 }
 
-.ellipsis {
-    display: inline-block;
-    min-width: 40px;
-    height: 30px; /* Adjust this height to match your button height */
-    text-align: center;
-    line-height: 30px; /* Same as height to center the text vertically */
-    font-weight: bold;
-    color: #bbb; /* You can set this to match your pagination button color */
-}

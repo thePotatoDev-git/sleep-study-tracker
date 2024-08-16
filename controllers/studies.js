@@ -351,16 +351,7 @@ module.exports = {
             console.log(err);
         }
     },
-    // deleteStudy: async (req, res) => {
-    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-    //     try {
-    //             await Study.findOneAndDelete({_id: req.body.studyObjIdFromJSFile});
-    //             console.log('Deleted study');
-    //             res.json('Deleted study');
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
+
 //////////////////////////////////////////////////////////////////////////
 //  MARK/UPDATE STUDIES
 //////////////////////////////////////////////////////////////////////////
@@ -376,31 +367,6 @@ module.exports = {
         console.log(message);
         res.json(message);
     },
-
-    // markTechComplete: async (req, res) => {
-    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`); // Gets the ID from parentNode.dataset.id/lab in main.js
-    //     try {
-    //             await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, { // Finds DB entry with given ID
-    //                 techCompleted: true // Updates entry to true
-    //             });
-    //             console.log('Study completed by tech');
-    //             res.json('Study completed by tech');
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
-    // markTechIncomplete: async (req, res) => {
-    //     console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-    //     try {
-    //             await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-    //                 techCompleted: false
-    //             });
-    //             console.log('Study incompleted by tech');
-    //             res.json('Study incompleted by tech');
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // },
     markDoctorComplete: async (req, res) => {
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         const message = await updateDoctorCompleted(req.body.studyObjIdFromJSFile, true); // Runs updateDoctorCompleted function from above and passes ID and boolean arguments to parameters
@@ -439,17 +405,6 @@ module.exports = {
     },
     // Update to current date
     updateMaskFittingDate: async (req, res) => {
-        // console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        // const today = new Date();
-        // try {
-        //         await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-        //             maskFitting: today.toISOString().split('T')[0]
-        //         });
-        //         console.log('Mask fitting date updated');
-        //         res.json('Mask fitting date updated');
-        // } catch (err) {
-        //     console.log(err);
-        // }
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         const today = new Date().toISOString().split('T')[0];
         const message = await maskFitDate(req.body.studyObjIdFromJSFile, today);
@@ -486,16 +441,6 @@ module.exports = {
     },
     // Clear current date
     clearMaskFittingDate: async (req, res) => {
-        // console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
-        // try {
-        //         await Study.findOneAndUpdate({_id: req.body.studyObjIdFromJSFile}, {
-        //             maskFitting: undefined
-        //         });
-        //         console.log('Follow-up date cleared');
-        //         res.json('Follow-up date cleared');
-        // } catch (err) {
-        //     console.log(err);
-        // }
         console.log(`Object ID ${req.body.studyObjIdFromJSFile} from ${req.body.studyLabFromJSFile}`);
         const message = await maskFitDate(req.body.studyObjIdFromJSFile, undefined);
         console.log(message);
