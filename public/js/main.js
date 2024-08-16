@@ -579,11 +579,27 @@ async function clearDoctorFollowUpDate() {
 //     updateStudies();
 // });
 
+// $(document).ready(function() {
+//     $('.pagination').on('click', '.btn', function(event) {
+//         event.preventDefault();
+//         const targetPage = $(this).data('page');
+//         window.location.href = `/studies/wayne?page=${targetPage}`; // Redirect with the new page
+//         console.log('target page: ', targetPage);
+//     });
+// });
+
 $(document).ready(function() {
     $('.pagination').on('click', '.btn', function(event) {
         event.preventDefault();
         const targetPage = $(this).data('page');
-        window.location.href = `/studies/wayne?page=${targetPage}`; // Redirect with the new page
+        
+        // Get the current path without query parameters
+        const currentPath = window.location.pathname;
+        
+        // Build the new URL dynamically
+        const newUrl = `${currentPath}?page=${targetPage}`;
+        
+        window.location.href = newUrl;
         console.log('target page: ', targetPage);
     });
 });

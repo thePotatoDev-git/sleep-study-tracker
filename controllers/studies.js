@@ -92,13 +92,38 @@ module.exports = {
         }
     },
     getMyStudies: async (req, res) => {
+        console.log(req.user)
         try {
-            let studies = await Study.find({techName: req.user.firstName}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1})
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+    
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+    
+            const results = await Promise.all([
+                Study.find({ techName: req.user.firstName })
+                     .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
+                     .skip(startIndex)
+                     .limit(limit),
+                Study.countDocuments({ techName: req.user.firstName })
+            ]);
+            
+            const userStudies = results[0];
+            const count = results[1];
+            const totalPages = Math.ceil(count / limit)
+            
             let techs = await User.find({specialAccess: true});
             if (req.user.specialAccess === true) {
-                res.render('mystudies.ejs', { user: req.user, userStudies: studies, search: '', techs: techs });
+                res.render('mystudies.ejs', { 
+                    userStudies: userStudies, 
+                    user: req.user, 
+                    techs: techs, 
+                    search: '',
+                    currentPage: page, // Pass current page to view
+                    totalPages: totalPages, // Pass total pages to view
+                 });
             } else {
-                res.render('noaccess.ejs', { user: req.user });
+                res.status(403).send('Access not permitted.');
             }
         } catch (err) {
             console.error(err);
@@ -143,52 +168,6 @@ module.exports = {
             console.error(err);
         }
     },
-    // getWayneStudies: async (req, res) => {
-    //     console.log(req.user)
-    //     // try {
-    //     //     let wayneStudies = await Study.find({lab: 'Wayne'}).sort({techCompleted: 1, doctorCompleted: 1, studyDate: -1});
-    //     //     let techs = await User.find({specialAccess: true});
-    //     //     if (req.user.specialAccess === true) {
-    //     //         res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, techs: techs, search: '' });
-    //     //     } else {
-    //     //         res.status(403).send('Access not permitted.');
-    //     //     }
-    //     // } catch (err) {
-    //     //     console.error(err);
-    //     // }
-        
-    //     // DAT A
-    //     try {
-    //         let techs = await User.find({specialAccess: true});
-    //         const page = parseInt(req.query.page) || 1;   // Get desired page from query params
-    //         const limit = 10;                            // Items per page
-    
-    //         const wayneStudies = await Study.find({ lab: 'Wayne' })
-    //                                        .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
-    //                                        .skip((page - 1) * limit) 
-    //                                        .limit(limit);
-    
-    //         const totalStudies = await Study.countDocuments({ lab: 'Wayne' });  // Get total count
-    //         const totalPages = Math.ceil(totalStudies / limit);
-    
-    //         // ... rest of your controller with the data for rendering
-    //         if (req.user.specialAccess === true) {
-    //             res.render('wayne.ejs', { 
-    //                 wayne: wayneStudies, 
-    //                 user: req.user, 
-    //                 techs: techs, 
-    //                 search: '',
-    //                 currentPage: page,  // Pass current page info
-    //                 totalPages: totalPages  // Pass total page info
-    //             });
-    //         } else {
-    //             res.status(403).send('Access not permitted.');
-    //         }
-    //     } catch (err) {
-    //         console.error(err);
-    //         // ... handle error
-    //     }
-    // },
     getWayneStudies: async (req, res) => {
         console.log(req.user)
         try {
@@ -229,19 +208,6 @@ module.exports = {
         }
     },
     getHackensackCPAP: async (req, res) => {
-        // console.log(req.user)
-        // try {
-        //     let hackensackStudies = await Study.find({lab: 'Hackensack', osaPositive: true}).sort({techCompleted: 1, studyDate: -1});
-        //     let techs = await User.find({specialAccess: true});
-        //     if (req.user.specialAccess === true) {
-        //         res.render('hackensack-cpap.ejs', { hackensack: hackensackStudies, user: req.user, techs: techs, search: '' });
-        //     } else {
-        //         res.status(403).send('Access not permitted.');
-        //     }
-        // } catch (err) {
-        //     console.error(err);
-        // }
-
         console.log(req.user)
         try {
             const page = parseInt(req.query.page) || 1; // Read from route parameter
@@ -255,7 +221,7 @@ module.exports = {
                      .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
                      .skip(startIndex)
                      .limit(limit),
-                Study.countDocuments({ lab: 'Hackensack' })
+                Study.countDocuments({ lab: 'Hackensack', osaPositive: true })
             ]);
             
             const hackensackStudies = results[0];

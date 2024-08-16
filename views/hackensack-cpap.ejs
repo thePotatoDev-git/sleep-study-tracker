@@ -50,7 +50,7 @@
                         </tr>
                         <% for (let i = 0; i < hackensack.length; i++) {%>
                             <tr data-id="<%= hackensack[i]._id %>">
-                                <td><%= i + 1 %></td>
+                                <td><%= (currentPage - 1) * 15 + (i + 1) %></td>
                                 <td class="last-name"><%= hackensack[i].patientLastName %></td>
                                 <td class="first-name"><%= hackensack[i].patientFirstName %></td>
                                 <td class="study-date"><%= moment(hackensack[i].studyDate).format('l') %></td>
@@ -118,11 +118,25 @@
             <% if (currentPage > 1) { %>
                 <button id="prev-page" class="btn" data-page="<%= currentPage - 1 %>">Previous</button>
             <% } %>
-    
-            <% for (let i = 1; i <= totalPages; i++) { %>
+        
+            <% 
+            let startingPage = Math.max(1, currentPage - 2);
+            let endingPage = Math.min(totalPages, currentPage + 2);
+        
+            if (startingPage > 3) { %>
+                <button class="btn pagination-btn" data-page="1">1</button>
+                <span class="ellipsis">...</span>
+            <% } %>
+        
+            <% for (let i = startingPage; i <= endingPage; i++) { %>
                 <button class="btn pagination-btn <%= i === currentPage ? 'active' : '' %>" data-page="<%= i %>"><%= i %></button>
             <% } %>
-    
+        
+            <% if (endingPage < totalPages - 2) { %>
+                <span class="ellipsis">...</span>
+                <button class="btn pagination-btn" data-page="<%= totalPages %>"><%= totalPages %></button>
+            <% } %>
+        
             <% if (currentPage < totalPages) { %>
                 <button id="next-page" class="btn" data-page="<%= currentPage + 1 %>">Next</button>
             <% } %>
