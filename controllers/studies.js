@@ -133,22 +133,23 @@ module.exports = {
         console.log(req.user)
         try {
             const page = parseInt(req.query.page) || 1; // Read from route parameter
-            const limit = 15; 
+            const limit = 15; // Entries per page
     
-            const startIndex = (page - 1) * limit;
-            const endIndex = page * limit;
+            const startIndex = (page - 1) * limit; // Entry index # (starting from...)
+            const endIndex = page * limit; // Entry index # (until...)
     
-            const results = await Promise.all([
+            // Array of MongoDB documents from Hackensack
+            const results = await Promise.all([ // Array of documents
                 Study.find({ lab: 'Hackensack' })
                      .sort({ techCompleted: 1, doctorCompleted: 1, studyDate: -1 })
                      .skip(startIndex)
                      .limit(limit),
-                Study.countDocuments({ lab: 'Hackensack' })
+                Study.countDocuments({ lab: 'Hackensack' }) // Count of entries from Hack
             ]);
             
-            const hackensackStudies = results[0];
-            const count = results[1];
-            const totalPages = Math.ceil(count / limit)
+            const hackensackStudies = results[0]; // Array of Hackensack studies
+            const count = results[1]; // Number of Hackensack studies
+            const totalPages = Math.ceil(count / limit);
             console.log('Hackensack studies: ', count);
             
             let techs = await User.find({specialAccess: true});
@@ -176,6 +177,7 @@ module.exports = {
     
             const startIndex = (page - 1) * limit;
             const endIndex = page * limit;
+            console.log('endIndex: ', endIndex, 'starIndex: ', startIndex)
     
             const results = await Promise.all([
                 Study.find({ lab: 'Wayne' })
@@ -264,6 +266,11 @@ module.exports = {
             let studies = null;
             let techs = await User.find({specialAccess: true});
 
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+
             if (search != null) {
                 let searchResult = await Study.find({ patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
                 .then((data) => {
@@ -273,10 +280,21 @@ module.exports = {
                 search = 'Search'
                 let searchResult = await Study.find({}).sort({studyDate: -1})
                 .then((data) => {
-                    hackensackStudies = data
+                    studies = data
                 });
             }
-            res.render('mystudies.ejs', { userStudies: studies, user: req.user, search: search, techs: techs });
+
+            const count = studies.length;
+            const totalPages = Math.ceil(count / limit)
+
+            res.render('mystudies.ejs', { 
+                userStudies: studies, 
+                user: req.user, 
+                search: search, 
+                techs: techs,
+                currentPage: page,
+                totalPages: totalPages,
+            });
         } catch (err) {
             console.log(err);
         }
@@ -287,6 +305,11 @@ module.exports = {
             let search = req.body.searchInput;
             let hackensackStudies = null;
             let techs = await User.find({specialAccess: true});
+
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
 
             if (search != null) {
                 let searchResult = await Study.find({ lab: 'Hackensack', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
@@ -300,7 +323,58 @@ module.exports = {
                     hackensackStudies = data
                 });
             }
-            res.render('hackensack.ejs', { hackensack: hackensackStudies, user: req.user, search: search, techs: techs });
+
+            const count = hackensackStudies.length;
+            const totalPages = Math.ceil(count / limit)
+
+            res.render('hackensack.ejs', { 
+                hackensack: hackensackStudies, 
+                user: req.user, 
+                search: search, 
+                techs: techs, 
+                currentPage: page, 
+                totalPages: totalPages 
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    searchHackensackCPAPStudies: async (req, res) => {
+        try {
+            const session = req.session;
+            let search = req.body.searchInput;
+            let hackensackStudies = null;
+            let techs = await User.find({specialAccess: true});
+
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+
+            if (search != null) {
+                let searchResult = await Study.find({ lab: 'Hackensack', osaPositive: true, patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+                .then((data) => {
+                    hackensackStudies = data
+                });
+            } else {
+                search = 'Search'
+                let searchResult = await Study.find({}).sort({studyDate: -1})
+                .then((data) => {
+                    hackensackStudies = data
+                });
+            }
+
+            const count = hackensackStudies.length;
+            const totalPages = Math.ceil(count / limit)
+
+            res.render('hackensack-cpap.ejs', { 
+                hackensack: hackensackStudies, 
+                user: req.user, 
+                search: search, 
+                techs: techs, 
+                currentPage: page, 
+                totalPages: totalPages 
+            });
         } catch (err) {
             console.log(err);
         }
@@ -308,23 +382,45 @@ module.exports = {
     searchWayneStudies: async (req, res) => {
         try {
             const session = req.session;
-            let search = req.body.searchInput;
+            let search = req.body.searchInput; // Gets input from search bar
             let wayneStudies = null;
             let techs = await User.find({specialAccess: true});
 
-            if (search != null) {
-                let searchResult = await Study.find({ lab: 'Wayne', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+            const page = parseInt(req.query.page) || 1; // Read from route parameter
+            const limit = 15; 
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+
+            if (search != null) { // If text entered into search, run if statement
+                // In DB, search for last name in Wayne entries
+                let searchResult = await Study.find({ 
+                    lab: 'Wayne', 
+                    patientLastName: {$regex: '^' + search, $options: 'i'} 
+                })
+                .sort({studyDate: -1})
                 .then((data) => {
                     wayneStudies = data
                 });
             } else {
                 search = 'Search'
-                let searchResult = await Study.find({}).sort({studyDate: -1})
+                let searchResult = await Study.find({})
+                .sort({studyDate: -1})
                 .then((data) => {
                     wayneStudies = data
                 });
             }
-            res.render('wayne.ejs', { wayne: wayneStudies, user: req.user, search: search, techs: techs });
+
+            const count = wayneStudies.length;
+            const totalPages = Math.ceil(count / limit)
+
+            res.render('wayne.ejs', { 
+                wayne: wayneStudies, 
+                user: req.user, 
+                search: search, 
+                techs: techs, 
+                currentPage: page, 
+                totalPages: totalPages, 
+            });
         } catch (err) {
             console.log(err);
         }

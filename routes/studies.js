@@ -22,7 +22,7 @@ router.post('/addStudy', studiesController.addStudy);
 // Search studies
 router.post('/search', studiesController.searchStudies);
 router.post('/hackensack/search', studiesController.searchHackensackStudies);
-router.post('/hackensack-cpap/search', studiesController.searchHackensackStudies);
+router.post('/hackensack-cpap/search', studiesController.searchHackensackCPAPStudies);
 router.post('/wayne/search', studiesController.searchWayneStudies);
 
 ////////////////////
