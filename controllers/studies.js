@@ -272,10 +272,19 @@ module.exports = {
             const endIndex = page * limit;
 
             if (search != null) {
-                let searchResult = await Study.find({ patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+                let searchResult = await Study.find({ 
+                    $or: [
+                        { patientLastName: {$regex: '^' + search, $options: 'i'} },
+                        { patientFirstName: {$regex: '^' + search, $options: 'i'} },
+                    ]
+                })
+                .skip(startIndex)
+                .limit(limit)
+                .sort({studyDate: -1})
                 .then((data) => {
                     studies = data
                 });
+                console.log('data: ', studies);
             } else {
                 search = 'Search'
                 let searchResult = await Study.find({}).sort({studyDate: -1})
@@ -312,7 +321,15 @@ module.exports = {
             const endIndex = page * limit;
 
             if (search != null) {
-                let searchResult = await Study.find({ lab: 'Hackensack', patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+                let searchResult = await Study.find({ 
+                    $or: [
+                        { lab: 'Hackensack', patientLastName: {$regex: '^' + search, $options: 'i'} },
+                        { lab: 'Hackensack', patientFirstName: {$regex: '^' + search, $options: 'i'} },
+                    ]
+                })
+                .skip(startIndex)
+                .limit(limit)
+                .sort({studyDate: -1})
                 .then((data) => {
                     hackensackStudies = data
                 });
@@ -352,7 +369,15 @@ module.exports = {
             const endIndex = page * limit;
 
             if (search != null) {
-                let searchResult = await Study.find({ lab: 'Hackensack', osaPositive: true, patientLastName: {$regex: '^' + search, $options: 'i'} }).sort({studyDate: -1})
+                let searchResult = await Study.find({ 
+                    $or: [
+                        { lab: 'Hackensack', osaPositive: true, patientLastName: {$regex: '^' + search, $options: 'i'} },
+                        { lab: 'Hackensack', osaPositive: true, patientFirstName: {$regex: '^' + search, $options: 'i'} },
+                    ]
+                })
+                .skip(startIndex)
+                .limit(limit)
+                .sort({studyDate: -1})
                 .then((data) => {
                     hackensackStudies = data
                 });
@@ -394,9 +419,13 @@ module.exports = {
             if (search != null) { // If text entered into search, run if statement
                 // In DB, search for last name in Wayne entries
                 let searchResult = await Study.find({ 
-                    lab: 'Wayne', 
-                    patientLastName: {$regex: '^' + search, $options: 'i'} 
+                    $or: [
+                        { lab: 'Wayne', patientLastName: {$regex: '^' + search, $options: 'i'} },
+                        { lab: 'Wayne', patientFirstName: {$regex: '^' + search, $options: 'i'} },
+                    ]
                 })
+                .skip(startIndex)
+                .limit(limit)
                 .sort({studyDate: -1})
                 .then((data) => {
                     wayneStudies = data
