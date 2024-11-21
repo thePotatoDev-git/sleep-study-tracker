@@ -393,6 +393,14 @@ td p {
 .glance {
      width: 40%;
 }
+.study-row {
+     background-color: white;
+     transition: .3s;
+}
+.study-row:hover {
+     background-color: #0645881a;
+     transition: .3s
+}
 /******************************************
 ADD STUDY FORM STYLES
 ******************************************/
@@ -523,6 +531,7 @@ ADD STUDY FORM STYLES
 .osaNegative:hover,
 .outNetwork:hover {
      color:rgb(8, 143, 8);
+     transition: .2s;
 }
 .techIncomplete:active,
 .techComplete:active,
@@ -533,6 +542,7 @@ ADD STUDY FORM STYLES
 .inNetwork:active,
 .outNetwork:active {
      color: rgb(231, 109, 9);
+     transition: .2s;
 }
 .techComplete,
 .doctorComplete,

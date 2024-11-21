@@ -49,7 +49,7 @@
                             <td class="edit-icons">View/Edit/Delete</td>
                         </tr>
                         <% for (let i = 0; i < hackensack.length; i++) {%>
-                            <tr data-id="<%= hackensack[i]._id %>">
+                            <tr class="study-row" data-id="<%= hackensack[i]._id %>">
                                 <td><%= (currentPage - 1) * 15 + (i + 1) %></td>
                                 <td class="last-name"><%= hackensack[i].patientLastName %></td>
                                 <td class="first-name"><%= hackensack[i].patientFirstName %></td>
